@@ -1,0 +1,330 @@
+package ai.realitydefender.detection;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import ai.realitydefender.client.HttpClient;
+import ai.realitydefender.exceptions.RealityDefenderException;
+import ai.realitydefender.models.DetectionResult;
+import ai.realitydefender.models.UploadResponse;
+import java.io.File;
+import java.time.Duration;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Service for handling file uploads and detection operations.
+ */
+public class DetectionService {
+
+    private static final Logger logger = LoggerFactory.getLogger(DetectionService.class);
+    private static final String STATUS_PROCESSING = "PROCESSING";
+    private static final String STATUS_ANALYZING = "ANALYZING";
+    private static final String STATUS_QUEUED = "QUEUED";
+
+    private final HttpClient httpClient;
+    private final ObjectMapper objectMapper;
+    private final ScheduledExecutorService scheduler;
+
+    public DetectionService(HttpClient httpClient) {
+        this.httpClient = httpClient;
+        this.objectMapper = new ObjectMapper();
+        this.scheduler = Executors.newScheduledThreadPool(2);
+    }
+
+    /**
+     * Uploads a file for analysis.
+     *
+     * @param file the file to upload
+     * @return the upload response
+     * @throws RealityDefenderException if upload fails
+     */
+    public UploadResponse upload(File file) throws RealityDefenderException {
+        logger.info("Uploading file: {}", file.getName());
+
+        JsonNode response = httpClient.uploadFile(file);
+
+        try {
+            UploadResponse uploadResponse = objectMapper.treeToValue(response, UploadResponse.class);
+            logger.info("File uploaded successfully. Request ID: {}, Media ID: {}",
+                    uploadResponse.getRequestId(), uploadResponse.getMediaId());
+            return uploadResponse;
+        } catch (Exception e) {
+            throw new RealityDefenderException("Failed to parse upload response", "PARSE_ERROR", e);
+        }
+    }
+
+    /**
+     * Uploads a file for analysis asynchronously.
+     *
+     * @param file the file to upload
+     * @return a CompletableFuture containing the upload response
+     */
+    public CompletableFuture<UploadResponse> uploadAsync(File file) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return upload(file);
+            } catch (RealityDefenderException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    /**
+     * Gets the detection result for a request ID, polling until complete.
+     *
+     * @param requestId the request ID from upload
+     * @return the detection result
+     * @throws RealityDefenderException if getting results fails
+     */
+    public DetectionResult getResult(String requestId) throws RealityDefenderException, JsonProcessingException {
+        return getResult(requestId, Duration.ofSeconds(2), Duration.ofMinutes(10));
+    }
+
+    /**
+     * Gets the detection result for a request ID with custom polling settings.
+     *
+     * @param requestId the request ID from upload
+     * @param pollingInterval interval between polling attempts
+     * @param timeout maximum time to wait
+     * @return the detection result
+     * @throws RealityDefenderException if getting results fails
+     */
+    public DetectionResult getResult(String requestId, Duration pollingInterval, Duration timeout)
+            throws RealityDefenderException, JsonProcessingException {
+        logger.info("Getting results for request ID: {}", requestId);
+
+        long startTime = System.currentTimeMillis();
+        long timeoutMillis = timeout.toMillis();
+
+        while (System.currentTimeMillis() - startTime < timeoutMillis) {
+            try {
+                JsonNode response = httpClient.getResults(requestId);
+                DetectionResult result = objectMapper.treeToValue(response, DetectionResult.class);
+
+                if (!isProcessing(result.getStatus())) {
+                    logger.info("Detection completed for request ID: {} with status: {}",
+                            requestId, result.getStatus());
+                    return result;
+                }
+
+                logger.debug("Detection still processing for request ID: {}, status: {}",
+                        requestId, result.getStatus());
+
+                Thread.sleep(pollingInterval.toMillis());
+
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new RealityDefenderException("Polling interrupted", "INTERRUPTED", e);
+            } catch (Exception e) {
+                if (e instanceof RealityDefenderException) {
+                    throw e;
+                }
+                throw new RealityDefenderException("Failed to get results", "RESULTS_FAILED", e);
+            }
+        }
+
+        throw new RealityDefenderException("Timeout waiting for results", "TIMEOUT");
+    }
+
+    /**
+     * Gets the detection result for a request ID asynchronously.
+     *
+     * @param requestId the request ID from upload
+     * @return a CompletableFuture containing the detection result
+     */
+    public CompletableFuture<DetectionResult> getResultAsync(String requestId) {
+        return getResultAsync(requestId, Duration.ofSeconds(2), Duration.ofMinutes(10));
+    }
+
+    /**
+     * Gets the detection result for a request ID asynchronously with custom settings.
+     *
+     * @param requestId the request ID from upload
+     * @param pollingInterval interval between polling attempts
+     * @param timeout maximum time to wait
+     * @return a CompletableFuture containing the detection result
+     */
+    public CompletableFuture<DetectionResult> getResultAsync(String requestId,
+                                                             Duration pollingInterval,
+                                                             Duration timeout) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return getResult(requestId, pollingInterval, timeout);
+            } catch (RealityDefenderException | JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    /**
+     * Detects a file in one step (upload and wait for results).
+     *
+     * @param file the file to analyze
+     * @return the detection result
+     * @throws RealityDefenderException if detection fails
+     */
+    public DetectionResult detectFile(File file) throws RealityDefenderException, JsonProcessingException {
+        UploadResponse uploadResponse = upload(file);
+        return getResult(uploadResponse.getRequestId());
+    }
+
+    /**
+     * Detects a file in one step asynchronously.
+     *
+     * @param file the file to analyze
+     * @return a CompletableFuture containing the detection result
+     */
+    public CompletableFuture<DetectionResult> detectFileAsync(File file) {
+        return uploadAsync(file)
+                .thenCompose(uploadResponse -> getResultAsync(uploadResponse.getRequestId()));
+    }
+
+    /**
+     * Polls for results with callbacks.
+     *
+     * @param requestId the request ID to poll for
+     * @param pollingInterval the interval between polls
+     * @param timeout the maximum time to wait
+     * @param onResult callback for when results are available
+     * @param onError callback for when an error occurs
+     */
+    public void pollForResults(String requestId,
+                               Duration pollingInterval,
+                               Duration timeout,
+                               Consumer<DetectionResult> onResult,
+                               Consumer<RealityDefenderException> onError) {
+
+        logger.info("Starting polling for request ID: {}", requestId);
+
+        final long startTime = System.currentTimeMillis();
+        final long timeoutMillis = timeout.toMillis();
+
+        Runnable pollTask = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (System.currentTimeMillis() - startTime >= timeoutMillis) {
+                        onError.accept(new RealityDefenderException("Timeout waiting for results", "TIMEOUT"));
+                        return;
+                    }
+
+                    JsonNode response = httpClient.getResults(requestId);
+                    DetectionResult result = objectMapper.treeToValue(response, DetectionResult.class);
+
+                    if (!isProcessing(result.getStatus())) {
+                        logger.info("Polling completed for request ID: {} with status: {}",
+                                requestId, result.getStatus());
+                        onResult.accept(result);
+                    } else {
+                        logger.debug("Still processing for request ID: {}, status: {}",
+                                requestId, result.getStatus());
+                        // Schedule next poll
+                        scheduler.schedule(this, pollingInterval.toMillis(), TimeUnit.MILLISECONDS);
+                    }
+
+                } catch (Exception e) {
+                    RealityDefenderException rde = (e instanceof RealityDefenderException)
+                            ? (RealityDefenderException) e
+                            : new RealityDefenderException("Polling failed", "POLLING_ERROR", e);
+                    onError.accept(rde);
+                }
+            }
+        };
+
+        // Start polling immediately
+        scheduler.execute(pollTask);
+    }
+
+    /**
+     * Polls for results asynchronously.
+     *
+     * @param requestId the request ID to poll for
+     * @param pollingInterval the interval between polls
+     * @param timeout the maximum time to wait
+     * @return a CompletableFuture that completes when results are available
+     */
+    public CompletableFuture<DetectionResult> pollForResultsAsync(String requestId,
+                                                                  Duration pollingInterval,
+                                                                  Duration timeout) {
+        CompletableFuture<DetectionResult> future = new CompletableFuture<>();
+
+        pollForResults(requestId, pollingInterval, timeout,
+                future::complete,
+                ex -> future.completeExceptionally(ex)
+        );
+
+        return future;
+    }
+
+    /**
+     * Checks a single result status without polling.
+     *
+     * @param requestId the request ID to check
+     * @return the current detection result
+     * @throws RealityDefenderException if the check fails
+     */
+    public DetectionResult checkStatus(String requestId) throws RealityDefenderException, JsonProcessingException {
+        logger.debug("Checking status for request ID: {}", requestId);
+
+        try {
+            JsonNode response = httpClient.getResults(requestId);
+            return objectMapper.treeToValue(response, DetectionResult.class);
+        } catch (Exception e) {
+            if (e instanceof RealityDefenderException) {
+                throw e;
+            }
+            throw new RealityDefenderException("Failed to check status", "STATUS_CHECK_FAILED", e);
+        }
+    }
+
+    /**
+     * Checks a single result status asynchronously.
+     *
+     * @param requestId the request ID to check
+     * @return a CompletableFuture containing the current detection result
+     */
+    public CompletableFuture<DetectionResult> checkStatusAsync(String requestId) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return checkStatus(requestId);
+            } catch (RealityDefenderException | JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    /**
+     * Determines if a status indicates the detection is still processing.
+     *
+     * @param status the status to check
+     * @return true if still processing, false if complete
+     */
+    private boolean isProcessing(String status) {
+        return STATUS_PROCESSING.equalsIgnoreCase(status) ||
+                STATUS_ANALYZING.equalsIgnoreCase(status) ||
+                STATUS_QUEUED.equalsIgnoreCase(status);
+    }
+
+    /**
+     * Shuts down the internal scheduler.
+     */
+    public void shutdown() {
+        if (scheduler != null && !scheduler.isShutdown()) {
+            scheduler.shutdown();
+            try {
+                if (!scheduler.awaitTermination(5, TimeUnit.SECONDS)) {
+                    scheduler.shutdownNow();
+                }
+            } catch (InterruptedException e) {
+                scheduler.shutdownNow();
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+}
