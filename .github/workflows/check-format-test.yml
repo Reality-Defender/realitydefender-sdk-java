@@ -43,7 +43,12 @@ jobs:
       - name: Run static analysis
         run: mvn compile
 
-      - name: Run tests
+      - name: Run tests (non release)
+        if: ${{ inputs.is-release == false }}
+        run: mvn clean verify -Djacoco.skip=true
+
+      - name: Run tests (release)
+        if: ${{ inputs.is-release == true }}
         run: mvn clean verify
 
       - name: Generate test report
