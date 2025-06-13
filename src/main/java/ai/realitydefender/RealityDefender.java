@@ -231,7 +231,7 @@ public class RealityDefender implements Closeable {
   /** Builder for configuring RealityDefender instances. */
   public static class Builder {
     private String apiKey;
-    private String baseUrl = "https://api.realitydefender.com";
+    private String baseUrl = "https://api.prd.realitydefender.xyz";
     private Duration timeout = Duration.ofSeconds(30);
 
     /**

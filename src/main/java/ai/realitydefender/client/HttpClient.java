@@ -2,6 +2,8 @@ package ai.realitydefender.client;
 
 import ai.realitydefender.core.RealityDefenderConfig;
 import ai.realitydefender.exceptions.RealityDefenderException;
+import ai.realitydefender.models.SignedUrlRequest;
+import ai.realitydefender.models.SignedUrlResponse;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -42,6 +44,35 @@ public class HttpClient implements Closeable {
   }
 
   /**
+   * Gets a signed URL for file upload.
+   *
+   * @param fileName the name of the file to get signed URL for
+   * @return the signed URL response
+   * @throws RealityDefenderException if the request fails
+   */
+  private SignedUrlResponse getSignedUrl(String fileName) throws RealityDefenderException {
+    try {
+      // Create request object
+      SignedUrlRequest request = new SignedUrlRequest(fileName);
+
+      // Make POST request to signed URL endpoint
+      JsonNode response =
+          post("/api/files/aws-presigned", objectMapper.writeValueAsString(request));
+
+      // Convert response to SignedUrlResponse object
+      return objectMapper.treeToValue(response, SignedUrlResponse.class);
+
+    } catch (RealityDefenderException e) {
+      // Re-throw RealityDefenderException as-is
+      throw e;
+    } catch (Exception e) {
+      // Wrap other exceptions
+      throw new RealityDefenderException(
+          "Failed to get signed URL: " + e.getMessage(), "UNKNOWN_ERROR", e);
+    }
+  }
+
+  /**
    * Uploads a file to the Reality Defender API.
    *
    * @param file the file to upload
@@ -59,23 +90,36 @@ public class HttpClient implements Closeable {
           "Cannot read file: " + file.getAbsolutePath(), "INVALID_FILE");
     }
 
+    SignedUrlResponse signedUrlResponse = getSignedUrl(file.getName());
+
     RequestBody fileBody = RequestBody.create(file, MediaType.parse("application/octet-stream"));
     RequestBody requestBody =
         new MultipartBody.Builder()
             .setType(MultipartBody.FORM)
-            .addFormDataPart("file", file.getName(), fileBody)
+            .addFormDataPart("fileName", file.getName(), fileBody)
             .build();
 
     Request request =
         new Request.Builder()
-            .url(config.getBaseUrl() + "/v1/upload")
-            .addHeader("Authorization", "Bearer " + config.getApiKey())
+            .url(signedUrlResponse.getSignedUrl())
+            .addHeader("X-API-KEY", config.getApiKey())
             .addHeader("User-Agent", "RealityDefender-Java-SDK/1.0.0")
-            .post(requestBody)
+            .addHeader("Content-Type", "application/octet-stream")
+            .put(fileBody)
             .build();
 
     try (Response response = client.newCall(request).execute()) {
-      return handleResponse(response, "UPLOAD_FAILED");
+      handleResponse(response, "UPLOAD_FAILED");
+      String uploadResponseJson =
+          "{\n"
+              + "    \"request_id\": \""
+              + signedUrlResponse.getRequestId()
+              + "\",\n"
+              + "    \"media_id\": \""
+              + signedUrlResponse.getMediaId()
+              + "\"\n"
+              + "}";
+      return objectMapper.readTree(uploadResponseJson);
     } catch (IOException e) {
       throw new RealityDefenderException("Failed to upload file", "UPLOAD_FAILED", e);
     }
@@ -91,9 +135,10 @@ public class HttpClient implements Closeable {
   public JsonNode getResults(String requestId) throws RealityDefenderException {
     Request request =
         new Request.Builder()
-            .url(config.getBaseUrl() + "/v1/results/" + requestId)
-            .addHeader("Authorization", "Bearer " + config.getApiKey())
+            .url(config.getBaseUrl() + "/api/media/users/" + requestId)
+            .addHeader("X-API-KEY", config.getApiKey())
             .addHeader("User-Agent", "RealityDefender-Java-SDK/1.0.0")
+            .addHeader("Content-Type", "application/json")
             .get()
             .build();
 
@@ -144,8 +189,9 @@ public class HttpClient implements Closeable {
     Request request =
         new Request.Builder()
             .url(config.getBaseUrl() + endpoint)
-            .addHeader("Authorization", "Bearer " + config.getApiKey())
+            .addHeader("X-API-KEY", config.getApiKey())
             .addHeader("User-Agent", "RealityDefender-Java-SDK/1.0.0")
+            .addHeader("Content-Type", "application/json")
             .post(body)
             .build();
 

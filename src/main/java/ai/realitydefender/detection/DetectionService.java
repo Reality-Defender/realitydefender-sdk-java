@@ -7,6 +7,8 @@ import ai.realitydefender.models.UploadResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.File;
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
@@ -31,7 +33,7 @@ public class DetectionService {
 
   public DetectionService(HttpClient httpClient) {
     this.httpClient = httpClient;
-    this.objectMapper = new ObjectMapper();
+    this.objectMapper = JsonMapper.builder().addModule(new JavaTimeModule()).build();
     this.scheduler = Executors.newScheduledThreadPool(2);
   }
 
@@ -109,18 +111,18 @@ public class DetectionService {
         JsonNode response = httpClient.getResults(requestId);
         DetectionResult result = objectMapper.treeToValue(response, DetectionResult.class);
 
-        if (!isProcessing(result.getStatus())) {
+        if (!isProcessing(result.getOverallStatus())) {
           logger.info(
               "Detection completed for request ID: {} with status: {}",
               requestId,
-              result.getStatus());
+              result.getOverallStatus());
           return result;
         }
 
         logger.debug(
             "Detection still processing for request ID: {}, status: {}",
             requestId,
-            result.getStatus());
+            result.getOverallStatus());
 
         Thread.sleep(pollingInterval.toMillis());
 
@@ -227,17 +229,17 @@ public class DetectionService {
               JsonNode response = httpClient.getResults(requestId);
               DetectionResult result = objectMapper.treeToValue(response, DetectionResult.class);
 
-              if (!isProcessing(result.getStatus())) {
+              if (!isProcessing(result.getOverallStatus())) {
                 logger.info(
                     "Polling completed for request ID: {} with status: {}",
                     requestId,
-                    result.getStatus());
+                    result.getOverallStatus());
                 onResult.accept(result);
               } else {
                 logger.debug(
                     "Still processing for request ID: {}, status: {}",
                     requestId,
-                    result.getStatus());
+                    result.getOverallStatus());
                 // Schedule next poll
                 scheduler.schedule(this, pollingInterval.toMillis(), TimeUnit.MILLISECONDS);
               }

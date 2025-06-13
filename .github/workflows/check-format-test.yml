@@ -45,11 +45,11 @@ jobs:
 
       - name: Run tests (non release)
         if: ${{ inputs.is-release == false }}
-        run: mvn clean verify -Djacoco.skip=true
+        run: mvn clean verify -Djacoco.skip=true -Dgpg.skip
 
       - name: Run tests (release)
         if: ${{ inputs.is-release == true }}
-        run: mvn clean verify
+        run: mvn clean verify -Dgpg.skip
 
       - name: Generate test report
         uses: dorny/test-reporter@v1

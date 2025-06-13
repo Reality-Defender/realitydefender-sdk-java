@@ -247,6 +247,41 @@ class RealityDefenderTest {
   }
 
   private DetectionResult createDetectionResult() {
-    return new DetectionResult("completed", 1.0, new ArrayList<>());
+    return new DetectionResult(
+        "test-name", // name
+        "test-filename", // filename
+        null, // aggregationResultUrl
+        "test-original.jpg", // originalFileName
+        "https://storage.location", // storageLocation
+        "", // convertedFileName
+        "", // convertedFileLocation
+        "", // socialLink
+        false, // socialLinkDownloaded
+        false, // socialLinkDownloadFailed
+        "test-request-id", // requestId
+        null, // uploadedDate
+        "IMAGE", // mediaType
+        null, // userInfo
+        "", // audioExtractionFileName
+        false, // showAudioResult
+        "", // audioRequestId
+        "", // thumbnail
+        null, // contentPreview
+        "test-user-id", // userId
+        "test-institution-id", // institutionId
+        "1.0.0", // releaseVersion
+        new ArrayList<>(), // webhookUrls
+        null, // createdAt
+        null, // updatedAt
+        false, // audioExtractionProcessed
+        "COMPLETED", // overallStatus
+        new DetectionResult.ResultsSummary("COMPLETED", Map.of()), // resultsSummary
+        new ArrayList<>(), // models
+        new ArrayList<>(), // rdModels
+        null, // mediaMetadataInfo
+        "", // modelMetadataUrl
+        "", // explainabilityUrl
+        Map.of() // heatmaps
+        );
   }
 }

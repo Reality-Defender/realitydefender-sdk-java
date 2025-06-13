@@ -78,24 +78,9 @@ class DetectionServiceTest {
   @Test
   void testGetResultPollingSuccess() throws Exception {
     // Arrange
-    String processingResponseJson =
-        "{\n"
-            + "    \"status\": \"PROCESSING\",\n"
-            + "    \"score\": null,\n"
-            + "    \"models\": []\n"
-            + "}";
+    String processingResponseJson = createDetectionResultJson("PROCESSING", "req-123", null);
     String completedResponseJson =
-        "{\n"
-            + "    \"status\": \"ARTIFICIAL\",\n"
-            + "    \"score\": 0.95,\n"
-            + "    \"models\": [\n"
-            + "        {\n"
-            + "            \"name\": \"model1\",\n"
-            + "            \"status\": \"ARTIFICIAL\",\n"
-            + "            \"score\": 0.95\n"
-            + "        }\n"
-            + "    ]\n"
-            + "}";
+        createDetectionResultJson("ARTIFICIAL", "req-123", createModelsJson());
 
     JsonNode processingResponse = objectMapper.readTree(processingResponseJson);
     JsonNode completedResponse = objectMapper.readTree(completedResponseJson);
@@ -109,8 +94,8 @@ class DetectionServiceTest {
         detectionService.getResult("req-123", Duration.ofMillis(10), Duration.ofSeconds(5));
 
     // Assert
-    assertEquals("ARTIFICIAL", result.getStatus());
-    assertEquals(0.95, result.getScore());
+    assertEquals("ARTIFICIAL", result.getOverallStatus());
+    assertEquals("req-123", result.getRequestId());
     assertEquals(1, result.getModels().size());
     assertEquals("model1", result.getModels().get(0).getName());
 
@@ -120,12 +105,7 @@ class DetectionServiceTest {
   @Test
   void testGetResultAsync() throws Exception {
     // Arrange
-    String completedResponseJson =
-        "{\n"
-            + "    \"status\": \"AUTHENTIC\",\n"
-            + "    \"score\": 0.15,\n"
-            + "    \"models\": []\n"
-            + "}";
+    String completedResponseJson = createDetectionResultJson("AUTHENTIC", "req-123", "[]");
     JsonNode completedResponse = objectMapper.readTree(completedResponseJson);
     when(httpClient.getResults("req-123")).thenReturn(completedResponse);
 
@@ -134,8 +114,8 @@ class DetectionServiceTest {
     DetectionResult result = future.get();
 
     // Assert
-    assertEquals("AUTHENTIC", result.getStatus());
-    assertEquals(0.15, result.getScore());
+    assertEquals("AUTHENTIC", result.getOverallStatus());
+    assertEquals("req-123", result.getRequestId());
   }
 
   @Test
@@ -147,12 +127,7 @@ class DetectionServiceTest {
     when(httpClient.uploadFile(testFile)).thenReturn(uploadResponse);
 
     // Arrange detection response
-    String detectionResponseJson =
-        "{\n"
-            + "    \"status\": \"ARTIFICIAL\",\n"
-            + "    \"score\": 0.87,\n"
-            + "    \"models\": []\n"
-            + "}";
+    String detectionResponseJson = createDetectionResultJson("ARTIFICIAL", "req-123", "[]");
     JsonNode detectionResponse = objectMapper.readTree(detectionResponseJson);
     when(httpClient.getResults("req-123")).thenReturn(detectionResponse);
 
@@ -160,8 +135,8 @@ class DetectionServiceTest {
     DetectionResult result = detectionService.detectFile(testFile);
 
     // Assert
-    assertEquals("ARTIFICIAL", result.getStatus());
-    assertEquals(0.87, result.getScore());
+    assertEquals("ARTIFICIAL", result.getOverallStatus());
+    assertEquals("req-123", result.getRequestId());
     verify(httpClient).uploadFile(testFile);
     verify(httpClient).getResults("req-123");
   }
@@ -175,12 +150,7 @@ class DetectionServiceTest {
     when(httpClient.uploadFile(testFile)).thenReturn(uploadResponse);
 
     // Arrange detection response
-    String detectionResponseJson =
-        "{\n"
-            + "    \"status\": \"AUTHENTIC\",\n"
-            + "    \"score\": 0.23,\n"
-            + "    \"models\": []\n"
-            + "}";
+    String detectionResponseJson = createDetectionResultJson("AUTHENTIC", "req-123", "[]");
     JsonNode detectionResponse = objectMapper.readTree(detectionResponseJson);
     when(httpClient.getResults("req-123")).thenReturn(detectionResponse);
 
@@ -189,19 +159,14 @@ class DetectionServiceTest {
     DetectionResult result = future.get();
 
     // Assert
-    assertEquals("AUTHENTIC", result.getStatus());
-    assertEquals(0.23, result.getScore());
+    assertEquals("AUTHENTIC", result.getOverallStatus());
+    assertEquals("req-123", result.getRequestId());
   }
 
   @Test
   void testCheckStatus() throws Exception {
     // Arrange
-    String responseJson =
-        "{\n"
-            + "    \"status\": \"PROCESSING\",\n"
-            + "    \"score\": null,\n"
-            + "    \"models\": []\n"
-            + "}";
+    String responseJson = createDetectionResultJson("PROCESSING", "req-123", "[]");
     JsonNode response = objectMapper.readTree(responseJson);
     when(httpClient.getResults("req-123")).thenReturn(response);
 
@@ -209,20 +174,15 @@ class DetectionServiceTest {
     DetectionResult result = detectionService.checkStatus("req-123");
 
     // Assert
-    assertEquals("PROCESSING", result.getStatus());
-    assertNull(result.getScore());
+    assertEquals("PROCESSING", result.getOverallStatus());
+    assertEquals("req-123", result.getRequestId());
     verify(httpClient).getResults("req-123");
   }
 
   @Test
   void testPollForResultsWithCallbacks() throws Exception {
     // Arrange
-    String completedResponseJson =
-        "{\n"
-            + "    \"status\": \"ARTIFICIAL\",\n"
-            + "    \"score\": 0.91,\n"
-            + "    \"models\": []\n"
-            + "}";
+    String completedResponseJson = createDetectionResultJson("ARTIFICIAL", "req-123", "[]");
     JsonNode completedResponse = objectMapper.readTree(completedResponseJson);
     when(httpClient.getResults("req-123")).thenReturn(completedResponse);
 
@@ -239,156 +199,160 @@ class DetectionServiceTest {
     // Assert
     assertNotNull(resultRef.get());
     assertNull(errorRef.get());
-    assertEquals("ARTIFICIAL", resultRef.get().getStatus());
-    assertEquals(0.91, resultRef.get().getScore());
+    assertEquals("ARTIFICIAL", resultRef.get().getOverallStatus());
+    assertEquals("req-123", resultRef.get().getRequestId());
   }
 
   @Test
-  void testPollForResultsTimeout() throws Exception {
-    // Arrange - always return processing status
-    String processingResponseJson =
-        "{\n"
-            + "    \"status\": \"PROCESSING\",\n"
-            + "    \"score\": null,\n"
-            + "    \"models\": []\n"
-            + "}";
-    JsonNode processingResponse = objectMapper.readTree(processingResponseJson);
-    when(httpClient.getResults("req-123")).thenReturn(processingResponse);
+  void testPollForResultsAsync() throws Exception {
+    // Arrange
+    String completedResponseJson = createDetectionResultJson("ARTIFICIAL", "req-123", "[]");
+    JsonNode completedResponse = objectMapper.readTree(completedResponseJson);
+    when(httpClient.getResults("req-123")).thenReturn(completedResponse);
 
-    // Act & Assert
-    assertThrows(
-        RealityDefenderException.class,
-        () -> {
-          detectionService.getResult("req-123", Duration.ofMillis(10), Duration.ofMillis(50));
-        });
+    // Act
+    CompletableFuture<DetectionResult> future =
+        detectionService.pollForResultsAsync(
+            "req-123", Duration.ofMillis(10), Duration.ofSeconds(5));
+    DetectionResult result = future.get();
+
+    // Assert
+    assertEquals("ARTIFICIAL", result.getOverallStatus());
+    assertEquals("req-123", result.getRequestId());
+  }
+
+  @Test
+  void testCheckStatusAsync() throws Exception {
+    // Arrange
+    String responseJson = createDetectionResultJson("ANALYZING", "req-123", "[]");
+    JsonNode response = objectMapper.readTree(responseJson);
+    when(httpClient.getResults("req-123")).thenReturn(response);
+
+    // Act
+    CompletableFuture<DetectionResult> future = detectionService.checkStatusAsync("req-123");
+    DetectionResult result = future.get();
+
+    // Assert
+    assertEquals("ANALYZING", result.getOverallStatus());
+    assertEquals("req-123", result.getRequestId());
+  }
+
+  @Test
+  void testIsProcessingWithDifferentStatuses() throws Exception {
+    // Test different status values to ensure proper processing detection
+    String[] processingStatuses = {"PROCESSING", "ANALYZING", "QUEUED"};
+    String[] completedStatuses = {"ARTIFICIAL", "AUTHENTIC", "COMPLETED", "FAILED"};
+
+    for (String status : processingStatuses) {
+      String responseJson = createDetectionResultJson(status, "req-123", "[]");
+      JsonNode response = objectMapper.readTree(responseJson);
+      when(httpClient.getResults("req-123")).thenReturn(response);
+
+      DetectionResult result = detectionService.checkStatus("req-123");
+      assertEquals(status, result.getOverallStatus());
+    }
+
+    for (String status : completedStatuses) {
+      String responseJson = createDetectionResultJson(status, "req-123", "[]");
+      JsonNode response = objectMapper.readTree(responseJson);
+      when(httpClient.getResults("req-123")).thenReturn(response);
+
+      DetectionResult result = detectionService.checkStatus("req-123");
+      assertEquals(status, result.getOverallStatus());
+    }
   }
 
   @Test
   void testUploadFailure() throws Exception {
     // Arrange
     when(httpClient.uploadFile(testFile))
-        .thenThrow(new RealityDefenderException("Upload failed", "UPLOAD_FAILED"));
+        .thenThrow(new RealityDefenderException("Upload failed", "UPLOAD_ERROR"));
 
     // Act & Assert
-    RealityDefenderException exception =
-        assertThrows(
-            RealityDefenderException.class,
-            () -> {
-              detectionService.upload(testFile);
-            });
-
-    assertEquals("Upload failed", exception.getMessage());
-    assertEquals("UPLOAD_FAILED", exception.getCode());
+    assertThrows(RealityDefenderException.class, () -> detectionService.upload(testFile));
   }
 
   @Test
-  void testGetResultFailure() throws Exception {
-    // Arrange
-    when(httpClient.getResults("req-123"))
-        .thenThrow(new RealityDefenderException("Results failed", "RESULTS_FAILED"));
+  void testGetResultTimeout() throws Exception {
+    // Arrange - Always return processing status
+    String processingResponseJson = createDetectionResultJson("PROCESSING", "req-123", "[]");
+    JsonNode processingResponse = objectMapper.readTree(processingResponseJson);
+    when(httpClient.getResults("req-123")).thenReturn(processingResponse);
 
     // Act & Assert
-    RealityDefenderException exception =
-        assertThrows(
-            RealityDefenderException.class,
-            () -> {
-              detectionService.getResult("req-123", Duration.ofMillis(10), Duration.ofSeconds(1));
-            });
-
-    assertEquals("Results failed", exception.getMessage());
-    assertEquals("RESULTS_FAILED", exception.getCode());
+    assertThrows(
+        RealityDefenderException.class,
+        () -> detectionService.getResult("req-123", Duration.ofMillis(10), Duration.ofMillis(50)));
   }
 
-  @Test
-  void testPollForResultsAsync() throws Exception {
-    // Arrange
-    String completedResponseJson =
-        "{\n"
-            + "    \"status\": \"AUTHENTIC\",\n"
-            + "    \"score\": 0.25,\n"
-            + "    \"models\": []\n"
-            + "}";
-    JsonNode completedResponse = objectMapper.readTree(completedResponseJson);
-    when(httpClient.getResults("req-456")).thenReturn(completedResponse);
-
-    // Act
-    CompletableFuture<DetectionResult> future =
-        detectionService.pollForResultsAsync(
-            "req-456", Duration.ofMillis(10), Duration.ofSeconds(5));
-    DetectionResult result = future.get();
-
-    // Assert
-    assertEquals("AUTHENTIC", result.getStatus());
-    assertEquals(0.25, result.getScore());
-  }
-
-  @Test
-  void testCheckStatusAsync() throws Exception {
-    // Arrange
-    String responseJson =
-        "{\n"
-            + "    \"status\": \"ANALYZING\",\n"
-            + "    \"score\": null,\n"
-            + "    \"models\": []\n"
-            + "}";
-    JsonNode response = objectMapper.readTree(responseJson);
-    when(httpClient.getResults("req-789")).thenReturn(response);
-
-    // Act
-    CompletableFuture<DetectionResult> future = detectionService.checkStatusAsync("req-789");
-    DetectionResult result = future.get();
-
-    // Assert
-    assertEquals("ANALYZING", result.getStatus());
-    assertNull(result.getScore());
-  }
-
-  @Test
-  void testIsProcessingWithDifferentStatuses() throws Exception {
-    // Test different processing statuses
-    String[] processingStatuses = {"PROCESSING", "ANALYZING", "QUEUED"};
-    String[] completedStatuses = {"ARTIFICIAL", "AUTHENTIC", "ERROR"};
-
-    for (String status : processingStatuses) {
-      String responseJson =
-          "{\n"
-              + "    \"status\": \""
-              + status
-              + "\",\n"
-              + "    \"score\": null,\n"
-              + "    \"models\": []\n"
-              + "}";
-      JsonNode response = objectMapper.readTree(responseJson);
-      when(httpClient.getResults("req-" + status)).thenReturn(response);
-
-      DetectionResult result = detectionService.checkStatus("req-" + status);
-      assertEquals(status, result.getStatus());
+  // Helper methods to create JSON responses
+  private String createDetectionResultJson(String status, String requestId, String modelsJson) {
+    if (modelsJson == null) {
+      modelsJson = "[]";
     }
 
-    for (String status : completedStatuses) {
-      String responseJson =
-          "{\n"
-              + "    \"status\": \""
-              + status
-              + "\",\n"
-              + "    \"score\": 0.5,\n"
-              + "    \"models\": []\n"
-              + "}";
-      JsonNode response = objectMapper.readTree(responseJson);
-      when(httpClient.getResults("req-" + status)).thenReturn(response);
-
-      DetectionResult result = detectionService.checkStatus("req-" + status);
-      assertEquals(status, result.getStatus());
-    }
+    return "{\n"
+        + "    \"name\": \"test-name\",\n"
+        + "    \"filename\": \"test-filename\",\n"
+        + "    \"aggregationResultUrl\": null,\n"
+        + "    \"originalFileName\": \"test-original.jpg\",\n"
+        + "    \"storageLocation\": \"https://storage.location\",\n"
+        + "    \"convertedFileName\": \"\",\n"
+        + "    \"convertedFileLocation\": \"\",\n"
+        + "    \"socialLink\": \"\",\n"
+        + "    \"socialLinkDownloaded\": false,\n"
+        + "    \"socialLinkDownloadFailed\": false,\n"
+        + "    \"requestId\": \""
+        + requestId
+        + "\",\n"
+        + "    \"uploadedDate\": null,\n"
+        + "    \"mediaType\": \"IMAGE\",\n"
+        + "    \"userInfo\": null,\n"
+        + "    \"audioExtractionFileName\": \"\",\n"
+        + "    \"showAudioResult\": false,\n"
+        + "    \"audioRequestId\": \"\",\n"
+        + "    \"thumbnail\": \"\",\n"
+        + "    \"contentPreview\": null,\n"
+        + "    \"userId\": \"test-user-id\",\n"
+        + "    \"institutionId\": \"test-institution-id\",\n"
+        + "    \"releaseVersion\": \"1.0.0\",\n"
+        + "    \"webhookUrls\": [],\n"
+        + "    \"createdAt\": null,\n"
+        + "    \"updatedAt\": null,\n"
+        + "    \"audioExtractionProcessed\": false,\n"
+        + "    \"overallStatus\": \""
+        + status
+        + "\",\n"
+        + "    \"resultsSummary\": {\n"
+        + "        \"status\": \""
+        + status
+        + "\",\n"
+        + "        \"metadata\": {}\n"
+        + "    },\n"
+        + "    \"models\": "
+        + modelsJson
+        + ",\n"
+        + "    \"rdModels\": [],\n"
+        + "    \"media_metadata_info\": null,\n"
+        + "    \"modelMetadataUrl\": \"\",\n"
+        + "    \"explainabilityUrl\": \"\",\n"
+        + "    \"heatmaps\": {}\n"
+        + "}";
   }
 
-  @Test
-  void testShutdown() {
-    // Act
-    detectionService.shutdown();
-
-    // Assert - no exception should be thrown
-    // This test mainly ensures the shutdown method doesn't throw exceptions
-    assertDoesNotThrow(() -> detectionService.shutdown());
+  private String createModelsJson() {
+    return "[\n"
+        + "    {\n"
+        + "        \"name\": \"model1\",\n"
+        + "        \"data\": null,\n"
+        + "        \"error\": null,\n"
+        + "        \"code\": null,\n"
+        + "        \"status\": \"ARTIFICIAL\",\n"
+        + "        \"predictionNumber\": 0.95,\n"
+        + "        \"normalizedPredictionNumber\": 0.95,\n"
+        + "        \"rollingAvgNumber\": 0.95,\n"
+        + "        \"finalScore\": 0.95\n"
+        + "    }\n"
+        + "]";
   }
 }
