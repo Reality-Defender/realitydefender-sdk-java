@@ -12,7 +12,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -93,11 +92,6 @@ public class HttpClient implements Closeable {
     SignedUrlResponse signedUrlResponse = getSignedUrl(file.getName());
 
     RequestBody fileBody = RequestBody.create(file, MediaType.parse("application/octet-stream"));
-    RequestBody requestBody =
-        new MultipartBody.Builder()
-            .setType(MultipartBody.FORM)
-            .addFormDataPart("fileName", file.getName(), fileBody)
-            .build();
 
     Request request =
         new Request.Builder()
@@ -148,31 +142,6 @@ public class HttpClient implements Closeable {
       return handleResponse(response, "RESULTS_FAILED");
     } catch (IOException e) {
       throw new RealityDefenderException("Failed to get results", "RESULTS_FAILED", e);
-    }
-  }
-
-  /**
-   * Makes a generic GET request.
-   *
-   * @param endpoint the API endpoint
-   * @return JSON response as JsonNode
-   * @throws RealityDefenderException if request fails
-   */
-  public JsonNode get(String endpoint) throws RealityDefenderException {
-    Request request =
-        new Request.Builder()
-            .url(config.getBaseUrl() + endpoint)
-            .addHeader("Authorization", "Bearer " + config.getApiKey())
-            .addHeader("User-Agent", "RealityDefender-Java-SDK/1.0.0")
-            .get()
-            .build();
-
-    logger.debug("GET request to: {}", endpoint);
-
-    try (Response response = client.newCall(request).execute()) {
-      return handleResponse(response, "REQUEST_FAILED");
-    } catch (IOException e) {
-      throw new RealityDefenderException("Request failed", "REQUEST_FAILED", e);
     }
   }
 
@@ -301,7 +270,7 @@ public class HttpClient implements Closeable {
   }
 
   @Override
-  public void close() throws IOException {
+  public void close() {
     if (client != null) {
       client.dispatcher().executorService().shutdown();
       client.connectionPool().evictAll();

@@ -111,7 +111,7 @@ public class DetectionService {
         JsonNode response = httpClient.getResults(requestId);
         DetectionResult result = objectMapper.treeToValue(response, DetectionResult.class);
 
-        if (!isProcessing(result.getOverallStatus())) {
+        if (isProcessing(result.getOverallStatus())) {
           logger.info(
               "Detection completed for request ID: {} with status: {}",
               requestId,
@@ -229,7 +229,7 @@ public class DetectionService {
               JsonNode response = httpClient.getResults(requestId);
               DetectionResult result = objectMapper.treeToValue(response, DetectionResult.class);
 
-              if (!isProcessing(result.getOverallStatus())) {
+              if (isProcessing(result.getOverallStatus())) {
                 logger.info(
                     "Polling completed for request ID: {} with status: {}",
                     requestId,
@@ -271,11 +271,7 @@ public class DetectionService {
     CompletableFuture<DetectionResult> future = new CompletableFuture<>();
 
     pollForResults(
-        requestId,
-        pollingInterval,
-        timeout,
-        future::complete,
-        ex -> future.completeExceptionally(ex));
+        requestId, pollingInterval, timeout, future::complete, future::completeExceptionally);
 
     return future;
   }
@@ -326,9 +322,9 @@ public class DetectionService {
    * @return true if still processing, false if complete
    */
   private boolean isProcessing(String status) {
-    return STATUS_PROCESSING.equalsIgnoreCase(status)
-        || STATUS_ANALYZING.equalsIgnoreCase(status)
-        || STATUS_QUEUED.equalsIgnoreCase(status);
+    return !STATUS_PROCESSING.equalsIgnoreCase(status)
+        && !STATUS_ANALYZING.equalsIgnoreCase(status)
+        && !STATUS_QUEUED.equalsIgnoreCase(status);
   }
 
   /** Shuts down the internal scheduler. */

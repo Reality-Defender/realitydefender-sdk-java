@@ -44,7 +44,6 @@ public class RealityDefender implements Closeable {
 
   private final HttpClient httpClient;
   private final DetectionService detectionService;
-  private final RealityDefenderConfig config;
 
   /**
    * Creates a new RealityDefender client with the specified configuration.
@@ -52,14 +51,12 @@ public class RealityDefender implements Closeable {
    * @param config the configuration for the client
    */
   public RealityDefender(RealityDefenderConfig config) {
-    this.config = config;
     this.httpClient = new HttpClient(config);
     this.detectionService = new DetectionService(httpClient);
   }
 
   /** Package-private constructor for testing. */
   RealityDefender(RealityDefenderConfig config, DetectionService detectionService) {
-    this.config = config;
     this.httpClient = null; // Will be null in tests
     this.detectionService = detectionService;
   }

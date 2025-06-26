@@ -8,18 +8,18 @@ on:
         type: boolean
         description: Whether this is a release package ready to be published or not.
     secrets:
-      gpg-signing-key:
+      maven-central-username:
+        required: false
+        description: Maven repository username.
+      maven-central-token:
+        required: false
+        description: Maven repository password.
+      gpg-key:
         required: false
         description: Key to sign the public deliverable.
       gpg-passphrase:
         required: false
         description: Passphrase of the aforementioned GPG signing key.
-      ossrh-username:
-        required: false
-        description: Maven repository username.
-      ossrh-token:
-        required: false
-        description: Maven repository password.
 
   workflow_dispatch:
     inputs:
@@ -36,14 +36,24 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Get tag version
+        run: |
+          echo "SDK_VERSION=$(git describe --tags --abbrev=0 | cut -c2-)" >> $GITHUB_ENV
+
+      - name: Create nightly version, if applicable.
+        if: ${{ inputs.is-release == false }}
+        run: |
+          echo "SDK_VERSION=${{ env.SDK_VERSION }}+git$(date +'%Y%m%d').$(git rev-parse --short HEAD)-${{ github.run_attempt }}" >> $GITHUB_ENV
+
       - name: Set up JDK 11
         uses: actions/setup-java@v4
         with:
-          java-version: '11'
           distribution: 'temurin'
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
+          java-version: '11'
+          java-package: jdk
+          server-id: central
+          server-username: MAVEN_CENTRAL_USERNAME
+          server-password: MAVEN_CENTRAL_PASSWORD
 
       - name: Cache Maven dependencies
         uses: actions/cache@v4
@@ -52,35 +62,29 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Import GPG key
-        if: ${{ inputs.is-release == true }}
-        uses: crazy-max/ghaction-import-gpg@v6
-        with:
-          gpg_private_key: ${{ secrets.gpg-signing-key }}
-          passphrase: ${{ secrets.gpg-passphrase }}
+      - name: Set the library version.
+        run: |
+          mvn versions:set -DnewVersion=${{ env.SDK_VERSION }}
 
-      - name: Verify GPG key
-        if: ${{ inputs.is-release == true }}
-        run: gpg --list-secret-keys --keyid-format LONG
-
-      - name: Build project
-        run: mvn clean compile
+      - name: Build and package project
+        run: mvn clean compile package
 
       - name: Share artifacts.
         uses: actions/upload-artifact@v4
         with:
           name: "realitydefender-sdk-java-${{ env.SDK_VERSION }}"
           path: |
-            target/
+            target/*.jar
           retention-days: 14
           if-no-files-found: error
 
       - name: Publish
         if: ${{ inputs.is-release == true }}
-        run: mvn clean deploy -P release --batch-mode --no-transfer-progress
+        run: mvn --batch-mode --no-transfer-progress deploy -DskipTests --settings settings.xml
         env:
-          MAVEN_USERNAME: ${{ secrets.ossrh-username }}
-          MAVEN_PASSWORD: ${{ secrets.ossrh-token }}
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.maven-central-username }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.maven-central-token }}
+          MAVEN_GPG_KEY: ${{ secrets.gpg-key }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.gpg-passphrase }}
 
 
