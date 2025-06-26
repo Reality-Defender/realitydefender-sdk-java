@@ -90,8 +90,7 @@ class DetectionServiceTest {
         .thenReturn(completedResponse);
 
     // Act
-    DetectionResult result =
-        detectionService.getResult("req-123", Duration.ofMillis(10), 30);
+    DetectionResult result = detectionService.getResult("req-123", Duration.ofMillis(10), 30);
 
     // Assert
     assertEquals("ARTIFICIAL", result.getOverallStatus());
