@@ -1,6 +1,7 @@
 package ai.realitydefender.models;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
 
@@ -51,6 +52,7 @@ public class SignedUrlResponse {
    *
    * @return the signed URL, or null if response is null
    */
+  @JsonIgnore
   public String getSignedUrl() {
     return response != null ? response.getSignedUrl() : null;
   }

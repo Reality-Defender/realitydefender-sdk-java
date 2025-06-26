@@ -117,15 +117,15 @@ class RealityDefenderTest {
   void testGetResultWithPollingSettings() throws RealityDefenderException, JsonProcessingException {
     DetectionResult expectedResult = createDetectionResult();
     Duration pollingInterval = Duration.ofSeconds(5);
-    Duration timeout = Duration.ofMinutes(2);
+    Integer maxAttempts = 30;
 
-    when(detectionService.getResult("request-123", pollingInterval, timeout))
+    when(detectionService.getResult("request-123", pollingInterval, maxAttempts))
         .thenReturn(expectedResult);
 
-    DetectionResult result = realityDefender.getResult("request-123", pollingInterval, timeout);
+    DetectionResult result = realityDefender.getResult("request-123", pollingInterval, maxAttempts);
 
     assertThat(result).isEqualTo(expectedResult);
-    verify(detectionService).getResult("request-123", pollingInterval, timeout);
+    verify(detectionService).getResult("request-123", pollingInterval, maxAttempts);
   }
 
   @Test
@@ -144,16 +144,16 @@ class RealityDefenderTest {
   void testGetResultAsyncWithSettings() throws ExecutionException, InterruptedException {
     DetectionResult expectedResult = createDetectionResult();
     Duration pollingInterval = Duration.ofSeconds(3);
-    Duration timeout = Duration.ofMinutes(1);
+    Integer maxAttempts = 30;
 
-    when(detectionService.getResultAsync("request-123", pollingInterval, timeout))
+    when(detectionService.getResultAsync("request-123", pollingInterval, maxAttempts))
         .thenReturn(CompletableFuture.completedFuture(expectedResult));
 
     CompletableFuture<DetectionResult> result =
-        realityDefender.getResultAsync("request-123", pollingInterval, timeout);
+        realityDefender.getResultAsync("request-123", pollingInterval, maxAttempts);
 
     assertThat(result.get()).isEqualTo(expectedResult);
-    verify(detectionService).getResultAsync("request-123", pollingInterval, timeout);
+    verify(detectionService).getResultAsync("request-123", pollingInterval, maxAttempts);
   }
 
   @Test
@@ -239,11 +239,11 @@ class RealityDefenderTest {
   }
 
   @Test
-  void testCloseWithNullDetectionService() throws IOException {
+  void testCloseWithNullDetectionService() {
     RealityDefender clientWithNullService = new RealityDefender(config, null);
 
     // Should not throw exception
-    assertThatCode(() -> clientWithNullService.close()).doesNotThrowAnyException();
+    assertThatCode(clientWithNullService::close).doesNotThrowAnyException();
   }
 
   private DetectionResult createDetectionResult() {

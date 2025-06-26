@@ -91,7 +91,7 @@ class DetectionServiceTest {
 
     // Act
     DetectionResult result =
-        detectionService.getResult("req-123", Duration.ofMillis(10), Duration.ofSeconds(5));
+        detectionService.getResult("req-123", Duration.ofMillis(10), 30);
 
     // Assert
     assertEquals("ARTIFICIAL", result.getOverallStatus());
@@ -282,7 +282,7 @@ class DetectionServiceTest {
     // Act & Assert
     assertThrows(
         RealityDefenderException.class,
-        () -> detectionService.getResult("req-123", Duration.ofMillis(10), Duration.ofMillis(50)));
+        () -> detectionService.getResult("req-123", Duration.ofMillis(10), 30));
   }
 
   // Helper methods to create JSON responses

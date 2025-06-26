@@ -2,6 +2,7 @@ package ai.realitydefender.models;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.time.LocalDateTime;
@@ -10,6 +11,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -370,6 +373,217 @@ class DetectionResultTest {
     assertEquals(result1.hashCode(), result2.hashCode());
     assertNotEquals(result1, result3);
     assertNotEquals(result1.hashCode(), result3.hashCode());
+  }
+
+  @Test
+  void testModelFilteringDuringSerialization() throws Exception {
+    // Create models with different statuses
+    DetectionResult.ModelResult applicableModel = createModelResult("model1", "ARTIFICIAL", 0.95);
+    DetectionResult.ModelResult notApplicableModel = createModelResult("model2", "NOT_APPLICABLE", null);
+    DetectionResult.ModelResult anotherApplicableModel = createModelResult("model3", "AUTHENTIC", 0.15);
+
+    List<DetectionResult.ModelResult> allModels = Arrays.asList(
+            applicableModel, notApplicableModel, anotherApplicableModel
+    );
+
+    DetectionResult result = createDetectionResult("ARTIFICIAL", allModels);
+
+    // Serialize to JSON
+    String json = objectMapper.writeValueAsString(result);
+
+    // Verify NOT_APPLICABLE model is not in JSON
+    assertFalse(json.contains("NOT_APPLICABLE"));
+    assertFalse(json.contains("model2"));
+
+    // Verify other models are present
+    assertTrue(json.contains("model1"));
+    assertTrue(json.contains("model3"));
+    assertTrue(json.contains("ARTIFICIAL"));
+    assertTrue(json.contains("AUTHENTIC"));
+  }
+
+  @Test
+  void testModelFilteringDuringDeserialization() throws Exception {
+    // JSON with NOT_APPLICABLE model
+    String json = "{\n" +
+            "  \"requestId\": \"test-request\",\n" +
+            "  \"overallStatus\": \"ARTIFICIAL\",\n" +
+            "  \"models\": [\n" +
+            "    {\n" +
+            "      \"name\": \"model1\",\n" +
+            "      \"status\": \"ARTIFICIAL\",\n" +
+            "      \"finalScore\": 0.95\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"name\": \"model2\",\n" +
+            "      \"status\": \"NOT_APPLICABLE\",\n" +
+            "      \"finalScore\": null\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"name\": \"model3\",\n" +
+            "      \"status\": \"AUTHENTIC\",\n" +
+            "      \"finalScore\": 0.15\n" +
+            "    }\n" +
+            "  ]\n" +
+            "}";
+
+    DetectionResult result = objectMapper.readValue(json, DetectionResult.class);
+
+    // Should only have 2 models (NOT_APPLICABLE filtered out)
+    assertEquals(2, result.getModels().size());
+
+    // Verify correct models are present
+    List<String> modelNames = result.getModels().stream()
+            .map(DetectionResult.ModelResult::getName)
+            .collect(Collectors.toList());
+
+    assertTrue(modelNames.contains("model1"));
+    assertTrue(modelNames.contains("model3"));
+    assertFalse(modelNames.contains("model2"));
+
+    // Verify no NOT_APPLICABLE status
+    List<String> statuses = result.getModels().stream()
+            .map(DetectionResult.ModelResult::getStatus)
+            .collect(Collectors.toList());
+
+    assertFalse(statuses.contains("NOT_APPLICABLE"));
+  }
+
+  @Test
+  void testRoundTripWithFiltering() throws Exception {
+    // Create result with mixed model statuses
+    DetectionResult.ModelResult model1 = createModelResult("applicable1", "ARTIFICIAL", 0.9);
+    DetectionResult.ModelResult model2 = createModelResult("notApplicable", "NOT_APPLICABLE", null);
+    DetectionResult.ModelResult model3 = createModelResult("applicable2", "AUTHENTIC", 0.1);
+
+    DetectionResult original = createDetectionResult("ARTIFICIAL",
+            Arrays.asList(model1, model2, model3));
+
+    // Serialize and deserialize
+    String json = objectMapper.writeValueAsString(original);
+    DetectionResult roundTrip = objectMapper.readValue(json, DetectionResult.class);
+
+    // Should have 2 models (NOT_APPLICABLE filtered out)
+    assertEquals(2, roundTrip.getModels().size());
+
+    // Verify filtering worked in both directions
+    assertFalse(roundTrip.getModels().stream()
+            .anyMatch(model -> "NOT_APPLICABLE".equals(model.getStatus())));
+  }
+
+  @Test
+  void testPredictionNumberAsDouble() throws Exception {
+    String json = "{\n" +
+            "  \"name\": \"test-model\",\n" +
+            "  \"status\": \"COMPLETED\",\n" +
+            "  \"predictionNumber\": 0.85,\n" +
+            "  \"finalScore\": 0.9\n" +
+            "}";
+
+    DetectionResult.ModelResult model = objectMapper.readValue(json, DetectionResult.ModelResult.class);
+
+    assertEquals(0.85, model.getPredictionNumber());
+  }
+
+  @Test
+  void testPredictionNumberAsObject() throws Exception {
+    String json = "{\n" +
+            "  \"name\": \"test-model\",\n" +
+            "  \"status\": \"COMPLETED\",\n" +
+            "  \"predictionNumber\": {\"error\": \"calculation failed\"},\n" +
+            "  \"finalScore\": 0.9\n" +
+            "}";
+
+    DetectionResult.ModelResult model = objectMapper.readValue(json, DetectionResult.ModelResult.class);
+
+    assertNull(model.getPredictionNumber());
+    assertEquals(0.9, model.getFinalScore());
+  }
+
+  @Test
+  void testPredictionNumberAsNull() throws Exception {
+    String json = "{\n" +
+            "  \"name\": \"test-model\",\n" +
+            "  \"status\": \"COMPLETED\",\n" +
+            "  \"predictionNumber\": null,\n" +
+            "  \"finalScore\": 0.9\n" +
+            "}";
+
+    DetectionResult.ModelResult model = objectMapper.readValue(json, DetectionResult.ModelResult.class);
+
+    assertNull(model.getPredictionNumber());
+  }
+
+  @Test
+  void testPredictionNumberAsString() throws Exception {
+    String json = "{\n" +
+            "  \"name\": \"test-model\",\n" +
+            "  \"status\": \"COMPLETED\",\n" +
+            "  \"predictionNumber\": \"invalid\",\n" +
+            "  \"finalScore\": 0.9\n" +
+            "}";
+
+    DetectionResult.ModelResult model = objectMapper.readValue(json, DetectionResult.ModelResult.class);
+
+    assertNull(model.getPredictionNumber());
+  }
+
+  @Test
+  void testMixedPredictionNumberTypes() throws Exception {
+    // Test multiple models with different predictionNumber types
+    String json = "{\n" +
+            "  \"models\": [\n" +
+            "    {\n" +
+            "      \"name\": \"model1\",\n" +
+            "      \"status\": \"COMPLETED\",\n" +
+            "      \"predictionNumber\": 0.75\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"name\": \"model2\",\n" +
+            "      \"status\": \"ERROR\",\n" +
+            "      \"predictionNumber\": {\"error\": \"failed\"}\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"name\": \"model3\",\n" +
+            "      \"status\": \"COMPLETED\",\n" +
+            "      \"predictionNumber\": 0.92\n" +
+            "    }\n" +
+            "  ]\n" +
+            "}";
+
+    JsonNode root = objectMapper.readTree(json);
+    JsonNode modelsArray = root.get("models");
+
+    List<DetectionResult.ModelResult> models = new ArrayList<>();
+    for (JsonNode modelNode : modelsArray) {
+      DetectionResult.ModelResult model = objectMapper.treeToValue(modelNode, DetectionResult.ModelResult.class);
+      models.add(model);
+    }
+
+    assertEquals(3, models.size());
+    assertEquals(0.75, models.get(0).getPredictionNumber());
+    assertNull(models.get(1).getPredictionNumber()); // Object converted to null
+    assertEquals(0.92, models.get(2).getPredictionNumber());
+  }
+
+  @Test
+  void testSerializationPreservesDoubleValues() throws Exception {
+    DetectionResult.ModelResult model = new DetectionResult.ModelResult(
+            "test-model",
+            null, // data
+            null, // error
+            null, // code
+            "COMPLETED", // status
+            0.85, // predictionNumber
+            0.90, // normalizedPredictionNumber
+            0.88, // rollingAvgNumber
+            0.92  // finalScore
+    );
+
+    String json = objectMapper.writeValueAsString(model);
+    DetectionResult.ModelResult deserialized = objectMapper.readValue(json, DetectionResult.ModelResult.class);
+
+    assertEquals(0.85, deserialized.getPredictionNumber());
   }
 
   // Helper methods to create objects with all required parameters

@@ -160,7 +160,7 @@ public class HttpClient implements Closeable {
             .url(config.getBaseUrl() + endpoint)
             .addHeader("X-API-KEY", config.getApiKey())
             .addHeader("User-Agent", "RealityDefender-Java-SDK/1.0.0")
-            .addHeader("Content-Type", "application/json")
+            .addHeader("Content-Type", "application/json; charset=UTF-8")
             .post(body)
             .build();
 

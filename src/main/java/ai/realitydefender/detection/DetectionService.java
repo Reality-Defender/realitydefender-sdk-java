@@ -27,6 +27,9 @@ public class DetectionService {
   private static final String STATUS_ANALYZING = "ANALYZING";
   private static final String STATUS_QUEUED = "QUEUED";
 
+  private static final Duration DEFAULT_POLLING_INTERVAL = Duration.ofSeconds(2);
+  private static final Integer DEFAULT_MAX_ATTEMPTS = 30;
+
   private final HttpClient httpClient;
   private final ObjectMapper objectMapper;
   private final ScheduledExecutorService scheduler;
@@ -87,7 +90,7 @@ public class DetectionService {
    */
   public DetectionResult getResult(String requestId)
       throws RealityDefenderException, JsonProcessingException {
-    return getResult(requestId, Duration.ofSeconds(2), Duration.ofMinutes(10));
+    return getResult(requestId, DEFAULT_POLLING_INTERVAL, DEFAULT_MAX_ATTEMPTS);
   }
 
   /**
@@ -95,18 +98,15 @@ public class DetectionService {
    *
    * @param requestId the request ID from upload
    * @param pollingInterval interval between polling attempts
-   * @param timeout maximum time to wait
+   * @param maxAttempts maximum number of attempts.
    * @return the detection result
    * @throws RealityDefenderException if getting results fails
    */
-  public DetectionResult getResult(String requestId, Duration pollingInterval, Duration timeout)
+  public DetectionResult getResult(String requestId, Duration pollingInterval, Integer maxAttempts)
       throws RealityDefenderException, JsonProcessingException {
     logger.info("Getting results for request ID: {}", requestId);
 
-    long startTime = System.currentTimeMillis();
-    long timeoutMillis = timeout.toMillis();
-
-    while (System.currentTimeMillis() - startTime < timeoutMillis) {
+    for (int i = 0; i < maxAttempts; i++) {
       try {
         JsonNode response = httpClient.getResults(requestId);
         DetectionResult result = objectMapper.treeToValue(response, DetectionResult.class);
@@ -147,7 +147,7 @@ public class DetectionService {
    * @return a CompletableFuture containing the detection result
    */
   public CompletableFuture<DetectionResult> getResultAsync(String requestId) {
-    return getResultAsync(requestId, Duration.ofSeconds(2), Duration.ofMinutes(10));
+    return getResultAsync(requestId, DEFAULT_POLLING_INTERVAL, DEFAULT_MAX_ATTEMPTS);
   }
 
   /**
@@ -155,15 +155,15 @@ public class DetectionService {
    *
    * @param requestId the request ID from upload
    * @param pollingInterval interval between polling attempts
-   * @param timeout maximum time to wait
+   * @param maxAttempts maximum number of attempts
    * @return a CompletableFuture containing the detection result
    */
   public CompletableFuture<DetectionResult> getResultAsync(
-      String requestId, Duration pollingInterval, Duration timeout) {
+      String requestId, Duration pollingInterval, Integer maxAttempts) {
     return CompletableFuture.supplyAsync(
         () -> {
           try {
-            return getResult(requestId, pollingInterval, timeout);
+            return getResult(requestId, pollingInterval, maxAttempts);
           } catch (RealityDefenderException | JsonProcessingException e) {
             throw new RuntimeException(e);
           }

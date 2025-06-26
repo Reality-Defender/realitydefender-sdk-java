@@ -108,13 +108,13 @@ public class RealityDefender implements Closeable {
    *
    * @param requestId the request ID from the upload response
    * @param pollingInterval interval between polling attempts
-   * @param timeout maximum time to wait for results
+   * @param maxAttempts maximum number of attempts
    * @return the detection result
    * @throws RealityDefenderException if an error occurs while getting results
    */
-  public DetectionResult getResult(String requestId, Duration pollingInterval, Duration timeout)
+  public DetectionResult getResult(String requestId, Duration pollingInterval, Integer maxAttempts)
       throws RealityDefenderException, JsonProcessingException {
-    return detectionService.getResult(requestId, pollingInterval, timeout);
+    return detectionService.getResult(requestId, pollingInterval, maxAttempts);
   }
 
   /**
@@ -132,12 +132,12 @@ public class RealityDefender implements Closeable {
    *
    * @param requestId the request ID from the upload response
    * @param pollingInterval interval between polling attempts
-   * @param timeout maximum time to wait for results
+   * @param maxAttempts
    * @return a CompletableFuture containing the detection result
    */
   public CompletableFuture<DetectionResult> getResultAsync(
-      String requestId, Duration pollingInterval, Duration timeout) {
-    return detectionService.getResultAsync(requestId, pollingInterval, timeout);
+      String requestId, Duration pollingInterval, Integer maxAttempts) {
+    return detectionService.getResultAsync(requestId, pollingInterval, maxAttempts);
   }
 
   /**

@@ -43,7 +43,7 @@
 
         <!-- Dependency versions -->
         <okhttp.version>4.12.0</okhttp.version>
-        <jackson.version>2.16.1</jackson.version>
+        <jackson.version>2.19.1</jackson.version>
         <slf4j.version>2.0.10</slf4j.version>
 
         <!-- Test dependency versions -->
