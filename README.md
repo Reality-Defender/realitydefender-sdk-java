@@ -1,8 +1,7 @@
 # Reality Defender SDK for Java
 
-[![CI](https://github.com/Reality-Defender/realitydefender-sdk-java/actions/workflows/ci.yml/badge.svg)](https://github.com/Reality-Defender/realitydefender-sdk-java/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/Reality-Defender/realitydefender-sdk-java/branch/main/graph/badge.svg)](https://codecov.io/gh/Reality-Defender/realitydefender-sdk-java)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.realitydefender/realitydefender-sdk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.realitydefender/realitydefender-sdk)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/ai.realitydefender/realitydefender-sdk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/ai.realitydefender/realitydefender-sdk)
 
 A Java SDK for the Reality Defender API to detect deepfakes and manipulated media.
 
@@ -25,7 +24,7 @@ A Java SDK for the Reality Defender API to detect deepfakes and manipulated medi
 
 ```xml
 <dependency>
-    <groupId>com.realitydefender</groupId>
+    <groupId>ai.realitydefender</groupId>
     <artifactId>realitydefender-sdk</artifactId>
     <version>0.1.0</version>
 </dependency>
@@ -34,7 +33,7 @@ A Java SDK for the Reality Defender API to detect deepfakes and manipulated medi
 ### Gradle
 
 ```gradle
-implementation 'com.realitydefender:realitydefender-sdk:1.0.0'
+implementation 'ai.realitydefender:realitydefender-sdk:0.1.0'
 ```
 
 ## Configuration Options
