@@ -20,6 +20,6 @@ jobs:
       is-release: true
     secrets:
       maven-central-username: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
-      maven-central-token: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
+      maven-central-password: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
       gpg-key: ${{ secrets.MAVEN_GPG_KEY}}
       gpg-passphrase: ${{ secrets.MAVEN_GPG_PASSPHRASE }}

@@ -11,7 +11,7 @@ on:
       maven-central-username:
         required: false
         description: Maven repository username.
-      maven-central-token:
+      maven-central-password:
         required: false
         description: Maven repository password.
       gpg-key:
@@ -83,7 +83,7 @@ jobs:
         run: mvn --batch-mode --no-transfer-progress deploy -DskipTests --settings settings.xml
         env:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.maven-central-username }}
-          MAVEN_CENTRAL_PASSWORD: ${{ secrets.maven-central-token }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.maven-central-password }}
           MAVEN_GPG_KEY: ${{ secrets.gpg-key }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.gpg-passphrase }}
 
