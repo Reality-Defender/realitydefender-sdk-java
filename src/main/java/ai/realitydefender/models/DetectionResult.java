@@ -40,7 +40,10 @@ public class DetectionResult {
   private final LocalDateTime createdAt;
   private final LocalDateTime updatedAt;
   private final boolean audioExtractionProcessed;
+
+  @JsonDeserialize(using = OverallStatusDeserializer.class)
   private final String overallStatus;
+
   private final ResultsSummary resultsSummary;
   private final List<ModelResult> models;
   private final List<Object> rdModels;
@@ -223,7 +226,13 @@ public class DetectionResult {
   }
 
   public String getOverallStatus() {
-    return overallStatus;
+    if (this.overallStatus == null) {
+      return null;
+    } else if (this.overallStatus.equals("FAKE")) {
+      return "ARTIFICIAL";
+    } else {
+      return this.overallStatus;
+    }
   }
 
   public ResultsSummary getResultsSummary() {
@@ -578,6 +587,22 @@ public class DetectionResult {
     @Override
     public String toString() {
       return "MediaMetadataInfo{" + "gpsInformation=" + gpsInformation + '}';
+    }
+  }
+
+  public static class OverallStatusDeserializer extends JsonDeserializer<String> {
+    @Override
+    public String deserialize(
+        com.fasterxml.jackson.core.JsonParser p,
+        com.fasterxml.jackson.databind.DeserializationContext ctxt)
+        throws java.io.IOException {
+      JsonNode node = p.readValueAsTree();
+
+      if (node.asText().equals("FAKE")) {
+        return "ARTIFICIAL";
+      }
+
+      return node.asText();
     }
   }
 

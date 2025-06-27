@@ -656,4 +656,90 @@ class DetectionResultTest {
         score // finalScore
         );
   }
+
+  @Test
+  void testOverallStatusDeserializerWithFake() throws Exception {
+    String json = createDetectionResultJsonWithStatus("FAKE");
+    DetectionResult result = objectMapper.readValue(json, DetectionResult.class);
+
+    assertEquals("ARTIFICIAL", result.getOverallStatus());
+  }
+
+  @Test
+  void testOverallStatusDeserializerWithNormalStatuses() throws Exception {
+    String[] normalStatuses = {"COMPLETED", "PROCESSING", "ANALYZING", "ARTIFICIAL"};
+
+    for (String status : normalStatuses) {
+      String json = createDetectionResultJsonWithStatus(status);
+      DetectionResult result = objectMapper.readValue(json, DetectionResult.class);
+
+      assertEquals(status, result.getOverallStatus());
+    }
+  }
+
+  @Test
+  void testOverallStatusDeserializerRoundTrip() throws Exception {
+    DetectionResult original = createDetectionResult("FAKE", new ArrayList<>());
+
+    String json = objectMapper.writeValueAsString(original);
+    DetectionResult deserialized = objectMapper.readValue(json, DetectionResult.class);
+
+    assertEquals("ARTIFICIAL", deserialized.getOverallStatus());
+  }
+
+  @Test
+  void testOverallStatusDeserializerWithNull() throws Exception {
+    String json = createDetectionResultJsonWithNullStatus();
+    DetectionResult result = objectMapper.readValue(json, DetectionResult.class);
+
+    assertNull(result.getOverallStatus());
+  }
+
+  // Helper methods to add to the existing helper methods section
+
+  private String createDetectionResultJsonWithStatus(String status) {
+    return "{\n"
+        + "  \"name\": \"test\",\n"
+        + "  \"filename\": \"test.jpg\",\n"
+        + "  \"originalFileName\": \"test.jpg\",\n"
+        + "  \"storageLocation\": \"storage\",\n"
+        + "  \"requestId\": \"req-123\",\n"
+        + "  \"mediaType\": \"IMAGE\",\n"
+        + "  \"userId\": \"user-123\",\n"
+        + "  \"institutionId\": \"inst-123\",\n"
+        + "  \"releaseVersion\": \"1.0.0\",\n"
+        + "  \"webhookUrls\": [],\n"
+        + "  \"audioExtractionProcessed\": false,\n"
+        + "  \"overallStatus\": \""
+        + status
+        + "\",\n"
+        + "  \"resultsSummary\": { \"status\": \""
+        + status
+        + "\", \"metadata\": {} },\n"
+        + "  \"models\": [],\n"
+        + "  \"rdModels\": [],\n"
+        + "  \"heatmaps\": {}\n"
+        + "}";
+  }
+
+  private String createDetectionResultJsonWithNullStatus() {
+    return "{\n"
+        + "  \"name\": \"test\",\n"
+        + "  \"filename\": \"test.jpg\",\n"
+        + "  \"originalFileName\": \"test.jpg\",\n"
+        + "  \"storageLocation\": \"storage\",\n"
+        + "  \"requestId\": \"req-123\",\n"
+        + "  \"mediaType\": \"IMAGE\",\n"
+        + "  \"userId\": \"user-123\",\n"
+        + "  \"institutionId\": \"inst-123\",\n"
+        + "  \"releaseVersion\": \"1.0.0\",\n"
+        + "  \"webhookUrls\": [],\n"
+        + "  \"audioExtractionProcessed\": false,\n"
+        + "  \"overallStatus\": null,\n"
+        + "  \"resultsSummary\": { \"status\": null, \"metadata\": {} },\n"
+        + "  \"models\": [],\n"
+        + "  \"rdModels\": [],\n"
+        + "  \"heatmaps\": {}\n"
+        + "}";
+  }
 }
