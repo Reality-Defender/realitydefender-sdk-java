@@ -1,7 +1,6 @@
 # Reality Defender SDK for Java
 
-[![codecov](https://codecov.io/gh/Reality-Defender/realitydefender-sdk-java/branch/main/graph/badge.svg)](https://codecov.io/gh/Reality-Defender/realitydefender-sdk-java)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/ai.realitydefender/realitydefender-sdk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/ai.realitydefender/realitydefender-sdk)
+[![codecov](https://codecov.io/github/Reality-Defender/realitydefender-sdk-java/graph/badge.svg?token=ARMPPU3HQM)](https://codecov.io/github/Reality-Defender/realitydefender-sdk-java)
 
 A Java SDK for the Reality Defender API to detect deepfakes and manipulated media.
 
@@ -43,6 +42,7 @@ implementation 'ai.realitydefender:realitydefender-sdk:0.1.0'
 | `apiKey` | String | Required | Your Reality Defender API key |
 | `baseUrl` | String | `https://api.realitydefender.com` | API base URL |
 | `timeout` | Duration | 30 seconds | Request timeout |
+
 
 ## Error Handling
 

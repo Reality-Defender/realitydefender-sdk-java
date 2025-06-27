@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import java.io.Closeable;
 import java.io.File;
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
@@ -20,7 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /** Service for handling file uploads and detection operations. */
-public class DetectionService {
+public class DetectionService implements Closeable {
 
   private static final Logger logger = LoggerFactory.getLogger(DetectionService.class);
   private static final String STATUS_PROCESSING = "PROCESSING";
@@ -328,7 +329,8 @@ public class DetectionService {
   }
 
   /** Shuts down the internal scheduler. */
-  public void shutdown() {
+  @Override
+  public void close() {
     if (scheduler != null && !scheduler.isShutdown()) {
       scheduler.shutdown();
       try {

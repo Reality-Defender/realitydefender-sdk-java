@@ -235,7 +235,7 @@ class RealityDefenderTest {
   void testClose() throws IOException {
     realityDefender.close();
 
-    verify(detectionService).shutdown();
+    verify(detectionService).close();
   }
 
   @Test

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -272,8 +273,25 @@ public class HttpClient implements Closeable {
   @Override
   public void close() {
     if (client != null) {
-      client.dispatcher().executorService().shutdown();
-      client.connectionPool().evictAll();
+      ExecutorService executor = client.dispatcher().executorService();
+      executor.shutdown();
+      try {
+        if (!executor.awaitTermination(5, TimeUnit.SECONDS)) {
+          executor.shutdownNow();
+        }
+      } catch (InterruptedException e) {
+        logger.warn("Interrupted while waiting for executor to terminate", e);
+        executor.shutdownNow();
+        Thread.currentThread().interrupt();
+      } finally {
+        // Always try to evict connections
+        try {
+          client.connectionPool().evictAll();
+        } catch (Exception e) {
+          // Log but don't rethrow to avoid masking shutdown issues
+          logger.warn("Error evicting connections during close", e);
+        }
+      }
     }
   }
 }

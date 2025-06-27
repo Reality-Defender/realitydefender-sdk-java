@@ -9,7 +9,6 @@ import ai.realitydefender.models.UploadResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.Closeable;
 import java.io.File;
-import java.io.IOException;
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
@@ -216,9 +215,9 @@ public class RealityDefender implements Closeable {
   }
 
   @Override
-  public void close() throws IOException {
+  public void close() {
     if (detectionService != null) {
-      detectionService.shutdown();
+      detectionService.close();
     }
     if (httpClient != null) {
       httpClient.close();
