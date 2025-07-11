@@ -176,7 +176,7 @@ class HttpClientTest {
             + "\",\n"
             + "  \"status\": \"COMPLETED\",\n"
             + "  \"results\": {\n"
-            + "    \"overall_status\": \"MANIPULATED\"\n"
+            + "    \"overall_status\": \"FAKE\"\n"
             + "  }\n"
             + "}";
 

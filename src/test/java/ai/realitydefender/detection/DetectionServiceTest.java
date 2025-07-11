@@ -80,7 +80,7 @@ class DetectionServiceTest {
     // Arrange
     String processingResponseJson = createDetectionResultJson("PROCESSING", "req-123", null);
     String completedResponseJson =
-        createDetectionResultJson("MANIPULATED", "req-123", createModelsJson());
+        createDetectionResultJson("FAKE", "req-123", createModelsJson());
 
     JsonNode processingResponse = objectMapper.readTree(processingResponseJson);
     JsonNode completedResponse = objectMapper.readTree(completedResponseJson);
@@ -126,7 +126,7 @@ class DetectionServiceTest {
     when(httpClient.uploadFile(testFile)).thenReturn(uploadResponse);
 
     // Arrange detection response
-    String detectionResponseJson = createDetectionResultJson("MANIPULATED", "req-123", "[]");
+    String detectionResponseJson = createDetectionResultJson("FAKE", "req-123", "[]");
     JsonNode detectionResponse = objectMapper.readTree(detectionResponseJson);
     when(httpClient.getResults("req-123")).thenReturn(detectionResponse);
 
@@ -181,7 +181,7 @@ class DetectionServiceTest {
   @Test
   void testPollForResultsWithCallbacks() throws Exception {
     // Arrange
-    String completedResponseJson = createDetectionResultJson("MANIPULATED", "req-123", "[]");
+    String completedResponseJson = createDetectionResultJson("FAKE", "req-123", "[]");
     JsonNode completedResponse = objectMapper.readTree(completedResponseJson);
     when(httpClient.getResults("req-123")).thenReturn(completedResponse);
 
@@ -205,7 +205,7 @@ class DetectionServiceTest {
   @Test
   void testPollForResultsAsync() throws Exception {
     // Arrange
-    String completedResponseJson = createDetectionResultJson("MANIPULATED", "req-123", "[]");
+    String completedResponseJson = createDetectionResultJson("FAKE", "req-123", "[]");
     JsonNode completedResponse = objectMapper.readTree(completedResponseJson);
     when(httpClient.getResults("req-123")).thenReturn(completedResponse);
 
@@ -346,7 +346,7 @@ class DetectionServiceTest {
         + "        \"data\": null,\n"
         + "        \"error\": null,\n"
         + "        \"code\": null,\n"
-        + "        \"status\": \"MANIPULATED\",\n"
+        + "        \"status\": \"FAKE\",\n"
         + "        \"predictionNumber\": 0.95,\n"
         + "        \"normalizedPredictionNumber\": 0.95,\n"
         + "        \"rollingAvgNumber\": 0.95,\n"

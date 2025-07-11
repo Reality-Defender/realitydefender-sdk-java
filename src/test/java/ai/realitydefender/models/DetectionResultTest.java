@@ -27,11 +27,11 @@ class DetectionResultTest {
 
   @Test
   void testDetectionResultCreation() {
-    DetectionResult.ModelResult model1 = createModelResult("model1", "MANIPULATED", 0.95);
-    DetectionResult.ModelResult model2 = createModelResult("model2", "MANIPULATED", 0.87);
+    DetectionResult.ModelResult model1 = createModelResult("model1", "FAKE", 0.95);
+    DetectionResult.ModelResult model2 = createModelResult("model2", "FAKE", 0.87);
     List<DetectionResult.ModelResult> models = Arrays.asList(model1, model2);
 
-    DetectionResult result = createDetectionResult("MANIPULATED", models);
+    DetectionResult result = createDetectionResult("FAKE", models);
 
     assertEquals("MANIPULATED", result.getOverallStatus());
     assertEquals(2, result.getModels().size());
@@ -57,7 +57,7 @@ class DetectionResultTest {
 
   @Test
   void testDetectionResultEquality() {
-    DetectionResult.ModelResult model = createModelResult("model1", "MANIPULATED", 0.95);
+    DetectionResult.ModelResult model = createModelResult("model1", "FAKE", 0.95);
     List<DetectionResult.ModelResult> models = Arrays.asList(model);
 
     DetectionResult result1 = createDetectionResult("MANIPULATED", models);
@@ -69,7 +69,7 @@ class DetectionResultTest {
 
   @Test
   void testDetectionResultToString() {
-    DetectionResult.ModelResult model = createModelResult("model1", "MANIPULATED", 0.95);
+    DetectionResult.ModelResult model = createModelResult("model1", "FAKE", 0.95);
     DetectionResult result = createDetectionResult("MANIPULATED", Arrays.asList(model));
 
     String toString = result.toString();
@@ -79,7 +79,7 @@ class DetectionResultTest {
 
   @Test
   void testJsonSerialization() throws Exception {
-    DetectionResult.ModelResult model = createModelResult("model1", "MANIPULATED", 0.95);
+    DetectionResult.ModelResult model = createModelResult("model1", "FAKE", 0.95);
     DetectionResult result = createDetectionResult("MANIPULATED", Arrays.asList(model));
 
     String json = objectMapper.writeValueAsString(result);
@@ -278,8 +278,8 @@ class DetectionResultTest {
             "uuid123",
             Arrays.asList("user"));
 
-    DetectionResult.ModelResult model1 = createModelResult("model-a", "MANIPULATED", 0.8);
-    DetectionResult.ModelResult model2 = createModelResult("model-b", "MANIPULATED", 0.9);
+    DetectionResult.ModelResult model1 = createModelResult("model-a", "FAKE", 0.8);
+    DetectionResult.ModelResult model2 = createModelResult("model-b", "FAKE", 0.9);
 
     Map<String, Object> gpsData = Map.of("lat", 51.5074, "lon", -0.1278);
     DetectionResult.MediaMetadataInfo mediaInfo =
@@ -377,7 +377,7 @@ class DetectionResultTest {
   @Test
   void testModelFilteringDuringSerialization() throws Exception {
     // Create models with different statuses
-    DetectionResult.ModelResult applicableModel = createModelResult("model1", "MANIPULATED", 0.95);
+    DetectionResult.ModelResult applicableModel = createModelResult("model1", "FAKE", 0.95);
     DetectionResult.ModelResult notApplicableModel =
         createModelResult("model2", "NOT_APPLICABLE", null);
     DetectionResult.ModelResult anotherApplicableModel =
@@ -408,11 +408,11 @@ class DetectionResultTest {
     String json =
         "{\n"
             + "  \"requestId\": \"test-request\",\n"
-            + "  \"overallStatus\": \"MANIPULATED\",\n"
+            + "  \"overallStatus\": \"FAKE\",\n"
             + "  \"models\": [\n"
             + "    {\n"
             + "      \"name\": \"model1\",\n"
-            + "      \"status\": \"MANIPULATED\",\n"
+            + "      \"status\": \"FAKE\",\n"
             + "      \"finalScore\": 0.95\n"
             + "    },\n"
             + "    {\n"
@@ -455,7 +455,7 @@ class DetectionResultTest {
   @Test
   void testRoundTripWithFiltering() throws Exception {
     // Create result with mixed model statuses
-    DetectionResult.ModelResult model1 = createModelResult("applicable1", "MANIPULATED", 0.9);
+    DetectionResult.ModelResult model1 = createModelResult("applicable1", "FAKE", 0.9);
     DetectionResult.ModelResult model2 = createModelResult("notApplicable", "NOT_APPLICABLE", null);
     DetectionResult.ModelResult model3 = createModelResult("applicable2", "AUTHENTIC", 0.1);
 
