@@ -229,7 +229,7 @@ public class DetectionResult {
     if (this.overallStatus == null) {
       return null;
     } else if (this.overallStatus.equals("FAKE")) {
-      return "ARTIFICIAL";
+      return "MANIPULATED";
     } else {
       return this.overallStatus;
     }
@@ -599,7 +599,7 @@ public class DetectionResult {
       JsonNode node = p.readValueAsTree();
 
       if (node.asText().equals("FAKE")) {
-        return "ARTIFICIAL";
+        return "MANIPULATED";
       }
 
       return node.asText();
