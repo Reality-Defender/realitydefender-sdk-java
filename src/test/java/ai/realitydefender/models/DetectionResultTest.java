@@ -27,13 +27,13 @@ class DetectionResultTest {
 
   @Test
   void testDetectionResultCreation() {
-    DetectionResult.ModelResult model1 = createModelResult("model1", "ARTIFICIAL", 0.95);
-    DetectionResult.ModelResult model2 = createModelResult("model2", "ARTIFICIAL", 0.87);
+    DetectionResult.ModelResult model1 = createModelResult("model1", "MANIPULATED", 0.95);
+    DetectionResult.ModelResult model2 = createModelResult("model2", "MANIPULATED", 0.87);
     List<DetectionResult.ModelResult> models = Arrays.asList(model1, model2);
 
-    DetectionResult result = createDetectionResult("ARTIFICIAL", models);
+    DetectionResult result = createDetectionResult("MANIPULATED", models);
 
-    assertEquals("ARTIFICIAL", result.getOverallStatus());
+    assertEquals("MANIPULATED", result.getOverallStatus());
     assertEquals(2, result.getModels().size());
     assertEquals("model1", result.getModels().get(0).getName());
   }
@@ -57,11 +57,11 @@ class DetectionResultTest {
 
   @Test
   void testDetectionResultEquality() {
-    DetectionResult.ModelResult model = createModelResult("model1", "ARTIFICIAL", 0.95);
+    DetectionResult.ModelResult model = createModelResult("model1", "MANIPULATED", 0.95);
     List<DetectionResult.ModelResult> models = Arrays.asList(model);
 
-    DetectionResult result1 = createDetectionResult("ARTIFICIAL", models);
-    DetectionResult result2 = createDetectionResult("ARTIFICIAL", models);
+    DetectionResult result1 = createDetectionResult("MANIPULATED", models);
+    DetectionResult result2 = createDetectionResult("MANIPULATED", models);
 
     assertEquals(result1, result2);
     assertEquals(result1.hashCode(), result2.hashCode());
@@ -69,18 +69,18 @@ class DetectionResultTest {
 
   @Test
   void testDetectionResultToString() {
-    DetectionResult.ModelResult model = createModelResult("model1", "ARTIFICIAL", 0.95);
-    DetectionResult result = createDetectionResult("ARTIFICIAL", Arrays.asList(model));
+    DetectionResult.ModelResult model = createModelResult("model1", "MANIPULATED", 0.95);
+    DetectionResult result = createDetectionResult("MANIPULATED", Arrays.asList(model));
 
     String toString = result.toString();
-    assertTrue(toString.contains("ARTIFICIAL"));
+    assertTrue(toString.contains("MANIPULATED"));
     assertTrue(toString.contains("test-request-id"));
   }
 
   @Test
   void testJsonSerialization() throws Exception {
-    DetectionResult.ModelResult model = createModelResult("model1", "ARTIFICIAL", 0.95);
-    DetectionResult result = createDetectionResult("ARTIFICIAL", Arrays.asList(model));
+    DetectionResult.ModelResult model = createModelResult("model1", "MANIPULATED", 0.95);
+    DetectionResult result = createDetectionResult("MANIPULATED", Arrays.asList(model));
 
     String json = objectMapper.writeValueAsString(result);
     DetectionResult deserialized = objectMapper.readValue(json, DetectionResult.class);
@@ -119,7 +119,7 @@ class DetectionResultTest {
             Map.of("confidence", 0.95, "type", "deepfake"),
             null,
             "SUCCESS",
-            "ARTIFICIAL",
+            "MANIPULATED",
             0.90,
             0.92,
             0.91,
@@ -278,8 +278,8 @@ class DetectionResultTest {
             "uuid123",
             Arrays.asList("user"));
 
-    DetectionResult.ModelResult model1 = createModelResult("model-a", "ARTIFICIAL", 0.8);
-    DetectionResult.ModelResult model2 = createModelResult("model-b", "ARTIFICIAL", 0.9);
+    DetectionResult.ModelResult model1 = createModelResult("model-a", "MANIPULATED", 0.8);
+    DetectionResult.ModelResult model2 = createModelResult("model-b", "MANIPULATED", 0.9);
 
     Map<String, Object> gpsData = Map.of("lat", 51.5074, "lon", -0.1278);
     DetectionResult.MediaMetadataInfo mediaInfo =
@@ -315,8 +315,8 @@ class DetectionResultTest {
             now,
             now,
             true,
-            "ARTIFICIAL",
-            new DetectionResult.ResultsSummary("ARTIFICIAL", Map.of("overall_confidence", 0.85)),
+            "MANIPULATED",
+            new DetectionResult.ResultsSummary("MANIPULATED", Map.of("overall_confidence", 0.85)),
             Arrays.asList(model1, model2),
             Arrays.asList(),
             mediaInfo,
@@ -351,8 +351,8 @@ class DetectionResultTest {
     assertEquals(now, result.getCreatedAt());
     assertEquals(now, result.getUpdatedAt());
     assertTrue(result.isAudioExtractionProcessed());
-    assertEquals("ARTIFICIAL", result.getOverallStatus());
-    assertEquals("ARTIFICIAL", result.getOverallStatus()); // Convenience method
+    assertEquals("MANIPULATED", result.getOverallStatus());
+    assertEquals("MANIPULATED", result.getOverallStatus()); // Convenience method
     assertNotNull(result.getResultsSummary());
     assertEquals(2, result.getModels().size());
     assertTrue(result.getRdModels().isEmpty());
@@ -364,8 +364,8 @@ class DetectionResultTest {
 
   @Test
   void testEqualsAndHashCode() {
-    DetectionResult result1 = createDetectionResult("ARTIFICIAL", new ArrayList<>());
-    DetectionResult result2 = createDetectionResult("ARTIFICIAL", new ArrayList<>());
+    DetectionResult result1 = createDetectionResult("MANIPULATED", new ArrayList<>());
+    DetectionResult result2 = createDetectionResult("MANIPULATED", new ArrayList<>());
     DetectionResult result3 = createDetectionResult("AUTHENTIC", new ArrayList<>());
 
     assertEquals(result1, result2);
@@ -377,7 +377,7 @@ class DetectionResultTest {
   @Test
   void testModelFilteringDuringSerialization() throws Exception {
     // Create models with different statuses
-    DetectionResult.ModelResult applicableModel = createModelResult("model1", "ARTIFICIAL", 0.95);
+    DetectionResult.ModelResult applicableModel = createModelResult("model1", "MANIPULATED", 0.95);
     DetectionResult.ModelResult notApplicableModel =
         createModelResult("model2", "NOT_APPLICABLE", null);
     DetectionResult.ModelResult anotherApplicableModel =
@@ -386,7 +386,7 @@ class DetectionResultTest {
     List<DetectionResult.ModelResult> allModels =
         Arrays.asList(applicableModel, notApplicableModel, anotherApplicableModel);
 
-    DetectionResult result = createDetectionResult("ARTIFICIAL", allModels);
+    DetectionResult result = createDetectionResult("MANIPULATED", allModels);
 
     // Serialize to JSON
     String json = objectMapper.writeValueAsString(result);
@@ -398,7 +398,7 @@ class DetectionResultTest {
     // Verify other models are present
     assertTrue(json.contains("model1"));
     assertTrue(json.contains("model3"));
-    assertTrue(json.contains("ARTIFICIAL"));
+    assertTrue(json.contains("MANIPULATED"));
     assertTrue(json.contains("AUTHENTIC"));
   }
 
@@ -408,11 +408,11 @@ class DetectionResultTest {
     String json =
         "{\n"
             + "  \"requestId\": \"test-request\",\n"
-            + "  \"overallStatus\": \"ARTIFICIAL\",\n"
+            + "  \"overallStatus\": \"MANIPULATED\",\n"
             + "  \"models\": [\n"
             + "    {\n"
             + "      \"name\": \"model1\",\n"
-            + "      \"status\": \"ARTIFICIAL\",\n"
+            + "      \"status\": \"MANIPULATED\",\n"
             + "      \"finalScore\": 0.95\n"
             + "    },\n"
             + "    {\n"
@@ -455,12 +455,12 @@ class DetectionResultTest {
   @Test
   void testRoundTripWithFiltering() throws Exception {
     // Create result with mixed model statuses
-    DetectionResult.ModelResult model1 = createModelResult("applicable1", "ARTIFICIAL", 0.9);
+    DetectionResult.ModelResult model1 = createModelResult("applicable1", "MANIPULATED", 0.9);
     DetectionResult.ModelResult model2 = createModelResult("notApplicable", "NOT_APPLICABLE", null);
     DetectionResult.ModelResult model3 = createModelResult("applicable2", "AUTHENTIC", 0.1);
 
     DetectionResult original =
-        createDetectionResult("ARTIFICIAL", Arrays.asList(model1, model2, model3));
+        createDetectionResult("MANIPULATED", Arrays.asList(model1, model2, model3));
 
     // Serialize and deserialize
     String json = objectMapper.writeValueAsString(original);
@@ -662,12 +662,12 @@ class DetectionResultTest {
     String json = createDetectionResultJsonWithStatus("FAKE");
     DetectionResult result = objectMapper.readValue(json, DetectionResult.class);
 
-    assertEquals("ARTIFICIAL", result.getOverallStatus());
+    assertEquals("MANIPULATED", result.getOverallStatus());
   }
 
   @Test
   void testOverallStatusDeserializerWithNormalStatuses() throws Exception {
-    String[] normalStatuses = {"COMPLETED", "PROCESSING", "ANALYZING", "ARTIFICIAL"};
+    String[] normalStatuses = {"COMPLETED", "PROCESSING", "ANALYZING", "MANIPULATED"};
 
     for (String status : normalStatuses) {
       String json = createDetectionResultJsonWithStatus(status);
@@ -684,7 +684,7 @@ class DetectionResultTest {
     String json = objectMapper.writeValueAsString(original);
     DetectionResult deserialized = objectMapper.readValue(json, DetectionResult.class);
 
-    assertEquals("ARTIFICIAL", deserialized.getOverallStatus());
+    assertEquals("MANIPULATED", deserialized.getOverallStatus());
   }
 
   @Test

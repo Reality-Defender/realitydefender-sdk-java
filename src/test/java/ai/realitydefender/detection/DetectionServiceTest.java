@@ -80,7 +80,7 @@ class DetectionServiceTest {
     // Arrange
     String processingResponseJson = createDetectionResultJson("PROCESSING", "req-123", null);
     String completedResponseJson =
-        createDetectionResultJson("ARTIFICIAL", "req-123", createModelsJson());
+        createDetectionResultJson("MANIPULATED", "req-123", createModelsJson());
 
     JsonNode processingResponse = objectMapper.readTree(processingResponseJson);
     JsonNode completedResponse = objectMapper.readTree(completedResponseJson);
@@ -93,7 +93,7 @@ class DetectionServiceTest {
     DetectionResult result = detectionService.getResult("req-123", Duration.ofMillis(10), 30);
 
     // Assert
-    assertEquals("ARTIFICIAL", result.getOverallStatus());
+    assertEquals("MANIPULATED", result.getOverallStatus());
     assertEquals("req-123", result.getRequestId());
     assertEquals(1, result.getModels().size());
     assertEquals("model1", result.getModels().get(0).getName());
@@ -126,7 +126,7 @@ class DetectionServiceTest {
     when(httpClient.uploadFile(testFile)).thenReturn(uploadResponse);
 
     // Arrange detection response
-    String detectionResponseJson = createDetectionResultJson("ARTIFICIAL", "req-123", "[]");
+    String detectionResponseJson = createDetectionResultJson("MANIPULATED", "req-123", "[]");
     JsonNode detectionResponse = objectMapper.readTree(detectionResponseJson);
     when(httpClient.getResults("req-123")).thenReturn(detectionResponse);
 
@@ -134,7 +134,7 @@ class DetectionServiceTest {
     DetectionResult result = detectionService.detectFile(testFile);
 
     // Assert
-    assertEquals("ARTIFICIAL", result.getOverallStatus());
+    assertEquals("MANIPULATED", result.getOverallStatus());
     assertEquals("req-123", result.getRequestId());
     verify(httpClient).uploadFile(testFile);
     verify(httpClient).getResults("req-123");
@@ -181,7 +181,7 @@ class DetectionServiceTest {
   @Test
   void testPollForResultsWithCallbacks() throws Exception {
     // Arrange
-    String completedResponseJson = createDetectionResultJson("ARTIFICIAL", "req-123", "[]");
+    String completedResponseJson = createDetectionResultJson("MANIPULATED", "req-123", "[]");
     JsonNode completedResponse = objectMapper.readTree(completedResponseJson);
     when(httpClient.getResults("req-123")).thenReturn(completedResponse);
 
@@ -198,14 +198,14 @@ class DetectionServiceTest {
     // Assert
     assertNotNull(resultRef.get());
     assertNull(errorRef.get());
-    assertEquals("ARTIFICIAL", resultRef.get().getOverallStatus());
+    assertEquals("MANIPULATED", resultRef.get().getOverallStatus());
     assertEquals("req-123", resultRef.get().getRequestId());
   }
 
   @Test
   void testPollForResultsAsync() throws Exception {
     // Arrange
-    String completedResponseJson = createDetectionResultJson("ARTIFICIAL", "req-123", "[]");
+    String completedResponseJson = createDetectionResultJson("MANIPULATED", "req-123", "[]");
     JsonNode completedResponse = objectMapper.readTree(completedResponseJson);
     when(httpClient.getResults("req-123")).thenReturn(completedResponse);
 
@@ -216,7 +216,7 @@ class DetectionServiceTest {
     DetectionResult result = future.get();
 
     // Assert
-    assertEquals("ARTIFICIAL", result.getOverallStatus());
+    assertEquals("MANIPULATED", result.getOverallStatus());
     assertEquals("req-123", result.getRequestId());
   }
 
@@ -240,7 +240,7 @@ class DetectionServiceTest {
   void testIsProcessingWithDifferentStatuses() throws Exception {
     // Test different status values to ensure proper processing detection
     String[] processingStatuses = {"PROCESSING", "ANALYZING", "QUEUED"};
-    String[] completedStatuses = {"ARTIFICIAL", "AUTHENTIC", "COMPLETED", "FAILED"};
+    String[] completedStatuses = {"MANIPULATED", "AUTHENTIC", "COMPLETED", "FAILED"};
 
     for (String status : processingStatuses) {
       String responseJson = createDetectionResultJson(status, "req-123", "[]");
@@ -346,7 +346,7 @@ class DetectionServiceTest {
         + "        \"data\": null,\n"
         + "        \"error\": null,\n"
         + "        \"code\": null,\n"
-        + "        \"status\": \"ARTIFICIAL\",\n"
+        + "        \"status\": \"MANIPULATED\",\n"
         + "        \"predictionNumber\": 0.95,\n"
         + "        \"normalizedPredictionNumber\": 0.95,\n"
         + "        \"rollingAvgNumber\": 0.95,\n"
