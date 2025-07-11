@@ -79,8 +79,7 @@ class DetectionServiceTest {
   void testGetResultPollingSuccess() throws Exception {
     // Arrange
     String processingResponseJson = createDetectionResultJson("PROCESSING", "req-123", null);
-    String completedResponseJson =
-        createDetectionResultJson("FAKE", "req-123", createModelsJson());
+    String completedResponseJson = createDetectionResultJson("FAKE", "req-123", createModelsJson());
 
     JsonNode processingResponse = objectMapper.readTree(processingResponseJson);
     JsonNode completedResponse = objectMapper.readTree(completedResponseJson);
