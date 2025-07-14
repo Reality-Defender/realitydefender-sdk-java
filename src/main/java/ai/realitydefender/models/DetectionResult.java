@@ -423,13 +423,7 @@ public class DetectionResult {
     }
 
     public String getStatus() {
-      if (this.status == null) {
-        return null;
-      } else if (this.status.equals("FAKE")) {
-        return "MANIPULATED";
-      } else {
-        return this.status;
-      }
+        return status;
     }
 
     public Map<String, Object> getMetadata() {
@@ -513,7 +507,13 @@ public class DetectionResult {
     }
 
     public String getStatus() {
-      return status;
+      if (this.status == null) {
+        return null;
+      } else if (this.status.equals("FAKE")) {
+        return "MANIPULATED";
+      } else {
+        return this.status;
+      }
     }
 
     public Double getPredictionNumber() {
@@ -606,11 +606,9 @@ public class DetectionResult {
         com.fasterxml.jackson.databind.DeserializationContext ctxt)
         throws java.io.IOException {
       JsonNode node = p.readValueAsTree();
-
       if (node.asText().equals("FAKE")) {
         return "MANIPULATED";
       }
-
       return node.asText();
     }
   }

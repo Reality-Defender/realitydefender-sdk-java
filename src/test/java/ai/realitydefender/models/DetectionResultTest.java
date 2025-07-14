@@ -70,17 +70,17 @@ class DetectionResultTest {
   @Test
   void testDetectionResultToString() {
     DetectionResult.ModelResult model = createModelResult("model1", "FAKE", 0.95);
-    DetectionResult result = createDetectionResult("MANIPULATED", Arrays.asList(model));
+    DetectionResult result = createDetectionResult("FAKE", Arrays.asList(model));
 
     String toString = result.toString();
-    assertTrue(toString.contains("MANIPULATED"));
+    assertTrue(toString.contains("FAKE"));
     assertTrue(toString.contains("test-request-id"));
   }
 
   @Test
   void testJsonSerialization() throws Exception {
     DetectionResult.ModelResult model = createModelResult("model1", "FAKE", 0.95);
-    DetectionResult result = createDetectionResult("MANIPULATED", Arrays.asList(model));
+    DetectionResult result = createDetectionResult("FAKE", Arrays.asList(model));
 
     String json = objectMapper.writeValueAsString(result);
     DetectionResult deserialized = objectMapper.readValue(json, DetectionResult.class);
