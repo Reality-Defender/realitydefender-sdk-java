@@ -41,7 +41,7 @@ public class DetectionResult {
   private final LocalDateTime updatedAt;
   private final boolean audioExtractionProcessed;
 
-  @JsonDeserialize(using = OverallStatusDeserializer.class)
+  @JsonDeserialize(using = StatusDeserializer.class)
   private final String overallStatus;
 
   private final ResultsSummary resultsSummary;
@@ -455,6 +455,8 @@ public class DetectionResult {
     private final Object data;
     private final String error;
     private final String code;
+
+    @JsonDeserialize(using = StatusDeserializer.class)
     private final String status;
 
     @JsonDeserialize(using = PredictionNumberDeserializer.class)
@@ -480,6 +482,7 @@ public class DetectionResult {
       this.error = error;
       this.code = code;
       this.status = status;
+
       this.predictionNumber = predictionNumber;
       this.normalizedPredictionNumber = normalizedPredictionNumber;
       this.rollingAvgNumber = rollingAvgNumber;
@@ -590,7 +593,7 @@ public class DetectionResult {
     }
   }
 
-  public static class OverallStatusDeserializer extends JsonDeserializer<String> {
+  public static class StatusDeserializer extends JsonDeserializer<String> {
     @Override
     public String deserialize(
         com.fasterxml.jackson.core.JsonParser p,
