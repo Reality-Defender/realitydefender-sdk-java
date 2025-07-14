@@ -273,7 +273,7 @@ class DetectionServiceTest {
 
   @Test
   void testGetResultTimeout() throws Exception {
-    // Arrange - Always return processing s
+    // Arrange - Always return processing status
     String processingResponseJson = createDetectionResultJson("PROCESSING", "req-123", "[]");
     JsonNode processingResponse = objectMapper.readTree(processingResponseJson);
     when(httpClient.getResults("req-123")).thenReturn(processingResponse);
