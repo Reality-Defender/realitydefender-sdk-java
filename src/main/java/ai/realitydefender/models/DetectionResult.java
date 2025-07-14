@@ -423,7 +423,7 @@ public class DetectionResult {
     }
 
     public String getStatus() {
-        return status;
+      return status;
     }
 
     public Map<String, Object> getMetadata() {
@@ -482,7 +482,6 @@ public class DetectionResult {
       this.error = error;
       this.code = code;
       this.status = status;
-
       this.predictionNumber = predictionNumber;
       this.normalizedPredictionNumber = normalizedPredictionNumber;
       this.rollingAvgNumber = rollingAvgNumber;
