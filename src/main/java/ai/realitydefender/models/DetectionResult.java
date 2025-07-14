@@ -423,7 +423,13 @@ public class DetectionResult {
     }
 
     public String getStatus() {
-      return status;
+      if (this.status == null) {
+        return null;
+      } else if (this.status.equals("FAKE")) {
+        return "MANIPULATED";
+      } else {
+        return this.status;
+      }
     }
 
     public Map<String, Object> getMetadata() {
