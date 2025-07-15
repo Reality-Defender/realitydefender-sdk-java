@@ -96,6 +96,7 @@ class DetectionServiceTest {
     assertEquals("req-123", result.getRequestId());
     assertEquals(1, result.getModels().size());
     assertEquals("model1", result.getModels().get(0).getName());
+    assertEquals("MANIPULATED", result.getModels().get(0).getStatus());
 
     verify(httpClient, times(2)).getResults("req-123");
   }
