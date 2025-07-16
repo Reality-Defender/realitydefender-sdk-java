@@ -255,10 +255,27 @@ class DetectionResultTest {
     gpsInfo.put("longitude", -74.0060);
 
     DetectionResult.MediaMetadataInfo mediaInfo =
-        new DetectionResult.MediaMetadataInfo(1024768, gpsInfo);
+        new DetectionResult.MediaMetadataInfo(1024768, gpsInfo, null);
 
     assertEquals(gpsInfo, mediaInfo.getGpsInformation());
     assertEquals(40.7128, mediaInfo.getGpsInformation().get("latitude"));
+    assertEquals(Integer.valueOf(1024768), mediaInfo.getFileSize());
+    assertNull(mediaInfo.getAudioLength());
+  }
+
+  @Test
+  void testMediaMetadataInfoWithAudioLength() {
+    Map<String, Object> gpsInfo = new HashMap<>();
+    gpsInfo.put("latitude", 40.7128);
+    gpsInfo.put("longitude", -74.0060);
+
+    DetectionResult.MediaMetadataInfo mediaInfo =
+        new DetectionResult.MediaMetadataInfo(1024768, gpsInfo, 120.5);
+
+    assertEquals(gpsInfo, mediaInfo.getGpsInformation());
+    assertEquals(40.7128, mediaInfo.getGpsInformation().get("latitude"));
+    assertEquals(Integer.valueOf(1024768), mediaInfo.getFileSize());
+    assertEquals(Double.valueOf(120.5), mediaInfo.getAudioLength());
   }
 
   @Test
@@ -283,7 +300,7 @@ class DetectionResultTest {
 
     Map<String, Object> gpsData = Map.of("lat", 51.5074, "lon", -0.1278);
     DetectionResult.MediaMetadataInfo mediaInfo =
-        new DetectionResult.MediaMetadataInfo(2048000, gpsData);
+        new DetectionResult.MediaMetadataInfo(2048000, gpsData, null);
 
     Map<String, String> heatmaps = Map.of("overall", "heatmap-url", "model-a", "model-a-heatmap");
 

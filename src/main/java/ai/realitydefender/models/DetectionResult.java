@@ -235,6 +235,22 @@ public class DetectionResult {
     }
   }
 
+  /**
+   * Gets the normalized detection score (0-1 range) from the results summary.
+   *
+   * @return the normalized score, or null if not available
+   */
+  @com.fasterxml.jackson.annotation.JsonIgnore
+  public Double getScore() {
+    if (resultsSummary != null && resultsSummary.getMetadata() != null) {
+      Object finalScore = resultsSummary.getMetadata().get("finalScore");
+      if (finalScore instanceof Number) {
+        return ((Number) finalScore).doubleValue() / 100.0; // Normalize to 0-1 range
+      }
+    }
+    return null;
+  }
+
   public ResultsSummary getResultsSummary() {
     return resultsSummary;
   }
@@ -557,17 +573,28 @@ public class DetectionResult {
   public static class MediaMetadataInfo {
     private final Integer fileSize;
     private final Map<String, Object> gpsInformation;
+    private final Double audioLength;
 
     @JsonCreator
     public MediaMetadataInfo(
         @JsonProperty("file_size") Integer fileSize,
-        @JsonProperty("gps_information") Map<String, Object> gpsInformation) {
+        @JsonProperty("gps_information") Map<String, Object> gpsInformation,
+        @JsonProperty("audio_length") Double audioLength) {
       this.fileSize = fileSize;
       this.gpsInformation = gpsInformation;
+      this.audioLength = audioLength;
+    }
+
+    public Integer getFileSize() {
+      return fileSize;
     }
 
     public Map<String, Object> getGpsInformation() {
       return gpsInformation;
+    }
+
+    public Double getAudioLength() {
+      return audioLength;
     }
 
     @Override
@@ -576,17 +603,18 @@ public class DetectionResult {
       if (o == null || getClass() != o.getClass()) return false;
       MediaMetadataInfo that = (MediaMetadataInfo) o;
       return Objects.equals(fileSize, that.fileSize)
-          && Objects.equals(gpsInformation, that.gpsInformation);
+          && Objects.equals(gpsInformation, that.gpsInformation)
+          && Objects.equals(audioLength, that.audioLength);
     }
 
     @Override
     public int hashCode() {
-      return Objects.hash(gpsInformation);
+      return Objects.hash(fileSize, gpsInformation, audioLength);
     }
 
     @Override
     public String toString() {
-      return "MediaMetadataInfo{" + "gpsInformation=" + gpsInformation + '}';
+      return "MediaMetadataInfo{" + "fileSize=" + fileSize + ", gpsInformation=" + gpsInformation + ", audioLength=" + audioLength + '}';
     }
   }
 

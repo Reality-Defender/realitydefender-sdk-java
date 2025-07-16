@@ -1,0 +1,652 @@
+{
+  "totalItems" : 3,
+  "totalPages" : 1,
+  "currentPage" : 0,
+  "currentPageItemsCount" : 3,
+  "mediaList" : [ {
+    "name" : "e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg",
+    "filename" : "test_image_1752695084797.jpg",
+    "originalFileName" : "test_image.jpg",
+    "storageLocation" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=Fiv8ah8aCd3IhoOzsEpri1VnvhI%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+    "convertedFileName" : "",
+    "convertedFileLocation" : "",
+    "socialLink" : "",
+    "socialLinkDownloaded" : false,
+    "socialLinkDownloadFailed" : false,
+    "requestId" : "5e9ac2b7-77da-4a26-a1c4-f237a292fc65",
+    "uploadedDate" : "2025-07-16T19:44:44.815Z",
+    "mediaType" : "IMAGE",
+    "userInfo" : {
+      "email" : "steven@realitydefender.ai",
+      "isApi" : true,
+      "lastName" : "Fusco",
+      "firstName" : "Steven",
+      "planNames" : [ "Usage Based with Overages" ],
+      "trackingId" : "md63zt4x-3ude4bIBRPkF",
+      "institutionId" : "e057df5e-e038-45dc-b5bc-4b608b9e541c",
+      "institutionName" : "Reality Defender",
+      "institutionUUID" : "e057df5e-e038-45dc-b5bc-4b608b9e541c",
+      "institutionRoles" : [ "organization_member" ]
+    },
+    "audioExtractionFileName" : "",
+    "showAudioResult" : false,
+    "audioRequestId" : "",
+    "thumbnail" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/thumbnail/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=hNkfra45jJDDAhwI8f9YWH26CgE%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+    "contentPreview" : null,
+    "userId" : "google-apps|steven@realitydefender.ai",
+    "institutionId" : "e057df5e-e038-45dc-b5bc-4b608b9e541c",
+    "releaseVersion" : "2.3.8",
+    "webhookUrls" : [ "https://webhook.site/94f7b092-5979-4c43-b97a-c6b3ca3bd11b" ],
+    "createdAt" : "2025-07-16T19:44:44.815Z",
+    "updatedAt" : "2025-07-16T19:45:35.136Z",
+    "audioExtractionProcessed" : true,
+    "overallStatus" : "AUTHENTIC",
+    "resultsSummary" : {
+      "status" : "AUTHENTIC",
+      "metadata" : {
+        "finalScore" : 11
+      }
+    },
+    "models" : [ {
+      "name" : "rd-context-img",
+      "data" : {
+        "score" : 0.07,
+        "decision" : "AUTHENTIC"
+      },
+      "status" : "AUTHENTIC",
+      "predictionNumber" : 0.07,
+      "normalizedPredictionNumber" : 7,
+      "rollingAvgNumber" : null,
+      "finalScore" : 7
+    }, {
+      "name" : "rd-img-ensemble",
+      "data" : {
+        "score" : 0.1125725639352213,
+        "decision" : "AUTHENTIC",
+        "raw_score" : 0.1125725639352213
+      },
+      "status" : "AUTHENTIC",
+      "predictionNumber" : 0.1125725639352213,
+      "normalizedPredictionNumber" : 11,
+      "rollingAvgNumber" : null,
+      "finalScore" : 11
+    }, {
+      "name" : "rd-elm-img",
+      "data" : {
+        "score" : 0.01,
+        "decision" : "AUTHENTIC",
+        "raw_score" : 7.394421118078753E-6
+      },
+      "status" : "AUTHENTIC",
+      "predictionNumber" : 0.01,
+      "normalizedPredictionNumber" : 1,
+      "rollingAvgNumber" : null,
+      "finalScore" : 1
+    }, {
+      "name" : "rd-pine-img",
+      "data" : {
+        "score" : 0.01,
+        "decision" : "AUTHENTIC",
+        "raw_score" : 1.2777605888913968E-6
+      },
+      "status" : "AUTHENTIC",
+      "predictionNumber" : 0.01,
+      "normalizedPredictionNumber" : 1,
+      "rollingAvgNumber" : null,
+      "finalScore" : 1
+    }, {
+      "name" : "rd-cedar-img",
+      "data" : {
+        "score" : 0.01,
+        "decision" : "AUTHENTIC",
+        "raw_score" : 2.36108127865009E-4
+      },
+      "status" : "AUTHENTIC",
+      "predictionNumber" : 0.01,
+      "normalizedPredictionNumber" : 1,
+      "rollingAvgNumber" : null,
+      "finalScore" : 1
+    }, {
+      "name" : "rd-oak-img",
+      "data" : {
+        "score" : 0.01,
+        "decision" : "AUTHENTIC",
+        "raw_score" : 6.596006278414279E-5
+      },
+      "status" : "AUTHENTIC",
+      "predictionNumber" : 0.01,
+      "normalizedPredictionNumber" : 1,
+      "rollingAvgNumber" : null,
+      "finalScore" : 1
+    }, {
+      "name" : "rd-tahoe-vid",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-context-vid",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-erie-vid",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-dynamics-vid",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-vid-ensemble",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-llm-txt",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-slim-aud",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-aud-ensemble",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-everest-aud",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    } ],
+    "rdModels" : [ ],
+    "media_metadata_info" : {
+      "file_size" : 103001
+    },
+    "aggregationResultUrl" : "e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/aggregation.json",
+    "modelMetadataUrl" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/aggregation.json?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=B43A7SmKLbtd3ZKPHTP8YeZcPmY%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+    "explainabilityUrl" : "",
+    "heatmaps" : {
+      "rd-context-img" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/heatmaps/rd-context-img/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=lx%2FgMjm1tWwD5XwXDkeRrl7JXTQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-img-ensemble" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/heatmaps/rd-img-ensemble/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=HN1nw9vxLbATnhahqAJf5jx3RTU%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-elm-img" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/heatmaps/rd-elm-img/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=VimCVJpXoWu3CaoapBA3O7%2FHL2s%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-pine-img" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/heatmaps/rd-pine-img/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=ufkxloyCSdEkd%2FJGF3bIJdaE1pE%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-cedar-img" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/heatmaps/rd-cedar-img/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=agaaP86rPwmzFdaVL9VTB32mQ%2Fk%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-oak-img" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/heatmaps/rd-oak-img/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=vFbmGYzE7FFSNnv4mN%2B1SqN2WmA%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-tahoe-vid" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/heatmaps/rd-tahoe-vid/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=c%2FEFJF6QJIVHKXJTp6hQM6SROcM%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-context-vid" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/heatmaps/rd-context-vid/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=ikQ4qP3Grz8dA8fxEJL5ARZQHk8%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-erie-vid" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/heatmaps/rd-erie-vid/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=LOm6prqUqGAh%2FR8TD1Q%2FmD36dJc%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-dynamics-vid" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/heatmaps/rd-dynamics-vid/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=BPk5v6fLVCD%2FU7cmYRyyMVwZvLY%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-vid-ensemble" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/heatmaps/rd-vid-ensemble/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=EdSVa3%2BmWV4OqoEza%2BANuU11DHQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-llm-txt" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/heatmaps/rd-llm-txt/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=wOtB0oPd7xRTEnyDmw4dT8qt7gw%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-slim-aud" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/heatmaps/rd-slim-aud/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=16OwcnptCbmmrN4Ta2m8%2BkTFpDU%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-aud-ensemble" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/heatmaps/rd-aud-ensemble/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=%2F3ZokxAg9PQ0ooIoCFULvrIj9EY%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-everest-aud" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/5e9ac2b7-77da-4a26-a1c4-f237a292fc65.jpg/heatmaps/rd-everest-aud/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=6xndjnei3vpP%2BsNxJ1D3gtAbVjE%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D"
+    }
+  }, {
+    "name" : "e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt",
+    "filename" : "steven_text_wed_jul_16_2025_1752695000953.txt",
+    "originalFileName" : "steven_text_wed_jul_16_2025.txt",
+    "storageLocation" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=uP8f9s4QkevlVOoSz6c%2F4wydOQ0%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+    "convertedFileName" : "",
+    "convertedFileLocation" : "",
+    "socialLink" : "",
+    "socialLinkDownloaded" : false,
+    "socialLinkDownloadFailed" : false,
+    "requestId" : "af12381c-4dfc-4375-9222-6e2fa7f039ff",
+    "uploadedDate" : "2025-07-16T19:43:20.971Z",
+    "mediaType" : "TEXT",
+    "userInfo" : {
+      "email" : "steven@realitydefender.ai",
+      "isApi" : false,
+      "lastName" : "Fusco",
+      "firstName" : "Steven",
+      "planNames" : [ "Usage Based with Overages" ],
+      "trackingId" : "md63zt4x-3ude4bIBRPkF",
+      "institutionId" : "e057df5e-e038-45dc-b5bc-4b608b9e541c",
+      "institutionName" : "Reality Defender",
+      "institutionUUID" : "e057df5e-e038-45dc-b5bc-4b608b9e541c",
+      "institutionRoles" : [ "organization_member" ]
+    },
+    "audioExtractionFileName" : "",
+    "showAudioResult" : false,
+    "audioRequestId" : "",
+    "thumbnail" : "",
+    "contentPreview" : null,
+    "userId" : "google-apps|steven@realitydefender.ai",
+    "institutionId" : "e057df5e-e038-45dc-b5bc-4b608b9e541c",
+    "releaseVersion" : "2.3.8",
+    "webhookUrls" : [ "https://webhook.site/94f7b092-5979-4c43-b97a-c6b3ca3bd11b" ],
+    "createdAt" : "2025-07-16T19:43:20.971Z",
+    "updatedAt" : "2025-07-16T19:46:27.289Z",
+    "audioExtractionProcessed" : true,
+    "overallStatus" : "FAKE",
+    "resultsSummary" : {
+      "status" : "FAKE",
+      "metadata" : {
+        "finalScore" : 99
+      }
+    },
+    "models" : [ {
+      "name" : "rd-context-img",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-img-ensemble",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-elm-img",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-pine-img",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-cedar-img",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-oak-img",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-tahoe-vid",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-context-vid",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-erie-vid",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-dynamics-vid",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-vid-ensemble",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-llm-txt",
+      "data" : {
+        "result" : {
+          "label" : "model_text",
+          "fake_prediction" : 0.9997621178627014
+        }
+      },
+      "status" : "FAKE",
+      "predictionNumber" : 0.9997621178627014,
+      "normalizedPredictionNumber" : 99,
+      "rollingAvgNumber" : null,
+      "finalScore" : 99
+    }, {
+      "name" : "rd-slim-aud",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-aud-ensemble",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-everest-aud",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    } ],
+    "rdModels" : [ ],
+    "media_metadata_info" : {
+      "file_size" : 1974
+    },
+    "aggregationResultUrl" : "e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/aggregation.json",
+    "modelMetadataUrl" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/aggregation.json?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=DatUdV4Kes4XqGkTfR4E06BvOfo%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+    "explainabilityUrl" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/explainability-rd-llm-txt.html?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=uy2KVK5AR4pCvueNYXU%2BYBG5ytc%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+    "heatmaps" : {
+      "rd-context-img" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/heatmaps/rd-context-img/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=1TgnBcI5rfJri1lDXdoAxn9SWIs%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-img-ensemble" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/heatmaps/rd-img-ensemble/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=KZ7ikbNXOnojHWOY3lTECboSG4c%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-elm-img" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/heatmaps/rd-elm-img/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=ZBoJPgi2ufvnwlncXL7%2B4Ltc59U%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-pine-img" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/heatmaps/rd-pine-img/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=HM1biKSeqw7Bk%2BK2XtENG%2BPSICU%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-cedar-img" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/heatmaps/rd-cedar-img/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=YYwoR6mphfnyLaPA1wPK8WacqWY%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-oak-img" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/heatmaps/rd-oak-img/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=bXNJ5mIMJWLqm5qv%2Fw0maU5e1Kk%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-tahoe-vid" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/heatmaps/rd-tahoe-vid/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=FUKvqNTBWLH03SqX8Rr8gi57tj0%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-context-vid" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/heatmaps/rd-context-vid/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=JCn9b1N6vz%2F8cV5%2FJDzb3YkWSkY%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-erie-vid" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/heatmaps/rd-erie-vid/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=z4%2FOv8gIyYTRO3VWSjWVzFNaNM4%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-dynamics-vid" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/heatmaps/rd-dynamics-vid/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=ZrgbrDIwehjpLHm7Kg5Manndn7E%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-vid-ensemble" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/heatmaps/rd-vid-ensemble/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=gXON2w3aJuUjpGkg37ZQIvOt3BU%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-llm-txt" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/heatmaps/rd-llm-txt/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=LZHJKryeuhzre9W%2FVGf1yxLOu%2FA%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-slim-aud" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/heatmaps/rd-slim-aud/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=cdRz8DU091uBYEzggHk9pjfRWxA%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-aud-ensemble" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/heatmaps/rd-aud-ensemble/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=IECugMCoIbIncytRF949ThXdUhc%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-everest-aud" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/af12381c-4dfc-4375-9222-6e2fa7f039ff.txt/heatmaps/rd-everest-aud/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=qsElpYrv9AAIrOL6o%2B0Y%2FOd8SwI%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D"
+    }
+  }, {
+    "name" : "e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3",
+    "filename" : "result_1752679643933.mp3",
+    "originalFileName" : "result.mp3",
+    "storageLocation" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=aT%2FzbvEoDZoBytj%2BAhxtV%2BfwWkc%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+    "convertedFileName" : "",
+    "convertedFileLocation" : "",
+    "socialLink" : "",
+    "socialLinkDownloaded" : false,
+    "socialLinkDownloadFailed" : false,
+    "requestId" : "f6f335ea-447e-499e-93bb-2624fe75afd7",
+    "uploadedDate" : "2025-07-16T15:27:23.947Z",
+    "mediaType" : "AUDIO",
+    "userInfo" : {
+      "email" : "steven@realitydefender.ai",
+      "isApi" : false,
+      "lastName" : "Fusco",
+      "firstName" : "Steven",
+      "planNames" : [ "Usage Based with Overages" ],
+      "trackingId" : "md63zt4x-3ude4bIBRPkF",
+      "institutionId" : "e057df5e-e038-45dc-b5bc-4b608b9e541c",
+      "institutionName" : "Reality Defender",
+      "institutionUUID" : "e057df5e-e038-45dc-b5bc-4b608b9e541c",
+      "institutionRoles" : [ "organization_member" ]
+    },
+    "audioExtractionFileName" : "",
+    "showAudioResult" : false,
+    "audioRequestId" : "",
+    "thumbnail" : "",
+    "contentPreview" : null,
+    "userId" : "google-apps|steven@realitydefender.ai",
+    "institutionId" : "e057df5e-e038-45dc-b5bc-4b608b9e541c",
+    "releaseVersion" : "2.3.8",
+    "webhookUrls" : [ "https://webhook.site/94f7b092-5979-4c43-b97a-c6b3ca3bd11b" ],
+    "createdAt" : "2025-07-16T15:27:23.947Z",
+    "updatedAt" : "2025-07-16T15:27:31.648Z",
+    "audioExtractionProcessed" : true,
+    "overallStatus" : "FAKE",
+    "resultsSummary" : {
+      "status" : "FAKE",
+      "metadata" : {
+        "languages" : [ ],
+        "finalScore" : 99
+      }
+    },
+    "models" : [ {
+      "name" : "rd-context-img",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-img-ensemble",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-elm-img",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-pine-img",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-cedar-img",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-oak-img",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-tahoe-vid",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-context-vid",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-erie-vid",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-dynamics-vid",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-vid-ensemble",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-llm-txt",
+      "data" : null,
+      "code" : "not_applicable",
+      "status" : "NOT_APPLICABLE",
+      "predictionNumber" : null,
+      "normalizedPredictionNumber" : null,
+      "rollingAvgNumber" : null,
+      "finalScore" : null
+    }, {
+      "name" : "rd-slim-aud",
+      "data" : {
+        "score" : 0.99,
+        "decision" : "ARTIFICIAL",
+        "raw_score" : 0.9999552249908448
+      },
+      "status" : "FAKE",
+      "predictionNumber" : 0.99,
+      "normalizedPredictionNumber" : 99,
+      "rollingAvgNumber" : null,
+      "finalScore" : 99
+    }, {
+      "name" : "rd-aud-ensemble",
+      "data" : {
+        "score" : 0.99,
+        "decision" : "ARTIFICIAL",
+        "languages" : [ ],
+        "raw_score" : 0.99
+      },
+      "status" : "FAKE",
+      "predictionNumber" : 0.99,
+      "normalizedPredictionNumber" : 99,
+      "rollingAvgNumber" : null,
+      "finalScore" : 99
+    }, {
+      "name" : "rd-everest-aud",
+      "data" : {
+        "score" : 0.99,
+        "decision" : "ARTIFICIAL",
+        "raw_score" : 0.9999979734420776
+      },
+      "status" : "FAKE",
+      "predictionNumber" : 0.99,
+      "normalizedPredictionNumber" : 99,
+      "rollingAvgNumber" : null,
+      "finalScore" : 99
+    } ],
+    "rdModels" : [ ],
+    "media_metadata_info" : {
+      "audio_length" : 55.9,
+      "file_size" : 223820
+    },
+    "aggregationResultUrl" : "e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/aggregation.json",
+    "modelMetadataUrl" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/aggregation.json?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=OYO6yGP4aozDioA10HwLjYVYbYU%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+    "explainabilityUrl" : "",
+    "heatmaps" : {
+      "rd-context-img" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/heatmaps/rd-context-img/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=qfYnrUP2EhiZZ07YxfGMjdIG2ts%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-img-ensemble" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/heatmaps/rd-img-ensemble/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=VQssE98Dn4evxa1NfcD1sWNJaQY%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-elm-img" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/heatmaps/rd-elm-img/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=dDJFnxdCxI%2BgrAXmAFwjPuSPzzM%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-pine-img" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/heatmaps/rd-pine-img/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=gA652amwGYT%2B%2BJ8wByK1oLa4kSg%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-cedar-img" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/heatmaps/rd-cedar-img/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=plGt0Z0rIu3vQz5WXNNNJkriHD0%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-oak-img" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/heatmaps/rd-oak-img/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=3fqwFO5fNYXbPhK32GB1nbO89iw%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-tahoe-vid" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/heatmaps/rd-tahoe-vid/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=EPQY3NP%2F26XhjalBJCTYjM6H4gs%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-context-vid" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/heatmaps/rd-context-vid/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=XrkMi7bhmeLnXbBOXPL6JEfBf8A%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-erie-vid" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/heatmaps/rd-erie-vid/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=yIltssXo61IZvQXk8LAzXrblbBk%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-dynamics-vid" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/heatmaps/rd-dynamics-vid/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=aufQl7FNeJRQyymDe7JuXZEpfio%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-vid-ensemble" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/heatmaps/rd-vid-ensemble/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=NjoOZI8k2iIwyBbsLIWrwLrtYw8%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-llm-txt" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/heatmaps/rd-llm-txt/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=gyXj3G4kbH2oTzwY%2BvDbVinUreE%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-slim-aud" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/heatmaps/rd-slim-aud/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=jVC%2Brb4PdMnrTZGcZFtI7h2oFuU%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-aud-ensemble" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/heatmaps/rd-aud-ensemble/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=voK212jJnol6Gkb%2FXbo83nOiyLA%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D",
+      "rd-everest-aud" : "https://bb-production-user-media-53a6e5b.s3.amazonaws.com/e057df5e-e038-45dc-b5bc-4b608b9e541c/f6f335ea-447e-499e-93bb-2624fe75afd7.mp3/heatmaps/rd-everest-aud/heatmap.png?AWSAccessKeyId=ASIA4MTWJIKJWCJROJ3Y&Expires=1752700431&Signature=aJOJQ7YErqq5raxV1nFmifrLOVs%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCICj0eDwmBsLAaYlIZ%2B%2BeUfF4ATsBoHMYUouqIrmtPgYCAiEAwdE%2BbkNpUORJsV1ASY%2BWs0QJzlw3B%2F5qcYbTZY4i2G0qoQQIYxAAGgw4NTE3MjUzMzcyMzUiDDvY04KT5uwZOTe3BSr%2BA3oxsmJCZNlyvIvk3Vq27ub4kuH6WVMw3hCmmgHR3z1YStExcoTcbI%2B%2F5Qm9a%2FW%2Bi4%2FPQnWemLReZP%2B1Y8HxhGBVpcsXsAUsQivMQeT7mVEKfMo2%2BCWAG9V1lLCNFPRtDWU3WsKDjjhAwgwzJqS%2Fwm0s8q5T4Xtb%2BJAf1C9enozSqzURbp8iE8YprejeY37tK0WupsnpYInrwsR0HFVoUibDkmEvDSEH9jBYgN4HPVLQix6iQKQvZ9L4sjtAyTFVhM9KB%2FqKyTOWVJsW%2BPYB0PrwrYcOCvCMlLyeS8JbmgP2zZuvaK6fnYWwMHzww4c69U9OJV8FsVBEJqOzDuzw6BI95fQmb1ZrygUt5nZfN1BH1%2FzsPq8KPaWN8%2FUMgU131lkZizfVBJeccTEN7yPebYumeu%2BOSipeTR9qvndDinqFVBh67vtfNBbPaeid%2BF8PNuJOQkgH1qSqiYncfAZhDeEnHkWrrfG4sH5NTomTZELpkjE1KnzopUHFGh5H4tq1c2GD49wQ7kO1Nd4uJAvtRAQOvtiGPjINVFKzY6wx3w6ShgKjOcmmUt2%2BXACW4%2BM0GUOLEjqup7r%2B7FZU6XqUGpaaztuIyGNY5Q%2BIug%2FJ%2B3cte2I7bunPuKq3nWs3DCzYGVSVNJdooxzCcourO4aZX8vddutPGJIx37qMy1bFYTCsz9%2FDBjqmAQRAyaglGMpJf3rwvIJFKzU8JuwOEDYeMnrJo2kNlinb4X5vnFPqquD2Jm%2FRncjbU%2F2mYI730w%2F8a4vL88kgntJCyicnZP5l6Ikx82kOUSyneGNJ3qitQIqzIBbWZOFkTAfs4Nq1CXTCIjgmMGmZjtnTHvyI%2BwZi%2FgiD8nkNSk5Gu2JudIJcM%2BNPR2XFEuO08sEeGR3zIq15lrHSiaQM%2Fbotf6OjBf4%3D"
+    }
+  } ]
+}
