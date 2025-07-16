@@ -34,7 +34,8 @@ public class HttpClient implements Closeable {
     this.config = config;
     this.objectMapper = new ObjectMapper();
     this.objectMapper.registerModule(new JavaTimeModule());
-    this.objectMapper.configure(com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    this.objectMapper.configure(
+        com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     this.client =
         new OkHttpClient.Builder()
@@ -159,19 +160,22 @@ public class HttpClient implements Closeable {
    * @throws RealityDefenderException if request fails
    */
   public JsonNode getResults(
-      int pageNumber, 
-      Integer size, 
-      String name, 
-      java.time.LocalDate startDate, 
-      java.time.LocalDate endDate) throws RealityDefenderException {
-    
+      int pageNumber,
+      Integer size,
+      String name,
+      java.time.LocalDate startDate,
+      java.time.LocalDate endDate)
+      throws RealityDefenderException {
+
     // Use OkHttp's HttpUrl.Builder for proper URL construction
-    okhttp3.HttpUrl.Builder urlBuilder = okhttp3.HttpUrl.parse(config.getBaseUrl() + "/api/v2/media/users/pages/" + pageNumber).newBuilder();
-    
+    okhttp3.HttpUrl.Builder urlBuilder =
+        okhttp3.HttpUrl.parse(config.getBaseUrl() + "/api/v2/media/users/pages/" + pageNumber)
+            .newBuilder();
+
     // Build query parameters - always include size (default to 10 if not specified)
     int actualSize = size != null ? size : 10;
     urlBuilder.addQueryParameter("size", String.valueOf(actualSize));
-    
+
     if (name != null && !name.trim().isEmpty()) {
       urlBuilder.addQueryParameter("name", name);
     }
@@ -181,7 +185,7 @@ public class HttpClient implements Closeable {
     if (endDate != null) {
       urlBuilder.addQueryParameter("endDate", endDate.toString());
     }
-    
+
     String finalUrl = urlBuilder.build().toString();
     Request request =
         new Request.Builder()
@@ -242,8 +246,12 @@ public class HttpClient implements Closeable {
         String errorMessage = extractErrorMessage(responseBody, response.code());
 
         // Log the detailed error for debugging
-        logger.error("HTTP {} error for URL {}: {}", response.code(), response.request().url(), responseBody);
-        
+        logger.error(
+            "HTTP {} error for URL {}: {}",
+            response.code(),
+            response.request().url(),
+            responseBody);
+
         throw new RealityDefenderException(errorMessage, errorCode, response.code());
       }
 

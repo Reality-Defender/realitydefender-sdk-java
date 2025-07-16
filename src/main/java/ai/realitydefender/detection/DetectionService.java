@@ -39,10 +39,13 @@ public class DetectionService implements Closeable {
 
   public DetectionService(HttpClient httpClient) {
     this.httpClient = httpClient;
-    this.objectMapper = JsonMapper.builder()
-        .addModule(new JavaTimeModule())
-        .configure(com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-        .build();
+    this.objectMapper =
+        JsonMapper.builder()
+            .addModule(new JavaTimeModule())
+            .configure(
+                com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+                false)
+            .build();
     this.scheduler = Executors.newScheduledThreadPool(2);
   }
 
@@ -340,7 +343,8 @@ public class DetectionService implements Closeable {
    * @return paginated list of detection results
    * @throws RealityDefenderException if getting results fails
    */
-  public DetectionResultList getResults(GetResultsOptions options) throws RealityDefenderException, JsonProcessingException {
+  public DetectionResultList getResults(GetResultsOptions options)
+      throws RealityDefenderException, JsonProcessingException {
     if (options == null) {
       options = GetResultsOptions.builder().build();
     }
@@ -351,7 +355,8 @@ public class DetectionService implements Closeable {
     java.time.LocalDate startDate = options.getStartDate();
     java.time.LocalDate endDate = options.getEndDate();
     Integer maxAttempts = options.getMaxAttempts() != null ? options.getMaxAttempts() : 1;
-    Duration pollingInterval = options.getPollingInterval() != null ? options.getPollingInterval() : Duration.ofSeconds(2);
+    Duration pollingInterval =
+        options.getPollingInterval() != null ? options.getPollingInterval() : Duration.ofSeconds(2);
 
     logger.info("Getting paginated results for page: {}", pageNumber);
 
@@ -359,27 +364,32 @@ public class DetectionService implements Closeable {
       try {
         JsonNode response = httpClient.getResults(pageNumber, size, name, startDate, endDate);
         logger.debug("HTTP response received successfully, parsing to DetectionResultList...");
-        DetectionResultList resultList = objectMapper.treeToValue(response, DetectionResultList.class);
-        logger.debug("DetectionResultList parsed successfully: {} items", resultList.getCurrentPageItemsCount());
-        
+        DetectionResultList resultList =
+            objectMapper.treeToValue(response, DetectionResultList.class);
+        logger.debug(
+            "DetectionResultList parsed successfully: {} items",
+            resultList.getCurrentPageItemsCount());
+
         // Check if any results are still analyzing (if polling is enabled)
         if (maxAttempts > 1) {
-          boolean stillAnalyzing = resultList.getItems().stream()
-              .anyMatch(item -> isAnalyzing(item.getOverallStatus()));
-          
+          boolean stillAnalyzing =
+              resultList.getItems().stream().anyMatch(item -> isAnalyzing(item.getOverallStatus()));
+
           if (!stillAnalyzing) {
             logger.info("All results completed for page: {}", pageNumber);
             return resultList;
           }
-          
+
           if (attempt < maxAttempts - 1) {
-            logger.debug("Some results still analyzing, waiting {} ms before retry", pollingInterval.toMillis());
+            logger.debug(
+                "Some results still analyzing, waiting {} ms before retry",
+                pollingInterval.toMillis());
             Thread.sleep(pollingInterval.toMillis());
           }
         } else {
           return resultList;
         }
-        
+
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
         throw new RealityDefenderException("Polling interrupted", "INTERRUPTED", e);
@@ -390,7 +400,7 @@ public class DetectionService implements Closeable {
         throw new RealityDefenderException("Failed to get results", "RESULTS_FAILED", e);
       }
     }
-    
+
     throw new RealityDefenderException("Timeout waiting for results", "TIMEOUT");
   }
 
@@ -401,13 +411,14 @@ public class DetectionService implements Closeable {
    * @return a CompletableFuture containing paginated list of detection results
    */
   public CompletableFuture<DetectionResultList> getResultsAsync(GetResultsOptions options) {
-    return CompletableFuture.supplyAsync(() -> {
-      try {
-        return getResults(options);
-      } catch (RealityDefenderException | JsonProcessingException e) {
-        throw new RuntimeException(e);
-      }
-    });
+    return CompletableFuture.supplyAsync(
+        () -> {
+          try {
+            return getResults(options);
+          } catch (RealityDefenderException | JsonProcessingException e) {
+            throw new RuntimeException(e);
+          }
+        });
   }
 
   /**

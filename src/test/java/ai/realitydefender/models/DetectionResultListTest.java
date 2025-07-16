@@ -28,14 +28,14 @@ class DetectionResultListTest {
   void testEqualsAndHashCode() {
     List<DetectionResult> items1 = new ArrayList<>();
     List<DetectionResult> items2 = new ArrayList<>();
-    
+
     DetectionResultList resultList1 = new DetectionResultList(100, 10, 0, 10, items1);
     DetectionResultList resultList2 = new DetectionResultList(100, 10, 0, 10, items2);
     DetectionResultList resultList3 = new DetectionResultList(200, 20, 1, 20, items1);
 
     assertEquals(resultList1, resultList2);
     assertNotEquals(resultList1, resultList3);
-    
+
     assertEquals(resultList1.hashCode(), resultList2.hashCode());
     assertNotEquals(resultList1.hashCode(), resultList3.hashCode());
   }
@@ -54,13 +54,14 @@ class DetectionResultListTest {
 
   @Test
   void testJsonDeserialization() throws Exception {
-    String json = "{\n" +
-        "  \"totalItems\": 50,\n" +
-        "  \"totalPages\": 5,\n" +
-        "  \"currentPage\": 2,\n" +
-        "  \"currentPageItemsCount\": 10,\n" +
-        "  \"mediaList\": []\n" +
-        "}";
+    String json =
+        "{\n"
+            + "  \"totalItems\": 50,\n"
+            + "  \"totalPages\": 5,\n"
+            + "  \"currentPage\": 2,\n"
+            + "  \"currentPageItemsCount\": 10,\n"
+            + "  \"mediaList\": []\n"
+            + "}";
 
     DetectionResultList resultList = objectMapper.readValue(json, DetectionResultList.class);
 

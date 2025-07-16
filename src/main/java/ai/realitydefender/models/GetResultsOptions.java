@@ -4,9 +4,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.util.Objects;
 
-/**
- * Options for getting paginated results with filtering and polling.
- */
+/** Options for getting paginated results with filtering and polling. */
 public class GetResultsOptions {
   private final Integer pageNumber;
   private final Integer size;

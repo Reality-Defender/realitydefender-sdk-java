@@ -614,7 +614,14 @@ public class DetectionResult {
 
     @Override
     public String toString() {
-      return "MediaMetadataInfo{" + "fileSize=" + fileSize + ", gpsInformation=" + gpsInformation + ", audioLength=" + audioLength + '}';
+      return "MediaMetadataInfo{"
+          + "fileSize="
+          + fileSize
+          + ", gpsInformation="
+          + gpsInformation
+          + ", audioLength="
+          + audioLength
+          + '}';
     }
   }
 

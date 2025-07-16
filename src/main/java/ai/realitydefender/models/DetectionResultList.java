@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Represents a paginated list of detection results.
- */
+/** Represents a paginated list of detection results. */
 public class DetectionResultList {
   private final int totalItems;
   private final int totalPages;

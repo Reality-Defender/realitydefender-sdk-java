@@ -14,15 +14,16 @@ class GetResultsOptionsTest {
     LocalDate endDate = LocalDate.of(2024, 12, 31);
     Duration pollingInterval = Duration.ofSeconds(5);
 
-    GetResultsOptions options = GetResultsOptions.builder()
-        .pageNumber(2)
-        .size(20)
-        .name("test-filter")
-        .startDate(startDate)
-        .endDate(endDate)
-        .maxAttempts(10)
-        .pollingInterval(pollingInterval)
-        .build();
+    GetResultsOptions options =
+        GetResultsOptions.builder()
+            .pageNumber(2)
+            .size(20)
+            .name("test-filter")
+            .startDate(startDate)
+            .endDate(endDate)
+            .maxAttempts(10)
+            .pollingInterval(pollingInterval)
+            .build();
 
     assertEquals(2, options.getPageNumber());
     assertEquals(20, options.getSize());
@@ -35,9 +36,7 @@ class GetResultsOptionsTest {
 
   @Test
   void testBuilderWithMinimalOptions() {
-    GetResultsOptions options = GetResultsOptions.builder()
-        .pageNumber(0)
-        .build();
+    GetResultsOptions options = GetResultsOptions.builder().pageNumber(0).build();
 
     assertEquals(0, options.getPageNumber());
     assertNull(options.getSize());
@@ -63,38 +62,26 @@ class GetResultsOptionsTest {
 
   @Test
   void testEqualsAndHashCode() {
-    GetResultsOptions options1 = GetResultsOptions.builder()
-        .pageNumber(1)
-        .size(10)
-        .name("test")
-        .build();
+    GetResultsOptions options1 =
+        GetResultsOptions.builder().pageNumber(1).size(10).name("test").build();
 
-    GetResultsOptions options2 = GetResultsOptions.builder()
-        .pageNumber(1)
-        .size(10)
-        .name("test")
-        .build();
+    GetResultsOptions options2 =
+        GetResultsOptions.builder().pageNumber(1).size(10).name("test").build();
 
-    GetResultsOptions options3 = GetResultsOptions.builder()
-        .pageNumber(2)
-        .size(10)
-        .name("test")
-        .build();
+    GetResultsOptions options3 =
+        GetResultsOptions.builder().pageNumber(2).size(10).name("test").build();
 
     assertEquals(options1, options2);
     assertNotEquals(options1, options3);
-    
+
     assertEquals(options1.hashCode(), options2.hashCode());
     assertNotEquals(options1.hashCode(), options3.hashCode());
   }
 
   @Test
   void testToString() {
-    GetResultsOptions options = GetResultsOptions.builder()
-        .pageNumber(1)
-        .size(10)
-        .name("test")
-        .build();
+    GetResultsOptions options =
+        GetResultsOptions.builder().pageNumber(1).size(10).name("test").build();
 
     String toString = options.toString();
     assertTrue(toString.contains("pageNumber=1"));
