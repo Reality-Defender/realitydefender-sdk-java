@@ -3,6 +3,8 @@ package ai.realitydefender.detection;
 import ai.realitydefender.client.HttpClient;
 import ai.realitydefender.exceptions.RealityDefenderException;
 import ai.realitydefender.models.DetectionResult;
+import ai.realitydefender.models.DetectionResultList;
+import ai.realitydefender.models.GetResultsOptions;
 import ai.realitydefender.models.UploadResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -37,7 +39,13 @@ public class DetectionService implements Closeable {
 
   public DetectionService(HttpClient httpClient) {
     this.httpClient = httpClient;
-    this.objectMapper = JsonMapper.builder().addModule(new JavaTimeModule()).build();
+    this.objectMapper =
+        JsonMapper.builder()
+            .addModule(new JavaTimeModule())
+            .configure(
+                com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+                false)
+            .build();
     this.scheduler = Executors.newScheduledThreadPool(2);
   }
 
@@ -326,6 +334,101 @@ public class DetectionService implements Closeable {
     return !STATUS_PROCESSING.equalsIgnoreCase(status)
         && !STATUS_ANALYZING.equalsIgnoreCase(status)
         && !STATUS_QUEUED.equalsIgnoreCase(status);
+  }
+
+  /**
+   * Gets paginated detection results with optional filters.
+   *
+   * @param options options for filtering and pagination
+   * @return paginated list of detection results
+   * @throws RealityDefenderException if getting results fails
+   */
+  public DetectionResultList getResults(GetResultsOptions options)
+      throws RealityDefenderException, JsonProcessingException {
+    if (options == null) {
+      options = GetResultsOptions.builder().build();
+    }
+
+    int pageNumber = options.getPageNumber() != null ? options.getPageNumber() : 0;
+    Integer size = options.getSize();
+    String name = options.getName();
+    java.time.LocalDate startDate = options.getStartDate();
+    java.time.LocalDate endDate = options.getEndDate();
+    Integer maxAttempts = options.getMaxAttempts() != null ? options.getMaxAttempts() : 1;
+    Duration pollingInterval =
+        options.getPollingInterval() != null ? options.getPollingInterval() : Duration.ofSeconds(2);
+
+    logger.info("Getting paginated results for page: {}", pageNumber);
+
+    for (int attempt = 0; attempt < maxAttempts; attempt++) {
+      try {
+        JsonNode response = httpClient.getResults(pageNumber, size, name, startDate, endDate);
+        logger.debug("HTTP response received successfully, parsing to DetectionResultList...");
+        DetectionResultList resultList =
+            objectMapper.treeToValue(response, DetectionResultList.class);
+        logger.debug(
+            "DetectionResultList parsed successfully: {} items",
+            resultList.getCurrentPageItemsCount());
+
+        // Check if any results are still analyzing (if polling is enabled)
+        if (maxAttempts > 1) {
+          boolean stillAnalyzing =
+              resultList.getItems().stream().anyMatch(item -> isAnalyzing(item.getOverallStatus()));
+
+          if (!stillAnalyzing) {
+            logger.info("All results completed for page: {}", pageNumber);
+            return resultList;
+          }
+
+          if (attempt < maxAttempts - 1) {
+            logger.debug(
+                "Some results still analyzing, waiting {} ms before retry",
+                pollingInterval.toMillis());
+            Thread.sleep(pollingInterval.toMillis());
+          }
+        } else {
+          return resultList;
+        }
+
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+        throw new RealityDefenderException("Polling interrupted", "INTERRUPTED", e);
+      } catch (Exception e) {
+        if (e instanceof RealityDefenderException) {
+          throw e;
+        }
+        throw new RealityDefenderException("Failed to get results", "RESULTS_FAILED", e);
+      }
+    }
+
+    throw new RealityDefenderException("Timeout waiting for results", "TIMEOUT");
+  }
+
+  /**
+   * Gets paginated detection results with optional filters asynchronously.
+   *
+   * @param options options for filtering and pagination
+   * @return a CompletableFuture containing paginated list of detection results
+   */
+  public CompletableFuture<DetectionResultList> getResultsAsync(GetResultsOptions options) {
+    return CompletableFuture.supplyAsync(
+        () -> {
+          try {
+            return getResults(options);
+          } catch (RealityDefenderException | JsonProcessingException e) {
+            throw new RuntimeException(e);
+          }
+        });
+  }
+
+  /**
+   * Determines if a status indicates the detection is still analyzing.
+   *
+   * @param status the status to check
+   * @return true if still analyzing, false if complete
+   */
+  private boolean isAnalyzing(String status) {
+    return STATUS_ANALYZING.equalsIgnoreCase(status);
   }
 
   /** Shuts down the internal scheduler. */

@@ -5,6 +5,8 @@ import ai.realitydefender.core.RealityDefenderConfig;
 import ai.realitydefender.detection.DetectionService;
 import ai.realitydefender.exceptions.RealityDefenderException;
 import ai.realitydefender.models.DetectionResult;
+import ai.realitydefender.models.DetectionResultList;
+import ai.realitydefender.models.GetResultsOptions;
 import ai.realitydefender.models.UploadResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.Closeable;
@@ -212,6 +214,54 @@ public class RealityDefender implements Closeable {
   public CompletableFuture<DetectionResult> pollForResultsAsync(
       String requestId, Duration pollingInterval, Duration timeout) {
     return detectionService.pollForResultsAsync(requestId, pollingInterval, timeout);
+  }
+
+  /**
+   * Gets paginated detection results with optional filters.
+   *
+   * @param options options for filtering and pagination
+   * @return paginated list of detection results
+   * @throws RealityDefenderException if getting results fails
+   */
+  public DetectionResultList getResults(GetResultsOptions options) throws RealityDefenderException {
+    try {
+      return detectionService.getResults(options);
+    } catch (JsonProcessingException e) {
+      throw new RealityDefenderException("Failed to parse results", "PARSE_ERROR", e);
+    }
+  }
+
+  /**
+   * Gets paginated detection results with default options.
+   *
+   * @return paginated list of detection results
+   * @throws RealityDefenderException if getting results fails
+   */
+  public DetectionResultList getResults() throws RealityDefenderException {
+    try {
+      return detectionService.getResults(null);
+    } catch (JsonProcessingException e) {
+      throw new RealityDefenderException("Failed to parse results", "PARSE_ERROR", e);
+    }
+  }
+
+  /**
+   * Gets paginated detection results with optional filters asynchronously.
+   *
+   * @param options options for filtering and pagination
+   * @return a CompletableFuture containing paginated list of detection results
+   */
+  public CompletableFuture<DetectionResultList> getResultsAsync(GetResultsOptions options) {
+    return detectionService.getResultsAsync(options);
+  }
+
+  /**
+   * Gets paginated detection results with default options asynchronously.
+   *
+   * @return a CompletableFuture containing paginated list of detection results
+   */
+  public CompletableFuture<DetectionResultList> getResultsAsync() {
+    return detectionService.getResultsAsync(null);
   }
 
   @Override

@@ -103,6 +103,27 @@ open target/site/jacoco/index.html
 mvn spotless:apply
 ```
 
+### Running Examples
+
+Set your API key:
+```bash
+export REALITY_DEFENDER_API_KEY="your_api_key_here"
+```
+
+Run specific examples:
+```bash
+# Simple file detection example
+mvn exec:java@simple-example
+
+# Get results example (pagination, filtering, async)
+mvn exec:java@get-results-example
+```
+
+Or run the default example:
+```bash
+mvn exec:java
+```
+
 ## Contributing
 
 1. Fork the repository

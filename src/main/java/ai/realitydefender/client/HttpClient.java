@@ -34,6 +34,8 @@ public class HttpClient implements Closeable {
     this.config = config;
     this.objectMapper = new ObjectMapper();
     this.objectMapper.registerModule(new JavaTimeModule());
+    this.objectMapper.configure(
+        com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     this.client =
         new OkHttpClient.Builder()
@@ -147,6 +149,65 @@ public class HttpClient implements Closeable {
   }
 
   /**
+   * Gets paginated detection results with optional filters.
+   *
+   * @param pageNumber the page number (0-based)
+   * @param size the number of results per page
+   * @param name optional name filter
+   * @param startDate optional start date filter
+   * @param endDate optional end date filter
+   * @return JSON response as JsonNode
+   * @throws RealityDefenderException if request fails
+   */
+  public JsonNode getResults(
+      int pageNumber,
+      Integer size,
+      String name,
+      java.time.LocalDate startDate,
+      java.time.LocalDate endDate)
+      throws RealityDefenderException {
+
+    // Use OkHttp's HttpUrl.Builder for proper URL construction
+    okhttp3.HttpUrl.Builder urlBuilder =
+        okhttp3.HttpUrl.parse(config.getBaseUrl() + "/api/v2/media/users/pages/" + pageNumber)
+            .newBuilder();
+
+    // Build query parameters - always include size (default to 10 if not specified)
+    int actualSize = size != null ? size : 10;
+    urlBuilder.addQueryParameter("size", String.valueOf(actualSize));
+
+    if (name != null && !name.trim().isEmpty()) {
+      urlBuilder.addQueryParameter("name", name);
+    }
+    if (startDate != null) {
+      urlBuilder.addQueryParameter("startDate", startDate.toString());
+    }
+    if (endDate != null) {
+      urlBuilder.addQueryParameter("endDate", endDate.toString());
+    }
+
+    String finalUrl = urlBuilder.build().toString();
+    Request request =
+        new Request.Builder()
+            .url(finalUrl)
+            .addHeader("X-API-KEY", config.getApiKey())
+            .addHeader("User-Agent", "RealityDefender-Java-SDK/1.0.0")
+            .addHeader("Content-Type", "application/json")
+            .get()
+            .build();
+
+    logger.debug("Getting paginated results for page: {}, URL: {}", pageNumber, finalUrl);
+
+    try (Response response = client.newCall(request).execute()) {
+      logger.debug("Response code: {}, isSuccessful: {}", response.code(), response.isSuccessful());
+      return handleResponse(response, "RESULTS_FAILED");
+    } catch (IOException e) {
+      logger.error("IOException in getResults: {}", e.getMessage());
+      throw new RealityDefenderException("Failed to get results", "RESULTS_FAILED", e);
+    }
+  }
+
+  /**
    * Makes a generic POST request with JSON body.
    *
    * @param endpoint the API endpoint
@@ -178,17 +239,29 @@ public class HttpClient implements Closeable {
       throws RealityDefenderException {
     try {
       String responseBody = response.body() != null ? response.body().string() : "";
+      logger.debug("Response body length: {}", responseBody.length());
 
       if (!response.isSuccessful()) {
         String errorCode = mapStatusCodeToErrorCode(response.code(), defaultErrorCode);
         String errorMessage = extractErrorMessage(responseBody, response.code());
 
+        // Log the detailed error for debugging
+        logger.error(
+            "HTTP {} error for URL {}: {}",
+            response.code(),
+            response.request().url(),
+            responseBody);
+
         throw new RealityDefenderException(errorMessage, errorCode, response.code());
       }
 
-      return objectMapper.readTree(responseBody);
+      logger.debug("Parsing JSON response body...");
+      JsonNode result = objectMapper.readTree(responseBody);
+      logger.debug("JSON parsing successful, result: {}", result != null ? "non-null" : "null");
+      return result;
 
     } catch (IOException e) {
+      logger.error("JSON parsing error: {}", e.getMessage());
       throw new RealityDefenderException("Failed to parse response", "PARSE_ERROR", e);
     }
   }

@@ -48,7 +48,7 @@
 
         <!-- Test dependency versions -->
         <junit.version>5.10.1</junit.version>
-        <mockito.version>5.8.0</mockito.version>
+        <mockito.version>5.14.2</mockito.version>
         <testcontainers.version>1.19.3</testcontainers.version>
         <wiremock.version>3.0.1</wiremock.version>
 
@@ -68,6 +68,13 @@
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
             <version>${okhttp.version}</version>
+        </dependency>
+        
+        <!-- Kotlin Runtime for OkHttp -->
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>1.9.22</version>
         </dependency>
 
         <!-- JSON Processing -->
@@ -352,7 +359,34 @@
                 <configuration>
                     <mainClass>ai.realitydefender.examples.SimpleFileDetectionExample</mainClass>
                     <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                    <classpathScope>runtime</classpathScope>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>simple-example</id>
+                        <configuration>
+                            <mainClass>ai.realitydefender.examples.SimpleFileDetectionExample</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>get-results-example</id>
+                        <configuration>
+                            <mainClass>ai.realitydefender.examples.GetResultsExample</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>debug-get-results</id>
+                        <configuration>
+                            <mainClass>ai.realitydefender.examples.DebugGetResultsExample</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>working-get-results</id>
+                        <configuration>
+                            <mainClass>ai.realitydefender.examples.WorkingGetResultsExample</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
