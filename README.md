@@ -65,10 +65,18 @@ Common error codes:
 - `TIMEOUT` - Request timed out
 - `SERVER_ERROR` - Internal server error
 
-## Supported File Types
 
-- **Images**: JPEG, PNG, GIF, BMP, TIFF
-- **Videos**: MP4, AVI, MOV, WMV, FLV
+## Supported file types and size limits
+
+There is a size limit for each of the supported file types.
+
+| File Type | Extensions                                 | Size Limit (bytes) | Size Limit (MB) |
+|-----------|--------------------------------------------|--------------------|-----------------|
+| Video     | .mp4, .mov                                 | 262,144,000        | 250 MB          |
+| Image     | .jpg, .png, .jpeg, .gif, .webp             | 52,428,800         | 50 MB           |
+| Audio     | .flac, .wav, .mp3, .m4a, .aac, .alac, .ogg | 20,971,520         | 20 MB           |
+| Text      | .txt                                       | 5,242,880          | 5 MB            |
+
 
 ## Development
 

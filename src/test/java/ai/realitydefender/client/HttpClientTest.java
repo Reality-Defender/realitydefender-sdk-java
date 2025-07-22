@@ -439,4 +439,160 @@ class HttpClientTest {
     assertEquals(429, exception.getStatusCode());
     assertTrue(exception.getMessage().contains("Rate limit exceeded"));
   }
+
+  @Test
+  void testUploadFileUnsupportedExtension() throws Exception {
+    File testFile = new File(tempDir, "test.pdf");
+    Files.write(testFile.toPath(), "test content".getBytes());
+
+    RealityDefenderException exception =
+        assertThrows(RealityDefenderException.class, () -> httpClient.uploadFile(testFile));
+
+    assertEquals("invalid_file", exception.getCode());
+    assertTrue(exception.getMessage().contains("Unsupported file test.pdf!"));
+  }
+
+  @Test
+  void testUploadFileTooLarge() throws Exception {
+    File testFile = new File(tempDir, "test.txt");
+    // Create a file larger than txt limit (5,242,880 bytes)
+    byte[] largeContent = new byte[5_242_881];
+    Files.write(testFile.toPath(), largeContent);
+
+    RealityDefenderException exception =
+        assertThrows(RealityDefenderException.class, () -> httpClient.uploadFile(testFile));
+
+    assertEquals("file_too_large", exception.getCode());
+    assertTrue(exception.getMessage().contains("File too large to upload: test.txt"));
+  }
+
+  @Test
+  void testUploadFileValidSizes() throws Exception {
+    // Test each file type at its maximum allowed size
+    testValidFileSize("test.txt", 5_242_880);
+    testValidFileSize("test.mp3", 20_971_520);
+    testValidFileSize("test.jpg", 52_428_800);
+    testValidFileSize("test.mp4", 262_144_000);
+  }
+
+  @Test
+  void testUploadFileUnreadableFile() throws Exception {
+    File testFile = new File(tempDir, "test.jpg");
+    Files.write(testFile.toPath(), "test content".getBytes());
+
+    // Make file unreadable (this might not work on all systems)
+    testFile.setReadable(false);
+
+    try {
+      RealityDefenderException exception =
+          assertThrows(RealityDefenderException.class, () -> httpClient.uploadFile(testFile));
+
+      assertEquals("INVALID_FILE", exception.getCode());
+      assertTrue(exception.getMessage().contains("Cannot read file"));
+    } finally {
+      // Restore readability for cleanup
+      testFile.setReadable(true);
+    }
+  }
+
+  @Test
+  void testUploadFileWithComplexFileName() throws Exception {
+    // Test file with path separators and multiple dots
+    File testFile = new File(tempDir, "my.test.file.with.dots.jpg");
+    Files.write(testFile.toPath(), "test content".getBytes());
+
+    mockSuccessfulUpload();
+
+    JsonNode result = httpClient.uploadFile(testFile);
+
+    assertNotNull(result);
+    assertEquals("req456", result.get("request_id").asText());
+  }
+
+  @Test
+  void testUploadFileCaseSensitiveExtension() throws Exception {
+    // Test that uppercase extensions are not supported
+    File testFile = new File(tempDir, "test.JPG");
+    Files.write(testFile.toPath(), "test content".getBytes());
+
+    RealityDefenderException exception =
+        assertThrows(RealityDefenderException.class, () -> httpClient.uploadFile(testFile));
+
+    assertEquals("invalid_file", exception.getCode());
+    assertTrue(exception.getMessage().contains("Unsupported file test.JPG!"));
+  }
+
+  @Test
+  void testUploadFileNoExtension() throws Exception {
+    File testFile = new File(tempDir, "testfile");
+    Files.write(testFile.toPath(), "test content".getBytes());
+
+    RealityDefenderException exception =
+        assertThrows(RealityDefenderException.class, () -> httpClient.uploadFile(testFile));
+
+    assertEquals("invalid_file", exception.getCode());
+  }
+
+  @Test
+  void testUploadFileWithAllSupportedExtensions() throws Exception {
+    String[] supportedExtensions = {
+      ".mp4", ".mov", ".jpg", ".png", ".jpeg", ".gif", ".webp", ".flac", ".wav", ".mp3", ".m4a",
+      ".aac", ".alac", ".ogg", ".txt"
+    };
+
+    mockSuccessfulUpload();
+
+    for (String extension : supportedExtensions) {
+      File testFile = new File(tempDir, "test" + extension);
+      Files.write(testFile.toPath(), "test content".getBytes());
+
+      JsonNode result = httpClient.uploadFile(testFile);
+
+      assertNotNull(result, "Failed for extension: " + extension);
+      assertEquals("req456", result.get("request_id").asText());
+
+      // Clean up for next iteration
+      testFile.delete();
+    }
+  }
+
+  private void testValidFileSize(String fileName, int maxSize) throws Exception {
+    File testFile = new File(tempDir, fileName);
+    byte[] content = new byte[maxSize]; // Exactly at the limit
+    Files.write(testFile.toPath(), content);
+
+    mockSuccessfulUpload();
+
+    JsonNode result = httpClient.uploadFile(testFile);
+
+    assertNotNull(result);
+    assertEquals("req456", result.get("request_id").asText());
+
+    testFile.delete(); // Clean up
+  }
+
+  private void mockSuccessfulUpload() {
+    // Mock signed URL endpoint
+    wireMockServer.stubFor(
+        post(urlEqualTo("/api/files/aws-presigned"))
+            .willReturn(
+                aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(
+                        "{\n"
+                            + "  \"code\": \"ok\",\n"
+                            + "  \"response\": {\n"
+                            + "    \"signedUrl\": \"http://localhost:"
+                            + wireMockServer.port()
+                            + "/upload\"\n"
+                            + "  },\n"
+                            + "  \"errno\": 0,\n"
+                            + "  \"mediaId\": \"media123\",\n"
+                            + "  \"requestId\": \"req456\"\n"
+                            + "}")));
+
+    // Mock file upload endpoint
+    wireMockServer.stubFor(put(urlEqualTo("/upload")).willReturn(aResponse().withStatus(200)));
+  }
 }

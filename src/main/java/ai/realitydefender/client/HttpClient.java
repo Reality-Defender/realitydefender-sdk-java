@@ -2,14 +2,17 @@ package ai.realitydefender.client;
 
 import ai.realitydefender.core.RealityDefenderConfig;
 import ai.realitydefender.exceptions.RealityDefenderException;
+import ai.realitydefender.models.FileTypeInfo;
 import ai.realitydefender.models.SignedUrlRequest;
 import ai.realitydefender.models.SignedUrlResponse;
+import ai.realitydefender.models.SupportedFileTypes;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import okhttp3.MediaType;
@@ -90,6 +93,23 @@ public class HttpClient implements Closeable {
     if (!file.canRead()) {
       throw new RealityDefenderException(
           "Cannot read file: " + file.getAbsolutePath(), "INVALID_FILE");
+    }
+
+    // Get file size
+    long fileSize;
+    try {
+      fileSize = Files.size(file.toPath());
+    } catch (IOException e) {
+      throw new RealityDefenderException(
+          "Unable to read file size: " + file.getName(), "INVALID_FILE", e);
+    }
+
+    // Get supported file info.
+    FileTypeInfo fileTypeInfo = SupportedFileTypes.getFileTypeInfo(file.getName());
+
+    if (fileSize > fileTypeInfo.getSizeLimit()) {
+      throw new RealityDefenderException(
+          "File too large to upload: " + file.getName(), "file_too_large");
     }
 
     SignedUrlResponse signedUrlResponse = getSignedUrl(file.getName());
