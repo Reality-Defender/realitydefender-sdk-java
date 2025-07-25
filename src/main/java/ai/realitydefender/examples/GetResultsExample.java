@@ -136,7 +136,7 @@ public class GetResultsExample {
       for (int i = 0; i < results.getItems().size(); i++) {
         DetectionResult result = results.getItems().get(i);
         System.out.println("\n" + (i + 1) + ". Request ID: " + result.getRequestId());
-        System.out.println("   Status: " + result.getOverallStatus());
+        System.out.println("   Status: " + result.getStatus());
 
         Double score = result.getScore();
         if (score != null) {

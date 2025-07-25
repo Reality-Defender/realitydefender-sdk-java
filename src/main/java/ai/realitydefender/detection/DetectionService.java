@@ -91,7 +91,7 @@ public class DetectionService implements Closeable {
   }
 
   /**
-   * Gets the detection result for a request ID, polling until complete.
+   * Returns the summarized detection result for a request ID, polling until complete.
    *
    * @param requestId the request ID from upload
    * @return the detection result
@@ -99,7 +99,7 @@ public class DetectionService implements Closeable {
    */
   public DetectionResult getResult(String requestId)
       throws RealityDefenderException, JsonProcessingException {
-    return getResult(requestId, DEFAULT_POLLING_INTERVAL, DEFAULT_MAX_ATTEMPTS);
+    return getResult(requestId, DEFAULT_POLLING_INTERVAL, DEFAULT_MAX_ATTEMPTS).summarize();
   }
 
   /**
@@ -120,18 +120,18 @@ public class DetectionService implements Closeable {
         JsonNode response = httpClient.getResults(requestId);
         DetectionResult result = objectMapper.treeToValue(response, DetectionResult.class);
 
-        if (isProcessing(result.getOverallStatus())) {
+        if (isProcessed(result.getStatus())) {
           logger.info(
               "Detection completed for request ID: {} with status: {}",
               requestId,
-              result.getOverallStatus());
-          return result;
+              result.getStatus());
+          return result.summarize();
         }
 
         logger.debug(
             "Detection still processing for request ID: {}, status: {}",
             requestId,
-            result.getOverallStatus());
+            result.getStatus());
 
         Thread.sleep(pollingInterval.toMillis());
 
@@ -238,17 +238,17 @@ public class DetectionService implements Closeable {
               JsonNode response = httpClient.getResults(requestId);
               DetectionResult result = objectMapper.treeToValue(response, DetectionResult.class);
 
-              if (isProcessing(result.getOverallStatus())) {
+              if (isProcessed(result.getStatus())) {
                 logger.info(
                     "Polling completed for request ID: {} with status: {}",
                     requestId,
-                    result.getOverallStatus());
-                onResult.accept(result);
+                    result.getStatus());
+                onResult.accept(result.summarize());
               } else {
                 logger.debug(
                     "Still processing for request ID: {}, status: {}",
                     requestId,
-                    result.getOverallStatus());
+                    result.getStatus());
                 // Schedule next poll
                 scheduler.schedule(this, pollingInterval.toMillis(), TimeUnit.MILLISECONDS);
               }
@@ -286,7 +286,7 @@ public class DetectionService implements Closeable {
   }
 
   /**
-   * Checks a single result status without polling.
+   * Checks a single summarized result status without polling.
    *
    * @param requestId the request ID to check
    * @return the current detection result
@@ -298,7 +298,8 @@ public class DetectionService implements Closeable {
 
     try {
       JsonNode response = httpClient.getResults(requestId);
-      return objectMapper.treeToValue(response, DetectionResult.class);
+      DetectionResult result = objectMapper.treeToValue(response, DetectionResult.class);
+      return result.summarize();
     } catch (Exception e) {
       if (e instanceof RealityDefenderException) {
         throw e;
@@ -325,15 +326,15 @@ public class DetectionService implements Closeable {
   }
 
   /**
-   * Determines if a status indicates the detection is still processing.
+   * Determines if a status indicates the detection has been processed.
    *
    * @param status the status to check
-   * @return true if still processing, false if complete
+   * @return true if it is processed, false otherwise
    */
-  private boolean isProcessing(String status) {
-    return !STATUS_PROCESSING.equalsIgnoreCase(status)
-        && !STATUS_ANALYZING.equalsIgnoreCase(status)
-        && !STATUS_QUEUED.equalsIgnoreCase(status);
+  private boolean isProcessed(String status) {
+    return !(STATUS_PROCESSING.equalsIgnoreCase(status)
+        || STATUS_ANALYZING.equalsIgnoreCase(status)
+        || STATUS_QUEUED.equalsIgnoreCase(status));
   }
 
   /**
@@ -354,7 +355,7 @@ public class DetectionService implements Closeable {
     String name = options.getName();
     java.time.LocalDate startDate = options.getStartDate();
     java.time.LocalDate endDate = options.getEndDate();
-    Integer maxAttempts = options.getMaxAttempts() != null ? options.getMaxAttempts() : 1;
+    int maxAttempts = options.getMaxAttempts() != null ? options.getMaxAttempts() : 1;
     Duration pollingInterval =
         options.getPollingInterval() != null ? options.getPollingInterval() : Duration.ofSeconds(2);
 
@@ -373,11 +374,11 @@ public class DetectionService implements Closeable {
         // Check if any results are still analyzing (if polling is enabled)
         if (maxAttempts > 1) {
           boolean stillAnalyzing =
-              resultList.getItems().stream().anyMatch(item -> isAnalyzing(item.getOverallStatus()));
+              resultList.getItems().stream().anyMatch(item -> isAnalyzing(item.getStatus()));
 
           if (!stillAnalyzing) {
             logger.info("All results completed for page: {}", pageNumber);
-            return resultList;
+            return resultList.summarize();
           }
 
           if (attempt < maxAttempts - 1) {
@@ -387,7 +388,7 @@ public class DetectionService implements Closeable {
             Thread.sleep(pollingInterval.toMillis());
           }
         } else {
-          return resultList;
+          return resultList.summarize();
         }
 
       } catch (InterruptedException e) {

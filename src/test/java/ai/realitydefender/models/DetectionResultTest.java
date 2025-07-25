@@ -33,7 +33,7 @@ class DetectionResultTest {
 
     DetectionResult result = createDetectionResult("FAKE", models);
 
-    assertEquals("MANIPULATED", result.getOverallStatus());
+    assertEquals("MANIPULATED", result.getStatus());
     assertEquals(2, result.getModels().size());
     assertEquals("model1", result.getModels().get(0).getName());
   }
@@ -42,7 +42,7 @@ class DetectionResultTest {
   void testDetectionResultWithNullScore() {
     DetectionResult result = createDetectionResult("PROCESSING", new ArrayList<>());
 
-    assertEquals("PROCESSING", result.getOverallStatus());
+    assertEquals("PROCESSING", result.getStatus());
     assertTrue(result.getModels().isEmpty());
   }
 
@@ -58,7 +58,7 @@ class DetectionResultTest {
   @Test
   void testDetectionResultEquality() {
     DetectionResult.ModelResult model = createModelResult("model1", "FAKE", 0.95);
-    List<DetectionResult.ModelResult> models = Arrays.asList(model);
+    List<DetectionResult.ModelResult> models = List.of(model);
 
     DetectionResult result1 = createDetectionResult("MANIPULATED", models);
     DetectionResult result2 = createDetectionResult("MANIPULATED", models);
@@ -70,7 +70,7 @@ class DetectionResultTest {
   @Test
   void testDetectionResultToString() {
     DetectionResult.ModelResult model = createModelResult("model1", "FAKE", 0.95);
-    DetectionResult result = createDetectionResult("FAKE", Arrays.asList(model));
+    DetectionResult result = createDetectionResult("FAKE", List.of(model));
 
     String toString = result.toString();
     assertTrue(toString.contains("FAKE"));
@@ -80,13 +80,13 @@ class DetectionResultTest {
   @Test
   void testJsonSerialization() throws Exception {
     DetectionResult.ModelResult model = createModelResult("model1", "FAKE", 0.95);
-    DetectionResult result = createDetectionResult("FAKE", Arrays.asList(model));
+    DetectionResult result = createDetectionResult("FAKE", List.of(model));
 
     String json = objectMapper.writeValueAsString(result);
     DetectionResult deserialized = objectMapper.readValue(json, DetectionResult.class);
 
     assertEquals(result.getRequestId(), deserialized.getRequestId());
-    assertEquals(result.getOverallStatus(), deserialized.getOverallStatus());
+    assertEquals(result.getStatus(), deserialized.getStatus());
     assertEquals(result.getModels().size(), deserialized.getModels().size());
     assertEquals(result.getModels().get(0).getName(), deserialized.getModels().get(0).getName());
     assertEquals(
@@ -106,12 +106,12 @@ class DetectionResultTest {
             true,
             "Doe",
             "John",
-            Arrays.asList("Premium"),
+            List.of("Premium"),
             "track123",
             "inst456",
             "Test Institution",
             "uuid789",
-            Arrays.asList("admin"));
+            List.of("admin"));
 
     DetectionResult.ModelResult model =
         new DetectionResult.ModelResult(
@@ -149,13 +149,13 @@ class DetectionResultTest {
             "user123",
             "inst456",
             "2.0.0",
-            Arrays.asList("http://webhook.com"),
+            List.of("http://webhook.com"),
             now,
             now,
             false,
             "COMPLETED",
             new DetectionResult.ResultsSummary("COMPLETED", Map.of("confidence", 0.95)),
-            Arrays.asList(model),
+            List.of(model),
             new ArrayList<>(),
             null,
             "",
@@ -220,12 +220,12 @@ class DetectionResultTest {
             true,
             "Doe",
             "John",
-            Arrays.asList("Premium"),
+            List.of("Premium"),
             "track123",
             "inst456",
             "Test Institution",
             "uuid789",
-            Arrays.asList("admin"));
+            List.of("admin"));
 
     assertEquals("test@example.com", userInfo.getEmail());
     assertTrue(userInfo.getIsApi());
@@ -288,12 +288,12 @@ class DetectionResultTest {
             false,
             "Smith",
             "Jane",
-            Arrays.asList("Basic"),
+            List.of("Basic"),
             "track456",
             "inst789",
             "University",
             "uuid123",
-            Arrays.asList("user"));
+            List.of("user"));
 
     DetectionResult.ModelResult model1 = createModelResult("model-a", "FAKE", 0.8);
     DetectionResult.ModelResult model2 = createModelResult("model-b", "FAKE", 0.9);
@@ -335,7 +335,7 @@ class DetectionResultTest {
             "MANIPULATED",
             new DetectionResult.ResultsSummary("MANIPULATED", Map.of("overall_confidence", 0.85)),
             Arrays.asList(model1, model2),
-            Arrays.asList(),
+            List.of(),
             mediaInfo,
             "https://metadata.com",
             "https://explainability.com",
@@ -368,8 +368,8 @@ class DetectionResultTest {
     assertEquals(now, result.getCreatedAt());
     assertEquals(now, result.getUpdatedAt());
     assertTrue(result.isAudioExtractionProcessed());
-    assertEquals("MANIPULATED", result.getOverallStatus());
-    assertEquals("MANIPULATED", result.getOverallStatus()); // Convenience method
+    assertEquals("MANIPULATED", result.getStatus());
+    assertEquals("MANIPULATED", result.getStatus()); // Convenience method
     assertNotNull(result.getResultsSummary());
     assertEquals(2, result.getModels().size());
     assertTrue(result.getRdModels().isEmpty());
@@ -425,7 +425,7 @@ class DetectionResultTest {
     String json =
         "{\n"
             + "  \"requestId\": \"test-request\",\n"
-            + "  \"overallStatus\": \"FAKE\",\n"
+            + "  \"status\": \"FAKE\",\n"
             + "  \"models\": [\n"
             + "    {\n"
             + "      \"name\": \"model1\",\n"
@@ -679,18 +679,18 @@ class DetectionResultTest {
     String json = createDetectionResultJsonWithStatus("FAKE");
     DetectionResult result = objectMapper.readValue(json, DetectionResult.class);
 
-    assertEquals("MANIPULATED", result.getOverallStatus());
+    assertEquals("MANIPULATED", result.getStatus());
   }
 
   @Test
-  void testOverallStatusDeserializerWithNormalStatuses() throws Exception {
+  void testStatusDeserializerWithNormalStatuses() throws Exception {
     String[] normalStatuses = {"COMPLETED", "PROCESSING", "ANALYZING", "MANIPULATED"};
 
     for (String status : normalStatuses) {
       String json = createDetectionResultJsonWithStatus(status);
       DetectionResult result = objectMapper.readValue(json, DetectionResult.class);
 
-      assertEquals(status, result.getOverallStatus());
+      assertEquals(status, result.getStatus());
     }
   }
 
@@ -701,15 +701,15 @@ class DetectionResultTest {
     String json = objectMapper.writeValueAsString(original);
     DetectionResult deserialized = objectMapper.readValue(json, DetectionResult.class);
 
-    assertEquals("MANIPULATED", deserialized.getOverallStatus());
+    assertEquals("MANIPULATED", deserialized.getStatus());
   }
 
   @Test
-  void testOverallStatusDeserializerWithNull() throws Exception {
+  void testStatusDeserializerWithNull() throws Exception {
     String json = createDetectionResultJsonWithNullStatus();
     DetectionResult result = objectMapper.readValue(json, DetectionResult.class);
 
-    assertNull(result.getOverallStatus());
+    assertNull(result.getStatus());
   }
 
   // Helper methods to add to the existing helper methods section
@@ -727,7 +727,7 @@ class DetectionResultTest {
         + "  \"releaseVersion\": \"1.0.0\",\n"
         + "  \"webhookUrls\": [],\n"
         + "  \"audioExtractionProcessed\": false,\n"
-        + "  \"overallStatus\": \""
+        + "  \"status\": \""
         + status
         + "\",\n"
         + "  \"resultsSummary\": { \"status\": \""
@@ -752,7 +752,7 @@ class DetectionResultTest {
         + "  \"releaseVersion\": \"1.0.0\",\n"
         + "  \"webhookUrls\": [],\n"
         + "  \"audioExtractionProcessed\": false,\n"
-        + "  \"overallStatus\": null,\n"
+        + "  \"status\": null,\n"
         + "  \"resultsSummary\": { \"status\": null, \"metadata\": {} },\n"
         + "  \"models\": [],\n"
         + "  \"rdModels\": [],\n"

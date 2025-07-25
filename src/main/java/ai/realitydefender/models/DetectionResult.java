@@ -1,6 +1,7 @@
 package ai.realitydefender.models;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -14,43 +15,45 @@ import java.util.stream.Collectors;
 /** Represents the result of a deepfake detection analysis. */
 public class DetectionResult {
 
-  private final String name;
-  private final String filename;
-  private final String aggregationResultUrl;
-  private final String originalFileName;
-  private final String storageLocation;
-  private final String convertedFileName;
-  private final String convertedFileLocation;
-  private final String socialLink;
-  private final boolean socialLinkDownloaded;
-  private final boolean socialLinkDownloadFailed;
-  private final String requestId;
-  private final LocalDateTime uploadedDate;
-  private final String mediaType;
-  private final UserInfo userInfo;
-  private final String audioExtractionFileName;
-  private final boolean showAudioResult;
-  private final String audioRequestId;
-  private final String thumbnail;
-  private final String contentPreview;
-  private final String userId;
-  private final String institutionId;
-  private final String releaseVersion;
-  private final List<String> webhookUrls;
-  private final LocalDateTime createdAt;
-  private final LocalDateTime updatedAt;
-  private final boolean audioExtractionProcessed;
+  private String name;
+  private String filename;
+  private String aggregationResultUrl;
+  private String originalFileName;
+  private String storageLocation;
+  private String convertedFileName;
+  private String convertedFileLocation;
+  private String socialLink;
+  private boolean socialLinkDownloaded;
+  private boolean socialLinkDownloadFailed;
+  private String requestId;
+  private LocalDateTime uploadedDate;
+  private String mediaType;
+  private UserInfo userInfo;
+  private String audioExtractionFileName;
+  private boolean showAudioResult;
+  private String audioRequestId;
+  private String thumbnail;
+  private String contentPreview;
+  private String userId;
+  private String institutionId;
+  private String releaseVersion;
+  private List<String> webhookUrls;
+  private LocalDateTime createdAt;
+  private LocalDateTime updatedAt;
+  private boolean audioExtractionProcessed;
 
   @JsonDeserialize(using = StatusDeserializer.class)
-  private final String overallStatus;
+  private String status;
 
-  private final ResultsSummary resultsSummary;
-  private final List<ModelResult> models;
-  private final List<Object> rdModels;
-  private final MediaMetadataInfo mediaMetadataInfo;
-  private final String modelMetadataUrl;
-  private final String explainabilityUrl;
-  private final Map<String, String> heatmaps;
+  private ResultsSummary resultsSummary;
+  private List<ModelResult> models;
+  private List<Object> rdModels;
+  private MediaMetadataInfo mediaMetadataInfo;
+  private String modelMetadataUrl;
+  private String explainabilityUrl;
+  private Map<String, String> heatmaps;
+
+  private Double score;
 
   @JsonCreator
   public DetectionResult(
@@ -80,7 +83,7 @@ public class DetectionResult {
       @JsonProperty("createdAt") LocalDateTime createdAt,
       @JsonProperty("updatedAt") LocalDateTime updatedAt,
       @JsonProperty("audioExtractionProcessed") boolean audioExtractionProcessed,
-      @JsonProperty("overallStatus") String overallStatus,
+      @JsonProperty("status") String status,
       @JsonProperty("resultsSummary") ResultsSummary resultsSummary,
       @JsonProperty("models") List<ModelResult> models,
       @JsonProperty("rdModels") List<Object> rdModels,
@@ -114,7 +117,7 @@ public class DetectionResult {
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.audioExtractionProcessed = audioExtractionProcessed;
-    this.overallStatus = overallStatus;
+    this.status = status;
     this.resultsSummary = resultsSummary;
     this.models = models;
     this.rdModels = rdModels;
@@ -122,6 +125,13 @@ public class DetectionResult {
     this.modelMetadataUrl = modelMetadataUrl;
     this.explainabilityUrl = explainabilityUrl;
     this.heatmaps = heatmaps;
+  }
+
+  public DetectionResult(String requestId, String status, Double score, List<ModelResult> models) {
+    this.requestId = requestId;
+    this.status = status;
+    this.score = score;
+    this.models = models;
   }
 
   // Getters for all fields
@@ -225,13 +235,13 @@ public class DetectionResult {
     return audioExtractionProcessed;
   }
 
-  public String getOverallStatus() {
-    if (this.overallStatus == null) {
+  public String getStatus() {
+    if (this.status == null) {
       return null;
-    } else if (this.overallStatus.equals("FAKE")) {
+    } else if (this.status.equals("FAKE")) {
       return "MANIPULATED";
     } else {
-      return this.overallStatus;
+      return this.status;
     }
   }
 
@@ -240,12 +250,16 @@ public class DetectionResult {
    *
    * @return the normalized score, or null if not available
    */
-  @com.fasterxml.jackson.annotation.JsonIgnore
+  @JsonIgnore
   public Double getScore() {
+    if (this.score != null) {
+      return score;
+    }
     if (resultsSummary != null && resultsSummary.getMetadata() != null) {
       Object finalScore = resultsSummary.getMetadata().get("finalScore");
       if (finalScore instanceof Number) {
-        return ((Number) finalScore).doubleValue() / 100.0; // Normalize to 0-1 range
+        this.score = ((Number) finalScore).doubleValue() / 100.0; // Normalize to 0-1 range
+        return this.score;
       }
     }
     return null;
@@ -289,13 +303,12 @@ public class DetectionResult {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     DetectionResult that = (DetectionResult) o;
-    return Objects.equals(requestId, that.requestId)
-        && Objects.equals(overallStatus, that.overallStatus);
+    return Objects.equals(requestId, that.requestId) && Objects.equals(status, that.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestId, overallStatus);
+    return Objects.hash(requestId, status);
   }
 
   @Override
@@ -305,7 +318,7 @@ public class DetectionResult {
         + requestId
         + '\''
         + ", overallStatus='"
-        + overallStatus
+        + status
         + '\''
         + ", mediaType='"
         + mediaType
@@ -314,6 +327,10 @@ public class DetectionResult {
         + originalFileName
         + '\''
         + '}';
+  }
+
+  public DetectionResult summarize() {
+    return new DetectionResult(this.requestId, this.getStatus(), this.getScore(), this.getModels());
   }
 
   public String getAggregationResultUrl() {

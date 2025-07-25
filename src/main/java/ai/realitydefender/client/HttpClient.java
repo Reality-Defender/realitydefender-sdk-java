@@ -2,10 +2,7 @@ package ai.realitydefender.client;
 
 import ai.realitydefender.core.RealityDefenderConfig;
 import ai.realitydefender.exceptions.RealityDefenderException;
-import ai.realitydefender.models.FileTypeInfo;
-import ai.realitydefender.models.SignedUrlRequest;
-import ai.realitydefender.models.SignedUrlResponse;
-import ai.realitydefender.models.SupportedFileTypes;
+import ai.realitydefender.models.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -262,8 +259,19 @@ public class HttpClient implements Closeable {
       logger.debug("Response body length: {}", responseBody.length());
 
       if (!response.isSuccessful()) {
-        String errorCode = mapStatusCodeToErrorCode(response.code(), defaultErrorCode);
-        String errorMessage = extractErrorMessage(responseBody, response.code());
+        BasicResponse basicResponse;
+        try {
+          basicResponse =
+              !responseBody.isBlank()
+                  ? objectMapper.readValue(responseBody, BasicResponse.class)
+                  : new BasicResponse();
+        } catch (IOException e) {
+          // Ignore.
+          basicResponse = new BasicResponse();
+        }
+        String errorCode =
+            mapStatusCodeToErrorCode(response.code(), basicResponse, defaultErrorCode);
+        String errorMessage = getDefaultErrorMessage(response.code(), basicResponse);
 
         // Log the detailed error for debugging
         logger.error(
@@ -286,9 +294,14 @@ public class HttpClient implements Closeable {
     }
   }
 
-  private String mapStatusCodeToErrorCode(int statusCode, String defaultCode) {
+  private String mapStatusCodeToErrorCode(
+      int statusCode, BasicResponse basicResponse, String defaultCode) {
     switch (statusCode) {
       case 400:
+        // Special case for unauthorized free tier operations.
+        if (basicResponse != null && basicResponse.getCode().equals("free-tier-not-allowed")) {
+          return "UNAUTHORIZED";
+        }
         return "BAD_REQUEST";
       case 401:
         return "UNAUTHORIZED";
@@ -313,30 +326,13 @@ public class HttpClient implements Closeable {
     }
   }
 
-  private String extractErrorMessage(String responseBody, int statusCode) {
-    try {
-      if (responseBody != null && !responseBody.trim().isEmpty()) {
-        JsonNode errorNode = objectMapper.readTree(responseBody);
-        if (errorNode.has("error")) {
-          JsonNode error = errorNode.get("error");
-          if (error.has("message")) {
-            return error.get("message").asText();
-          }
-        }
-        if (errorNode.has("message")) {
-          return errorNode.get("message").asText();
-        }
-      }
-    } catch (Exception e) {
-      logger.warn("Failed to parse error response: {}", e.getMessage());
-    }
-
-    return "HTTP " + statusCode + ": " + getDefaultErrorMessage(statusCode);
-  }
-
-  private String getDefaultErrorMessage(int statusCode) {
+  private String getDefaultErrorMessage(int statusCode, BasicResponse basicResponse) {
     switch (statusCode) {
       case 400:
+        // Special case for unauthorized free tier operations.
+        if (basicResponse != null && basicResponse.getCode().equals("free-tier-not-allowed")) {
+          return basicResponse.getMessage();
+        }
         return "Bad Request";
       case 401:
         return "Unauthorized - Check your API key";
@@ -359,7 +355,7 @@ public class HttpClient implements Closeable {
       case 504:
         return "Gateway Timeout";
       default:
-        return "Request failed";
+        return "API error: " + basicResponse.getMessage();
     }
   }
 

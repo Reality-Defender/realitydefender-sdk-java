@@ -126,7 +126,7 @@ class HttpClientTest {
 
     assertEquals("UNAUTHORIZED", exception.getCode());
     assertEquals(401, exception.getStatusCode());
-    assertTrue(exception.getMessage().contains("Invalid API key"));
+    assertTrue(exception.getMessage().contains("Unauthorized - Check your API key"));
   }
 
   @Test
@@ -209,14 +209,14 @@ class HttpClientTest {
                 aResponse()
                     .withStatus(404)
                     .withHeader("Content-Type", "application/json")
-                    .withBody("{\"error\": {\"message\": \"Request not found\"}}")));
+                    .withBody("{\"message\": \"Request not found\"}")));
 
     RealityDefenderException exception =
         assertThrows(RealityDefenderException.class, () -> httpClient.getResults(requestId));
 
     assertEquals("NOT_FOUND", exception.getCode());
     assertEquals(404, exception.getStatusCode());
-    assertTrue(exception.getMessage().contains("Request not found"));
+    assertTrue(exception.getMessage().contains("Not Found"));
   }
 
   @Test
@@ -258,14 +258,15 @@ class HttpClientTest {
                 aResponse()
                     .withStatus(400)
                     .withHeader("Content-Type", "application/json")
-                    .withBody("{\"error\": {\"message\": \"Invalid request format\"}}")));
+                    .withBody(
+                        "{\"code\": \"BAD_REQUEST\", \"message\": \"Invalid request format\", \"extra_field\": \"whatever\"}")));
 
     RealityDefenderException exception =
         assertThrows(RealityDefenderException.class, () -> httpClient.post(endpoint, requestBody));
 
     assertEquals("BAD_REQUEST", exception.getCode());
     assertEquals(400, exception.getStatusCode());
-    assertTrue(exception.getMessage().contains("Invalid request format"));
+    assertTrue(exception.getMessage().contains("Bad Request"));
   }
 
   @Test
@@ -294,49 +295,6 @@ class HttpClientTest {
     assertEquals(expectedErrorCode, exception.getCode());
     assertEquals(statusCode, exception.getStatusCode());
     assertTrue(exception.getMessage().contains(expectedMessage));
-  }
-
-  @Test
-  void testErrorMessageExtraction() {
-    String endpoint = "/api/error-message-test";
-
-    // Test nested error message
-    wireMockServer.stubFor(
-        post(urlEqualTo(endpoint))
-            .willReturn(
-                aResponse()
-                    .withStatus(400)
-                    .withHeader("Content-Type", "application/json")
-                    .withBody("{\"error\": {\"message\": \"Nested error message\"}}")));
-
-    RealityDefenderException exception1 =
-        assertThrows(RealityDefenderException.class, () -> httpClient.post(endpoint, "{}"));
-
-    assertTrue(exception1.getMessage().contains("Nested error message"));
-
-    // Test top-level message
-    wireMockServer.stubFor(
-        post(urlEqualTo(endpoint))
-            .willReturn(
-                aResponse()
-                    .withStatus(400)
-                    .withHeader("Content-Type", "application/json")
-                    .withBody("{\"message\": \"Top level message\"}")));
-
-    RealityDefenderException exception2 =
-        assertThrows(RealityDefenderException.class, () -> httpClient.post(endpoint, "{}"));
-
-    assertTrue(exception2.getMessage().contains("Top level message"));
-
-    // Test malformed JSON (should fall back to default message)
-    wireMockServer.stubFor(
-        post(urlEqualTo(endpoint))
-            .willReturn(aResponse().withStatus(400).withBody("Invalid JSON response")));
-
-    RealityDefenderException exception3 =
-        assertThrows(RealityDefenderException.class, () -> httpClient.post(endpoint, "{}"));
-
-    assertTrue(exception3.getMessage().contains("Bad Request"));
   }
 
   @Test

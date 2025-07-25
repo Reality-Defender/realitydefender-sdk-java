@@ -92,7 +92,7 @@ class DetectionServiceTest {
     DetectionResult result = detectionService.getResult("req-123", Duration.ofMillis(10), 30);
 
     // Assert
-    assertEquals("MANIPULATED", result.getOverallStatus());
+    assertEquals("MANIPULATED", result.getStatus());
     assertEquals("req-123", result.getRequestId());
     assertEquals(1, result.getModels().size());
     assertEquals("model1", result.getModels().get(0).getName());
@@ -113,7 +113,7 @@ class DetectionServiceTest {
     DetectionResult result = future.get();
 
     // Assert
-    assertEquals("AUTHENTIC", result.getOverallStatus());
+    assertEquals("AUTHENTIC", result.getStatus());
     assertEquals("req-123", result.getRequestId());
   }
 
@@ -134,7 +134,7 @@ class DetectionServiceTest {
     DetectionResult result = detectionService.detectFile(testFile);
 
     // Assert
-    assertEquals("MANIPULATED", result.getOverallStatus());
+    assertEquals("MANIPULATED", result.getStatus());
     assertEquals("req-123", result.getRequestId());
     verify(httpClient).uploadFile(testFile);
     verify(httpClient).getResults("req-123");
@@ -158,7 +158,7 @@ class DetectionServiceTest {
     DetectionResult result = future.get();
 
     // Assert
-    assertEquals("AUTHENTIC", result.getOverallStatus());
+    assertEquals("AUTHENTIC", result.getStatus());
     assertEquals("req-123", result.getRequestId());
   }
 
@@ -173,7 +173,7 @@ class DetectionServiceTest {
     DetectionResult result = detectionService.checkStatus("req-123");
 
     // Assert
-    assertEquals("PROCESSING", result.getOverallStatus());
+    assertEquals("PROCESSING", result.getStatus());
     assertEquals("req-123", result.getRequestId());
     verify(httpClient).getResults("req-123");
   }
@@ -198,7 +198,7 @@ class DetectionServiceTest {
     // Assert
     assertNotNull(resultRef.get());
     assertNull(errorRef.get());
-    assertEquals("MANIPULATED", resultRef.get().getOverallStatus());
+    assertEquals("MANIPULATED", resultRef.get().getStatus());
     assertEquals("req-123", resultRef.get().getRequestId());
   }
 
@@ -216,7 +216,7 @@ class DetectionServiceTest {
     DetectionResult result = future.get();
 
     // Assert
-    assertEquals("MANIPULATED", result.getOverallStatus());
+    assertEquals("MANIPULATED", result.getStatus());
     assertEquals("req-123", result.getRequestId());
   }
 
@@ -232,7 +232,7 @@ class DetectionServiceTest {
     DetectionResult result = future.get();
 
     // Assert
-    assertEquals("ANALYZING", result.getOverallStatus());
+    assertEquals("ANALYZING", result.getStatus());
     assertEquals("req-123", result.getRequestId());
   }
 
@@ -248,7 +248,7 @@ class DetectionServiceTest {
       when(httpClient.getResults("req-123")).thenReturn(response);
 
       DetectionResult result = detectionService.checkStatus("req-123");
-      assertEquals(status, result.getOverallStatus());
+      assertEquals(status, result.getStatus());
     }
 
     for (String status : completedStatuses) {
@@ -257,7 +257,7 @@ class DetectionServiceTest {
       when(httpClient.getResults("req-123")).thenReturn(response);
 
       DetectionResult result = detectionService.checkStatus("req-123");
-      assertEquals(status, result.getOverallStatus());
+      assertEquals(status, result.getStatus());
     }
   }
 
@@ -319,7 +319,7 @@ class DetectionServiceTest {
         + "    \"createdAt\": null,\n"
         + "    \"updatedAt\": null,\n"
         + "    \"audioExtractionProcessed\": false,\n"
-        + "    \"overallStatus\": \""
+        + "    \"status\": \""
         + status
         + "\",\n"
         + "    \"resultsSummary\": {\n"

@@ -105,7 +105,7 @@ public class RealityDefender implements Closeable {
   }
 
   /**
-   * Gets the detection result for a request ID with custom polling settings.
+   * Returns the summarized detection result for a request ID with custom polling settings.
    *
    * @param requestId the request ID from the upload response
    * @param pollingInterval interval between polling attempts
@@ -119,7 +119,7 @@ public class RealityDefender implements Closeable {
   }
 
   /**
-   * Gets the detection result for a request ID asynchronously.
+   * Returns the summarized detection result for a request ID asynchronously.
    *
    * @param requestId the request ID from the upload response
    * @return a CompletableFuture containing the detection result
@@ -129,11 +129,11 @@ public class RealityDefender implements Closeable {
   }
 
   /**
-   * Gets the detection result for a request ID asynchronously with custom settings.
+   * Gets the summarized detection result for a request ID asynchronously with custom settings.
    *
    * @param requestId the request ID from the upload response
    * @param pollingInterval interval between polling attempts
-   * @param maxAttempts
+   * @param maxAttempts maximum number of attempts
    * @return a CompletableFuture containing the detection result
    */
   public CompletableFuture<DetectionResult> getResultAsync(

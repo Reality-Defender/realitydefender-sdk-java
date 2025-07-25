@@ -80,4 +80,15 @@ public class DetectionResultList {
         + " items"
         + '}';
   }
+
+  public DetectionResultList summarize() {
+    return new DetectionResultList(
+        this.totalItems,
+        this.totalPages,
+        this.currentPage,
+        this.currentPageItemsCount,
+        this.items.stream()
+            .map(DetectionResult::summarize)
+            .collect(java.util.stream.Collectors.toList()));
+  }
 }

@@ -22,7 +22,7 @@ public class SimpleFileDetectionExample {
         DetectionResult result = client.detectFile(imageFile);
 
         // Display results
-        System.out.println("Detection Status: " + result.getOverallStatus());
+        System.out.println("Detection Status: " + result.getStatus());
 
         if (result.getModels() != null) {
           System.out.println("\nIndividual Model Results:");
@@ -32,10 +32,10 @@ public class SimpleFileDetectionExample {
         }
 
         // Interpret results
-        if ("FAKE".equals(result.getOverallStatus())) {
+        if ("FAKE".equals(result.getStatus())) {
           System.out.println(
               "\n⚠️  WARNING: This media appears to be artificially generated or manipulated!");
-        } else if ("AUTHENTIC".equals(result.getOverallStatus())) {
+        } else if ("AUTHENTIC".equals(result.getStatus())) {
           System.out.println("\n✅ This media appears to be authentic.");
         } else {
           System.out.println("\n❓ Analysis inconclusive or still processing.");
