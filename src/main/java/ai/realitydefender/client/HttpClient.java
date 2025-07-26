@@ -300,7 +300,7 @@ public class HttpClient implements Closeable {
             || basicResponse.getCode().equals("upload-limit-reached")) {
           return "UNAUTHORIZED";
         }
-        return "SERVER_ERROR";
+        return "INVALID_REQUEST";
       case 401:
         return "UNAUTHORIZED";
       case 404:
@@ -318,7 +318,7 @@ public class HttpClient implements Closeable {
             || basicResponse.getCode().equals("upload-limit-reached")) {
           return basicResponse.getResponse();
         }
-        return "Bad Request: " + basicResponse.getResponse();
+        return "Invalid Request: " + basicResponse.getResponse();
       case 401:
         return "Invalid API key";
       case 404:

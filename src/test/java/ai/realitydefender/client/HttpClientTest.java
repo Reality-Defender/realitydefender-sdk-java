@@ -264,9 +264,9 @@ class HttpClientTest {
     RealityDefenderException exception =
         assertThrows(RealityDefenderException.class, () -> httpClient.post(endpoint, requestBody));
 
-    assertEquals("SERVER_ERROR", exception.getCode());
+    assertEquals("INVALID_REQUEST", exception.getCode());
     assertEquals(400, exception.getStatusCode());
-    assertTrue(exception.getMessage().contains("Bad Request"));
+    assertTrue(exception.getMessage().contains("Invalid request"));
   }
 
   @Test
