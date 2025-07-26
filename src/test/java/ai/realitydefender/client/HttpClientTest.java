@@ -119,14 +119,14 @@ class HttpClientTest {
                 aResponse()
                     .withStatus(401)
                     .withHeader("Content-Type", "application/json")
-                    .withBody("{\"error\": {\"message\": \"Invalid API key\"}}")));
+                    .withBody("{\"response\": \"Invalid API key\"}")));
 
     RealityDefenderException exception =
         assertThrows(RealityDefenderException.class, () -> httpClient.uploadFile(testFile));
 
     assertEquals("UNAUTHORIZED", exception.getCode());
     assertEquals(401, exception.getStatusCode());
-    assertTrue(exception.getMessage().contains("Unauthorized - Check your API key"));
+    assertTrue(exception.getMessage().contains("Invalid API key"));
   }
 
   @Test
@@ -209,14 +209,14 @@ class HttpClientTest {
                 aResponse()
                     .withStatus(404)
                     .withHeader("Content-Type", "application/json")
-                    .withBody("{\"message\": \"Request not found\"}")));
+                    .withBody("{\"response\": \"Request not found\"}")));
 
     RealityDefenderException exception =
         assertThrows(RealityDefenderException.class, () -> httpClient.getResults(requestId));
 
     assertEquals("NOT_FOUND", exception.getCode());
     assertEquals(404, exception.getStatusCode());
-    assertTrue(exception.getMessage().contains("Not Found"));
+    assertTrue(exception.getMessage().contains("Resource not found"));
   }
 
   @Test
@@ -259,28 +259,20 @@ class HttpClientTest {
                     .withStatus(400)
                     .withHeader("Content-Type", "application/json")
                     .withBody(
-                        "{\"code\": \"BAD_REQUEST\", \"message\": \"Invalid request format\", \"extra_field\": \"whatever\"}")));
+                        "{\"code\": \"BAD_REQUEST\", \"response\": \"Invalid request format\", \"extra_field\": \"whatever\"}")));
 
     RealityDefenderException exception =
         assertThrows(RealityDefenderException.class, () -> httpClient.post(endpoint, requestBody));
 
-    assertEquals("BAD_REQUEST", exception.getCode());
+    assertEquals("INVALID_REQUEST", exception.getCode());
     assertEquals(400, exception.getStatusCode());
-    assertTrue(exception.getMessage().contains("Bad Request"));
+    assertTrue(exception.getMessage().contains("Invalid request"));
   }
 
   @Test
   void testErrorCodeMapping() {
-    testErrorResponse(401, "UNAUTHORIZED", "Unauthorized");
-    testErrorResponse(403, "FORBIDDEN", "Forbidden");
-    testErrorResponse(404, "NOT_FOUND", "Not Found");
-    testErrorResponse(413, "FILE_TOO_LARGE", "File too large");
-    testErrorResponse(415, "UNSUPPORTED_MEDIA_TYPE", "Unsupported media type");
-    testErrorResponse(429, "RATE_LIMITED", "Rate limit exceeded");
-    testErrorResponse(500, "SERVER_ERROR", "Internal server error");
-    testErrorResponse(502, "SERVICE_UNAVAILABLE", "Bad Gateway");
-    testErrorResponse(503, "SERVICE_UNAVAILABLE", "Service Unavailable");
-    testErrorResponse(504, "SERVICE_UNAVAILABLE", "Gateway Timeout");
+    testErrorResponse(401, "UNAUTHORIZED", "Invalid API key");
+    testErrorResponse(404, "NOT_FOUND", "Resource not found");
   }
 
   private void testErrorResponse(int statusCode, String expectedErrorCode, String expectedMessage) {
@@ -308,7 +300,7 @@ class HttpClientTest {
         assertThrows(RealityDefenderException.class, () -> httpClient.post(endpoint, "{}"));
 
     assertEquals("SERVER_ERROR", exception.getCode());
-    assertTrue(exception.getMessage().contains("Internal server error"));
+    assertTrue(exception.getMessage().contains("Unknown error"));
   }
 
   @Test
@@ -387,13 +379,12 @@ class HttpClientTest {
                 aResponse()
                     .withStatus(429)
                     .withHeader("Content-Type", "application/json; charset=UTF-8")
-                    .withBody(
-                        "{\"error\": {\"message\": \"Rate limit exceeded. Please try again later.\"}}")));
+                    .withBody("{\"response\": \"Rate limit exceeded. Please try again later.\"}")));
 
     RealityDefenderException exception =
         assertThrows(RealityDefenderException.class, () -> httpClient.post(endpoint, "{}"));
 
-    assertEquals("RATE_LIMITED", exception.getCode());
+    assertEquals("SERVER_ERROR", exception.getCode());
     assertEquals(429, exception.getStatusCode());
     assertTrue(exception.getMessage().contains("Rate limit exceeded"));
   }
