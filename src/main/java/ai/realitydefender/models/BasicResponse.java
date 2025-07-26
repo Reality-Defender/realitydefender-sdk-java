@@ -8,29 +8,29 @@ import java.util.Objects;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BasicResponse {
   private final String code;
-  private final String message;
+  private final String response;
   private final int errno;
 
   @JsonCreator
   public BasicResponse(
       @JsonProperty("code") String code,
-      @JsonProperty("message") String message,
+      @JsonProperty("response") String response,
       @JsonProperty("errno") int errno) {
     this.code = code;
-    this.message = message;
+    this.response = response;
     this.errno = errno;
   }
 
   public BasicResponse() {
-    this("", "", 0);
+    this("", "Unknown error", 0);
   }
 
   public String getCode() {
     return Objects.requireNonNullElse(this.code, "");
   }
 
-  public String getMessage() {
-    return Objects.requireNonNullElse(this.message, "");
+  public String getResponse() {
+    return Objects.requireNonNullElse(this.response, "");
   }
 
   public int getErrno() {
@@ -43,8 +43,8 @@ public class BasicResponse {
         + "code='"
         + this.getCode()
         + '\''
-        + ", message='"
-        + this.getMessage()
+        + ", response='"
+        + this.getResponse()
         + '\''
         + ", errno="
         + this.getErrno()
