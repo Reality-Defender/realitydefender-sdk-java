@@ -123,7 +123,7 @@ public class HttpClient implements Closeable {
             .build();
 
     try (Response response = client.newCall(request).execute()) {
-      handleResponse(response, "UPLOAD_FAILED");
+      handleResponse(response);
       String uploadResponseJson =
           "{\n"
               + "    \"request_id\": \""
@@ -159,9 +159,9 @@ public class HttpClient implements Closeable {
     logger.debug("Getting results for request ID: {}", requestId);
 
     try (Response response = client.newCall(request).execute()) {
-      return handleResponse(response, "RESULTS_FAILED");
+      return handleResponse(response);
     } catch (IOException e) {
-      throw new RealityDefenderException("Failed to get results", "RESULTS_FAILED", e);
+      throw new RealityDefenderException("Failed to get results", "SERVER_ERROR", e);
     }
   }
 
@@ -217,10 +217,10 @@ public class HttpClient implements Closeable {
 
     try (Response response = client.newCall(request).execute()) {
       logger.debug("Response code: {}, isSuccessful: {}", response.code(), response.isSuccessful());
-      return handleResponse(response, "RESULTS_FAILED");
+      return handleResponse(response);
     } catch (IOException e) {
       logger.error("IOException in getResults: {}", e.getMessage());
-      throw new RealityDefenderException("Failed to get results", "RESULTS_FAILED", e);
+      throw new RealityDefenderException("Failed to get results", "SERVER_ERROR", e);
     }
   }
 
@@ -246,14 +246,13 @@ public class HttpClient implements Closeable {
     logger.debug("POST request to: {}", endpoint);
 
     try (Response response = client.newCall(request).execute()) {
-      return handleResponse(response, "REQUEST_FAILED");
+      return handleResponse(response);
     } catch (IOException e) {
       throw new RealityDefenderException("Request failed", "REQUEST_FAILED", e);
     }
   }
 
-  private JsonNode handleResponse(Response response, String defaultErrorCode)
-      throws RealityDefenderException {
+  private JsonNode handleResponse(Response response) throws RealityDefenderException {
     try {
       String responseBody = response.body() != null ? response.body().string() : "";
       logger.debug("Response body length: {}", responseBody.length());
@@ -269,8 +268,7 @@ public class HttpClient implements Closeable {
           // Ignore.
           basicResponse = new BasicResponse();
         }
-        String errorCode =
-            mapStatusCodeToErrorCode(response.code(), basicResponse, defaultErrorCode);
+        String errorCode = mapStatusCodeToErrorCode(response.code(), basicResponse);
         String errorMessage = getDefaultErrorMessage(response.code(), basicResponse);
 
         // Log the detailed error for debugging
@@ -294,35 +292,21 @@ public class HttpClient implements Closeable {
     }
   }
 
-  private String mapStatusCodeToErrorCode(
-      int statusCode, BasicResponse basicResponse, String defaultCode) {
+  private String mapStatusCodeToErrorCode(int statusCode, BasicResponse basicResponse) {
     switch (statusCode) {
       case 400:
         // Special case for unauthorized free tier operations.
-        if (basicResponse != null && basicResponse.getCode().equals("free-tier-not-allowed")) {
+        if (basicResponse.getCode().equals("free-tier-not-allowed")
+            || basicResponse.getCode().equals("upload-limit-reached")) {
           return "UNAUTHORIZED";
         }
-        return "BAD_REQUEST";
+        return "INVALID_REQUEST";
       case 401:
         return "UNAUTHORIZED";
-      case 403:
-        return "FORBIDDEN";
       case 404:
         return "NOT_FOUND";
-      case 413:
-        return "FILE_TOO_LARGE";
-      case 415:
-        return "UNSUPPORTED_MEDIA_TYPE";
-      case 429:
-        return "RATE_LIMITED";
-      case 500:
-        return "SERVER_ERROR";
-      case 502:
-      case 503:
-      case 504:
-        return "SERVICE_UNAVAILABLE";
       default:
-        return defaultCode;
+        return "SERVER_ERROR";
     }
   }
 
@@ -330,32 +314,17 @@ public class HttpClient implements Closeable {
     switch (statusCode) {
       case 400:
         // Special case for unauthorized free tier operations.
-        if (basicResponse != null && basicResponse.getCode().equals("free-tier-not-allowed")) {
-          return basicResponse.getMessage();
+        if (basicResponse.getCode().equals("free-tier-not-allowed")
+            || basicResponse.getCode().equals("upload-limit-reached")) {
+          return basicResponse.getResponse();
         }
-        return "Bad Request";
+        return "Invalid Request: " + basicResponse.getResponse();
       case 401:
-        return "Unauthorized - Check your API key";
-      case 403:
-        return "Forbidden";
+        return "Invalid API key";
       case 404:
-        return "Not Found";
-      case 413:
-        return "File too large";
-      case 415:
-        return "Unsupported media type";
-      case 429:
-        return "Rate limit exceeded";
-      case 500:
-        return "Internal server error";
-      case 502:
-        return "Bad Gateway";
-      case 503:
-        return "Service Unavailable";
-      case 504:
-        return "Gateway Timeout";
+        return "Resource not found";
       default:
-        return "API error: " + basicResponse.getMessage();
+        return "API error: " + basicResponse.getResponse();
     }
   }
 
