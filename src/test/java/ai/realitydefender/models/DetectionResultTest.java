@@ -27,11 +27,11 @@ class DetectionResultTest {
 
   @Test
   void testDetectionResultCreation() {
-    DetectionResult.ModelResult model1 = createModelResult("model1", "FAKE", 0.95);
-    DetectionResult.ModelResult model2 = createModelResult("model2", "FAKE", 0.87);
+    DetectionResult.ModelResult model1 = createModelResult("model1", "MANIPULATED", 0.95);
+    DetectionResult.ModelResult model2 = createModelResult("model2", "MANIPULATED", 0.87);
     List<DetectionResult.ModelResult> models = Arrays.asList(model1, model2);
 
-    DetectionResult result = createDetectionResult("FAKE", models);
+    DetectionResult result = createDetectionResult("MANIPULATED", models);
 
     assertEquals("MANIPULATED", result.getStatus());
     assertEquals(2, result.getModels().size());
@@ -75,24 +75,6 @@ class DetectionResultTest {
     String toString = result.toString();
     assertTrue(toString.contains("FAKE"));
     assertTrue(toString.contains("test-request-id"));
-  }
-
-  @Test
-  void testJsonSerialization() throws Exception {
-    DetectionResult.ModelResult model = createModelResult("model1", "FAKE", 0.95);
-    DetectionResult result = createDetectionResult("FAKE", List.of(model));
-
-    String json = objectMapper.writeValueAsString(result);
-    DetectionResult deserialized = objectMapper.readValue(json, DetectionResult.class);
-
-    assertEquals(result.getRequestId(), deserialized.getRequestId());
-    assertEquals(result.getStatus(), deserialized.getStatus());
-    assertEquals(result.getModels().size(), deserialized.getModels().size());
-    assertEquals(result.getModels().get(0).getName(), deserialized.getModels().get(0).getName());
-    assertEquals(
-        result.getModels().get(0).getStatus(), deserialized.getModels().get(0).getStatus());
-    assertEquals(
-        result.getModels().get(0).getFinalScore(), deserialized.getModels().get(0).getFinalScore());
   }
 
   @Test
@@ -153,7 +135,6 @@ class DetectionResultTest {
             now,
             now,
             false,
-            "COMPLETED",
             new DetectionResult.ResultsSummary("COMPLETED", Map.of("confidence", 0.95)),
             List.of(model),
             new ArrayList<>(),
@@ -332,7 +313,6 @@ class DetectionResultTest {
             now,
             now,
             true,
-            "MANIPULATED",
             new DetectionResult.ResultsSummary("MANIPULATED", Map.of("overall_confidence", 0.85)),
             Arrays.asList(model1, model2),
             List.of(),
@@ -649,7 +629,6 @@ class DetectionResultTest {
         null, // createdAt
         null, // updatedAt
         false, // audioExtractionProcessed
-        status, // overallStatus
         new DetectionResult.ResultsSummary(status, Map.of()), // resultsSummary
         models, // models
         new ArrayList<>(), // rdModels

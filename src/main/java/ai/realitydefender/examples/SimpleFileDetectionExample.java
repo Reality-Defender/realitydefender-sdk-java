@@ -32,7 +32,7 @@ public class SimpleFileDetectionExample {
         }
 
         // Interpret results
-        if ("FAKE".equals(result.getStatus())) {
+        if ("MANIPULATED".equals(result.getStatus())) {
           System.out.println(
               "\n⚠️  WARNING: This media appears to be artificially generated or manipulated!");
         } else if ("AUTHENTIC".equals(result.getStatus())) {
