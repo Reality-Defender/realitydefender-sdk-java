@@ -129,9 +129,9 @@ public class DetectionService implements Closeable {
         }
 
         logger.debug(
-            "Detection still processing for request ID: {}, status: {}",
+            "Detection still processing for request ID: {}, result: {}",
             requestId,
-            result.getStatus());
+            result.toString());
 
         Thread.sleep(pollingInterval.toMillis());
 
@@ -332,7 +332,8 @@ public class DetectionService implements Closeable {
    * @return true if it is processed, false otherwise
    */
   private boolean isProcessed(String status) {
-    return !(STATUS_PROCESSING.equalsIgnoreCase(status)
+    return !(status == null
+        || STATUS_PROCESSING.equalsIgnoreCase(status)
         || STATUS_ANALYZING.equalsIgnoreCase(status)
         || STATUS_QUEUED.equalsIgnoreCase(status));
   }

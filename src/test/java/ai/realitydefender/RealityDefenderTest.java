@@ -274,7 +274,6 @@ class RealityDefenderTest {
         null, // createdAt
         null, // updatedAt
         false, // audioExtractionProcessed
-        "COMPLETED", // overallStatus
         new DetectionResult.ResultsSummary("COMPLETED", Map.of()), // resultsSummary
         new ArrayList<>(), // models
         new ArrayList<>(), // rdModels

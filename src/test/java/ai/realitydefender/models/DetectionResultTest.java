@@ -60,8 +60,8 @@ class DetectionResultTest {
     DetectionResult.ModelResult model = createModelResult("model1", "FAKE", 0.95);
     List<DetectionResult.ModelResult> models = List.of(model);
 
-    DetectionResult result1 = createDetectionResult("MANIPULATED", models);
-    DetectionResult result2 = createDetectionResult("MANIPULATED", models);
+    DetectionResult result1 = createDetectionResult("FAKE", models);
+    DetectionResult result2 = createDetectionResult("FAKE", models);
 
     assertEquals(result1, result2);
     assertEquals(result1.hashCode(), result2.hashCode());
@@ -73,26 +73,8 @@ class DetectionResultTest {
     DetectionResult result = createDetectionResult("FAKE", List.of(model));
 
     String toString = result.toString();
-    assertTrue(toString.contains("FAKE"));
+    assertTrue(toString.contains("MANIPULATED"));
     assertTrue(toString.contains("test-request-id"));
-  }
-
-  @Test
-  void testJsonSerialization() throws Exception {
-    DetectionResult.ModelResult model = createModelResult("model1", "FAKE", 0.95);
-    DetectionResult result = createDetectionResult("FAKE", List.of(model));
-
-    String json = objectMapper.writeValueAsString(result);
-    DetectionResult deserialized = objectMapper.readValue(json, DetectionResult.class);
-
-    assertEquals(result.getRequestId(), deserialized.getRequestId());
-    assertEquals(result.getStatus(), deserialized.getStatus());
-    assertEquals(result.getModels().size(), deserialized.getModels().size());
-    assertEquals(result.getModels().get(0).getName(), deserialized.getModels().get(0).getName());
-    assertEquals(
-        result.getModels().get(0).getStatus(), deserialized.getModels().get(0).getStatus());
-    assertEquals(
-        result.getModels().get(0).getFinalScore(), deserialized.getModels().get(0).getFinalScore());
   }
 
   @Test
@@ -119,7 +101,7 @@ class DetectionResultTest {
             Map.of("confidence", 0.95, "type", "deepfake"),
             null,
             "SUCCESS",
-            "MANIPULATED",
+            "FAKE",
             0.90,
             0.92,
             0.91,
@@ -153,7 +135,6 @@ class DetectionResultTest {
             now,
             now,
             false,
-            "COMPLETED",
             new DetectionResult.ResultsSummary("COMPLETED", Map.of("confidence", 0.95)),
             List.of(model),
             new ArrayList<>(),
@@ -332,7 +313,6 @@ class DetectionResultTest {
             now,
             now,
             true,
-            "MANIPULATED",
             new DetectionResult.ResultsSummary("MANIPULATED", Map.of("overall_confidence", 0.85)),
             Arrays.asList(model1, model2),
             List.of(),
@@ -369,7 +349,6 @@ class DetectionResultTest {
     assertEquals(now, result.getUpdatedAt());
     assertTrue(result.isAudioExtractionProcessed());
     assertEquals("MANIPULATED", result.getStatus());
-    assertEquals("MANIPULATED", result.getStatus()); // Convenience method
     assertNotNull(result.getResultsSummary());
     assertEquals(2, result.getModels().size());
     assertTrue(result.getRdModels().isEmpty());
@@ -381,8 +360,8 @@ class DetectionResultTest {
 
   @Test
   void testEqualsAndHashCode() {
-    DetectionResult result1 = createDetectionResult("MANIPULATED", new ArrayList<>());
-    DetectionResult result2 = createDetectionResult("MANIPULATED", new ArrayList<>());
+    DetectionResult result1 = createDetectionResult("FAKE", new ArrayList<>());
+    DetectionResult result2 = createDetectionResult("FAKE", new ArrayList<>());
     DetectionResult result3 = createDetectionResult("AUTHENTIC", new ArrayList<>());
 
     assertEquals(result1, result2);
@@ -403,7 +382,7 @@ class DetectionResultTest {
     List<DetectionResult.ModelResult> allModels =
         Arrays.asList(applicableModel, notApplicableModel, anotherApplicableModel);
 
-    DetectionResult result = createDetectionResult("MANIPULATED", allModels);
+    DetectionResult result = createDetectionResult("FAKE", allModels);
 
     // Serialize to JSON
     String json = objectMapper.writeValueAsString(result);
@@ -476,8 +455,7 @@ class DetectionResultTest {
     DetectionResult.ModelResult model2 = createModelResult("notApplicable", "NOT_APPLICABLE", null);
     DetectionResult.ModelResult model3 = createModelResult("applicable2", "AUTHENTIC", 0.1);
 
-    DetectionResult original =
-        createDetectionResult("MANIPULATED", Arrays.asList(model1, model2, model3));
+    DetectionResult original = createDetectionResult("FAKE", Arrays.asList(model1, model2, model3));
 
     // Serialize and deserialize
     String json = objectMapper.writeValueAsString(original);
@@ -622,56 +600,92 @@ class DetectionResultTest {
   // Helper methods to create objects with all required parameters
   private DetectionResult createDetectionResult(
       String status, List<DetectionResult.ModelResult> models) {
-    return new DetectionResult(
-        "test-name", // name
-        "test-filename", // filename
-        null, // aggregationResultUrl
-        "test-original.jpg", // originalFileName
-        "https://storage.location", // storageLocation
-        "", // convertedFileName
-        "", // convertedFileLocation
-        "", // socialLink
-        false, // socialLinkDownloaded
-        false, // socialLinkDownloadFailed
-        "test-request-id", // requestId
-        null, // uploadedDate
-        "IMAGE", // mediaType
-        null, // userInfo
-        "", // audioExtractionFileName
-        false, // showAudioResult
-        "", // audioRequestId
-        "", // thumbnail
-        null, // contentPreview
-        "test-user-id", // userId
-        "test-institution-id", // institutionId
-        "1.0.0", // releaseVersion
-        new ArrayList<>(), // webhookUrls
-        null, // createdAt
-        null, // updatedAt
-        false, // audioExtractionProcessed
-        status, // overallStatus
-        new DetectionResult.ResultsSummary(status, Map.of()), // resultsSummary
-        models, // models
-        new ArrayList<>(), // rdModels
-        null, // mediaMetadataInfo
-        "", // modelMetadataUrl
-        "", // explainabilityUrl
-        Map.of() // heatmaps
-        );
+    ObjectMapper objectMapper = new ObjectMapper();
+
+    String modelResults =
+        "["
+            + models.stream()
+                .map(x -> createModelResultString(x.getName(), x.getStatus(), x.getFinalScore()))
+                .collect(Collectors.joining(","))
+            + "]";
+    try {
+      return objectMapper.readValue(
+          "{\n"
+              + "    \"name\": \"test-name\",\n"
+              + "    \"filename\": \"test-filename\",\n"
+              + "    \"aggregationResultUrl\": null,\n"
+              + "    \"originalFileName\": \"test-original.jpg\",\n"
+              + "    \"storageLocation\": \"https://storage.location\",\n"
+              + "    \"convertedFileName\": \"\",\n"
+              + "    \"convertedFileLocation\": \"\",\n"
+              + "    \"socialLink\": \"\",\n"
+              + "    \"socialLinkDownloaded\": false,\n"
+              + "    \"socialLinkDownloadFailed\": false,\n"
+              + "    \"requestId\": \"test-request-id\",\n"
+              + "    \"uploadedDate\": null,\n"
+              + "    \"mediaType\": \"IMAGE\",\n"
+              + "    \"userInfo\": null,\n"
+              + "    \"audioExtractionFileName\": \"\",\n"
+              + "    \"showAudioResult\": false,\n"
+              + "    \"audioRequestId\": \"\",\n"
+              + "    \"thumbnail\": \"\",\n"
+              + "    \"contentPreview\": null,\n"
+              + "    \"userId\": \"test-user-id\",\n"
+              + "    \"institutionId\": \"test-institution-id\",\n"
+              + "    \"releaseVersion\": \"1.0.0\",\n"
+              + "    \"webhookUrls\": [],\n"
+              + "    \"createdAt\": null,\n"
+              + "    \"updatedAt\": null,\n"
+              + "    \"audioExtractionProcessed\": false,\n"
+              + "    \"resultsSummary\": {\n"
+              + "        \"status\": \""
+              + status
+              + "\",\n"
+              + "        \"metadata\": {}\n"
+              + "    },\n"
+              + "    \"models\": "
+              + modelResults
+              + ",\n"
+              + "    \"rdModels\": [],\n"
+              + "    \"modelMetadataUrl\": \"\",\n"
+              + "    \"explainabilityUrl\": \"\",\n"
+              + "    \"heatmaps\": {},\n"
+              + "    \"mediaMetadataInfo\": null,\n"
+              + "    \"status\": \" "
+              + status
+              + "\"\n"
+              + "}",
+          DetectionResult.class);
+    } catch (Exception e) {
+      return null;
+    }
+  }
+
+  private String createModelResultString(String name, String status, Double score) {
+    return "{\n"
+        + "  \"name\":\""
+        + name
+        + "\",\"status\":\""
+        + status
+        + "\",\"predictionNumber\":"
+        + score
+        + ",\"normalizedPredictionNumber\":"
+        + score
+        + ",\"rollingAvgNumber\":"
+        + score
+        + ",\"finalScore\":"
+        + score
+        + "}";
   }
 
   private DetectionResult.ModelResult createModelResult(String name, String status, Double score) {
-    return new DetectionResult.ModelResult(
-        name, // name
-        null, // data
-        null, // error
-        null, // code
-        status, // status
-        score, // predictionNumber
-        score, // normalizedPredictionNumber
-        score, // rollingAvgNumber
-        score // finalScore
-        );
+    ObjectMapper objectMapper = new ObjectMapper();
+    try {
+      return objectMapper.readValue(
+          createModelResultString(name, status, score), DetectionResult.ModelResult.class);
+    } catch (Exception e) {
+      return null;
+    }
   }
 
   @Test

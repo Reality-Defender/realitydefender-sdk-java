@@ -2,6 +2,7 @@ package ai.realitydefender.models;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -13,6 +14,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /** Represents the result of a deepfake detection analysis. */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DetectionResult {
 
   private String name;
@@ -25,7 +27,7 @@ public class DetectionResult {
   private String socialLink;
   private boolean socialLinkDownloaded;
   private boolean socialLinkDownloadFailed;
-  private String requestId;
+  private final String requestId;
   private LocalDateTime uploadedDate;
   private String mediaType;
   private UserInfo userInfo;
@@ -41,10 +43,6 @@ public class DetectionResult {
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
   private boolean audioExtractionProcessed;
-
-  @JsonDeserialize(using = StatusDeserializer.class)
-  private String status;
-
   private ResultsSummary resultsSummary;
   private List<ModelResult> models;
   private List<Object> rdModels;
@@ -83,7 +81,6 @@ public class DetectionResult {
       @JsonProperty("createdAt") LocalDateTime createdAt,
       @JsonProperty("updatedAt") LocalDateTime updatedAt,
       @JsonProperty("audioExtractionProcessed") boolean audioExtractionProcessed,
-      @JsonProperty("status") String status,
       @JsonProperty("resultsSummary") ResultsSummary resultsSummary,
       @JsonProperty("models") List<ModelResult> models,
       @JsonProperty("rdModels") List<Object> rdModels,
@@ -117,7 +114,6 @@ public class DetectionResult {
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.audioExtractionProcessed = audioExtractionProcessed;
-    this.status = status;
     this.resultsSummary = resultsSummary;
     this.models = models;
     this.rdModels = rdModels;
@@ -127,9 +123,10 @@ public class DetectionResult {
     this.heatmaps = heatmaps;
   }
 
-  public DetectionResult(String requestId, String status, Double score, List<ModelResult> models) {
+  public DetectionResult(
+      String requestId, ResultsSummary resultsSummary, Double score, List<ModelResult> models) {
     this.requestId = requestId;
-    this.status = status;
+    this.resultsSummary = resultsSummary;
     this.score = score;
     this.models = models;
   }
@@ -236,13 +233,10 @@ public class DetectionResult {
   }
 
   public String getStatus() {
-    if (this.status == null) {
-      return null;
-    } else if (this.status.equals("FAKE")) {
-      return "MANIPULATED";
-    } else {
-      return this.status;
+    if (this.resultsSummary == null) {
+      return "UNKNOWN";
     }
+    return this.resultsSummary.status;
   }
 
   /**
@@ -303,12 +297,13 @@ public class DetectionResult {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     DetectionResult that = (DetectionResult) o;
-    return Objects.equals(requestId, that.requestId) && Objects.equals(status, that.status);
+    return Objects.equals(requestId, that.requestId)
+        && Objects.equals(this.getStatus(), that.getStatus());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestId, status);
+    return Objects.hash(requestId, this.getStatus());
   }
 
   @Override
@@ -317,8 +312,8 @@ public class DetectionResult {
         + "requestId='"
         + requestId
         + '\''
-        + ", overallStatus='"
-        + status
+        + ", status='"
+        + this.getStatus()
         + '\''
         + ", mediaType='"
         + mediaType
@@ -330,7 +325,8 @@ public class DetectionResult {
   }
 
   public DetectionResult summarize() {
-    return new DetectionResult(this.requestId, this.getStatus(), this.getScore(), this.getModels());
+    return new DetectionResult(
+        this.requestId, this.resultsSummary, this.getScore(), this.getModels());
   }
 
   public String getAggregationResultUrl() {
@@ -444,7 +440,10 @@ public class DetectionResult {
 
   /** Summary of detection results. */
   public static class ResultsSummary {
+
+    @JsonDeserialize(using = StatusDeserializer.class)
     private final String status;
+
     private final Map<String, Object> metadata;
 
     @JsonCreator
@@ -483,6 +482,7 @@ public class DetectionResult {
   }
 
   /** Represents a result from an individual detection model. */
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class ModelResult {
     private final String name;
     private final Object data;
@@ -539,13 +539,7 @@ public class DetectionResult {
     }
 
     public String getStatus() {
-      if (this.status == null) {
-        return null;
-      } else if (this.status.equals("FAKE")) {
-        return "MANIPULATED";
-      } else {
-        return this.status;
-      }
+      return this.status;
     }
 
     public Double getPredictionNumber() {
@@ -656,11 +650,14 @@ public class DetectionResult {
         com.fasterxml.jackson.core.JsonParser p,
         com.fasterxml.jackson.databind.DeserializationContext ctxt)
         throws java.io.IOException {
-      JsonNode node = p.readValueAsTree();
-      if (node.asText().equals("FAKE")) {
+      String node = p.getValueAsString();
+      if (node == null) {
+        return "UNKNOWN";
+      }
+      if (node.equals("FAKE")) {
         return "MANIPULATED";
       }
-      return node.asText();
+      return node;
     }
   }
 
