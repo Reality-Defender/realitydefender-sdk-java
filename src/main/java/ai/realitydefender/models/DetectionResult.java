@@ -27,7 +27,7 @@ public class DetectionResult {
   private String socialLink;
   private boolean socialLinkDownloaded;
   private boolean socialLinkDownloadFailed;
-  private String requestId;
+  private final String requestId;
   private LocalDateTime uploadedDate;
   private String mediaType;
   private UserInfo userInfo;
@@ -234,7 +234,7 @@ public class DetectionResult {
 
   public String getStatus() {
     if (this.resultsSummary == null) {
-      return null;
+      return "UNKNOWN";
     }
     return this.resultsSummary.status;
   }
@@ -482,6 +482,7 @@ public class DetectionResult {
   }
 
   /** Represents a result from an individual detection model. */
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static class ModelResult {
     private final String name;
     private final Object data;
