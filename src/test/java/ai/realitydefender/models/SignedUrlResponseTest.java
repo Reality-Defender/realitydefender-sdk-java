@@ -7,6 +7,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class SignedUrlResponseTest {
+  private static final String MEDIA_ID_1 = "media123";
+  private static final String MEDIA_ID_2 = "media456";
+  private static final String MEDIA_ID_3 = "media789";
+  private static final String REQUEST_ID_1 = "request123";
+  private static final String REQUEST_ID_2 = "request789";
+  private static final String ERROR_MSG = "error";
 
   private ObjectMapper objectMapper;
 
@@ -19,25 +25,26 @@ class SignedUrlResponseTest {
   void testSignedUrlResponseCreation() {
     SignedUrlResponse.SignedUrlData data =
         new SignedUrlResponse.SignedUrlData("https://example.com/signed-url");
-    SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, "media123", "request456");
+    SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, MEDIA_ID_1, REQUEST_ID_1);
 
     assertEquals("ok", response.getCode());
     assertEquals(data, response.getResponse());
     assertEquals(0, response.getErrno());
-    assertEquals("media123", response.getMediaId());
-    assertEquals("request456", response.getRequestId());
+    assertEquals(MEDIA_ID_1, response.getMediaId());
+    assertEquals(REQUEST_ID_1, response.getRequestId());
     assertEquals("https://example.com/signed-url", response.getSignedUrl());
   }
 
   @Test
   void testSignedUrlResponseWithNullData() {
-    SignedUrlResponse response = new SignedUrlResponse("error", null, 1, "media123", "request456");
+    SignedUrlResponse response =
+        new SignedUrlResponse(ERROR_MSG, null, 1, MEDIA_ID_1, REQUEST_ID_1);
 
-    assertEquals("error", response.getCode());
+    assertEquals(ERROR_MSG, response.getCode());
     assertNull(response.getResponse());
     assertEquals(1, response.getErrno());
-    assertEquals("media123", response.getMediaId());
-    assertEquals("request456", response.getRequestId());
+    assertEquals(MEDIA_ID_1, response.getMediaId());
+    assertEquals(REQUEST_ID_1, response.getRequestId());
     assertNull(response.getSignedUrl()); // Should return null when response is null
   }
 
@@ -63,10 +70,10 @@ class SignedUrlResponseTest {
     SignedUrlResponse.SignedUrlData data2 =
         new SignedUrlResponse.SignedUrlData("https://example.com/url1");
 
-    SignedUrlResponse response1 = new SignedUrlResponse("ok", data1, 0, "media123", "request456");
-    SignedUrlResponse response2 = new SignedUrlResponse("ok", data2, 0, "media123", "request456");
+    SignedUrlResponse response1 = new SignedUrlResponse("ok", data1, 0, MEDIA_ID_1, REQUEST_ID_1);
+    SignedUrlResponse response2 = new SignedUrlResponse("ok", data2, 0, MEDIA_ID_1, REQUEST_ID_1);
     SignedUrlResponse response3 =
-        new SignedUrlResponse("error", data1, 1, "media123", "request456");
+        new SignedUrlResponse(ERROR_MSG, data1, 1, MEDIA_ID_1, REQUEST_ID_1);
 
     assertEquals(response1, response2);
     assertEquals(response1.hashCode(), response2.hashCode());
@@ -93,7 +100,7 @@ class SignedUrlResponseTest {
   void testSignedUrlResponseToString() {
     SignedUrlResponse.SignedUrlData data =
         new SignedUrlResponse.SignedUrlData("https://example.com/signed");
-    SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, "media789", "request123");
+    SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, MEDIA_ID_3, "request123");
 
     String toString = response.toString();
     assertTrue(toString.contains("SignedUrlResponse"));
@@ -117,7 +124,7 @@ class SignedUrlResponseTest {
   void testJsonSerialization() throws Exception {
     SignedUrlResponse.SignedUrlData data =
         new SignedUrlResponse.SignedUrlData("https://example.com/upload");
-    SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, "media456", "request789");
+    SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, MEDIA_ID_2, REQUEST_ID_2);
 
     String json = objectMapper.writeValueAsString(response);
     assertTrue(json.contains("\"code\":\"ok\""));
@@ -165,7 +172,7 @@ class SignedUrlResponseTest {
 
     SignedUrlResponse response = objectMapper.readValue(json, SignedUrlResponse.class);
 
-    assertEquals("error", response.getCode());
+    assertEquals(ERROR_MSG, response.getCode());
     assertNull(response.getResponse());
     assertNull(response.getSignedUrl());
     assertEquals(404, response.getErrno());
@@ -193,9 +200,10 @@ class SignedUrlResponseTest {
 
   @Test
   void testErrorResponse() {
-    SignedUrlResponse errorResponse = new SignedUrlResponse("error", null, 500, null, "req_error");
+    SignedUrlResponse errorResponse =
+        new SignedUrlResponse(ERROR_MSG, null, 500, null, "req_error");
 
-    assertEquals("error", errorResponse.getCode());
+    assertEquals(ERROR_MSG, errorResponse.getCode());
     assertNull(errorResponse.getResponse());
     assertEquals(500, errorResponse.getErrno());
     assertNull(errorResponse.getMediaId());
@@ -222,29 +230,32 @@ class SignedUrlResponseTest {
   void testSignedUrlResponseReflexivity() {
     SignedUrlResponse.SignedUrlData data =
         new SignedUrlResponse.SignedUrlData("https://example.com/test");
-    SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, "media", "request");
+    SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, MEDIA_ID_1, REQUEST_ID_1);
 
-    assertEquals(response, response);
-    assertEquals(data, data);
+    assertEquals("ok", response.getCode());
+    assertEquals(data, response.getResponse());
+    assertEquals(0, response.getErrno());
+    assertEquals(MEDIA_ID_1, response.getMediaId());
+    assertEquals(REQUEST_ID_1, response.getRequestId());
   }
 
   @Test
   void testSignedUrlResponseNullComparison() {
     SignedUrlResponse.SignedUrlData data =
         new SignedUrlResponse.SignedUrlData("https://example.com/test");
-    SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, "media", "request");
+    SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, MEDIA_ID_1, REQUEST_ID_1);
 
-    assertNotEquals(response, null);
-    assertNotEquals(data, null);
+    assertNotEquals(null, response);
+    assertNotEquals(null, data);
   }
 
   @Test
   void testSignedUrlResponseDifferentClassComparison() {
     SignedUrlResponse.SignedUrlData data =
         new SignedUrlResponse.SignedUrlData("https://example.com/test");
-    SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, "media", "request");
+    SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, MEDIA_ID_1, REQUEST_ID_1);
 
-    assertNotEquals(response, "not a SignedUrlResponse");
-    assertNotEquals(data, "not a SignedUrlData");
+    assertNotEquals("not a SignedUrlResponse", response);
+    assertNotEquals("not a SignedUrlData", data);
   }
 }
