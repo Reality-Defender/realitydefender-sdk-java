@@ -7,19 +7,6 @@ on:
         default: false
         type: boolean
         description: Whether this is a release package ready to be published or not.
-    secrets:
-      maven-central-username:
-        required: false
-        description: Maven repository username.
-      maven-central-password:
-        required: false
-        description: Maven repository password.
-      gpg-key:
-        required: false
-        description: Key to sign the public deliverable.
-      gpg-passphrase:
-        required: false
-        description: Passphrase of the aforementioned GPG signing key.
 
   workflow_dispatch:
     inputs:
@@ -82,9 +69,9 @@ jobs:
         if: ${{ inputs.is-release == true }}
         run: mvn --batch-mode --no-transfer-progress deploy -DskipTests --settings settings.xml
         env:
-          MAVEN_CENTRAL_USERNAME: ${{ secrets.maven-central-username }}
-          MAVEN_CENTRAL_PASSWORD: ${{ secrets.maven-central-password }}
-          MAVEN_GPG_KEY: ${{ secrets.gpg-key }}
-          MAVEN_GPG_PASSPHRASE: ${{ secrets.gpg-passphrase }}
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD}}
+          MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_KEY }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
 
 
