@@ -11,8 +11,8 @@ class SignedUrlResponseTest {
   private static final String MEDIA_ID_2 = "media456";
   private static final String MEDIA_ID_3 = "media789";
   private static final String REQUEST_ID_1 = "request123";
-  private static final String REQUEST_ID_2 = "request456";
-  private static final String REQUEST_ID_3 = "request789";
+  private static final String REQUEST_ID_2 = "request789";
+  private static final String ERROR_MSG = "error";
 
   private ObjectMapper objectMapper;
 
@@ -37,9 +37,9 @@ class SignedUrlResponseTest {
 
   @Test
   void testSignedUrlResponseWithNullData() {
-    SignedUrlResponse response = new SignedUrlResponse("error", null, 1, MEDIA_ID_1, REQUEST_ID_1);
+    SignedUrlResponse response = new SignedUrlResponse(ERROR_MSG, null, 1, MEDIA_ID_1, REQUEST_ID_1);
 
-    assertEquals("error", response.getCode());
+    assertEquals(ERROR_MSG, response.getCode());
     assertNull(response.getResponse());
     assertEquals(1, response.getErrno());
     assertEquals(MEDIA_ID_1, response.getMediaId());
@@ -72,7 +72,7 @@ class SignedUrlResponseTest {
     SignedUrlResponse response1 = new SignedUrlResponse("ok", data1, 0, MEDIA_ID_1, REQUEST_ID_1);
     SignedUrlResponse response2 = new SignedUrlResponse("ok", data2, 0, MEDIA_ID_1, REQUEST_ID_1);
     SignedUrlResponse response3 =
-        new SignedUrlResponse("error", data1, 1, MEDIA_ID_1, REQUEST_ID_1);
+        new SignedUrlResponse(ERROR_MSG, data1, 1, MEDIA_ID_1, REQUEST_ID_1);
 
     assertEquals(response1, response2);
     assertEquals(response1.hashCode(), response2.hashCode());
@@ -123,7 +123,7 @@ class SignedUrlResponseTest {
   void testJsonSerialization() throws Exception {
     SignedUrlResponse.SignedUrlData data =
         new SignedUrlResponse.SignedUrlData("https://example.com/upload");
-    SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, MEDIA_ID_2, REQUEST_ID_3);
+    SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, MEDIA_ID_2, REQUEST_ID_2);
 
     String json = objectMapper.writeValueAsString(response);
     assertTrue(json.contains("\"code\":\"ok\""));
@@ -171,7 +171,7 @@ class SignedUrlResponseTest {
 
     SignedUrlResponse response = objectMapper.readValue(json, SignedUrlResponse.class);
 
-    assertEquals("error", response.getCode());
+    assertEquals(ERROR_MSG, response.getCode());
     assertNull(response.getResponse());
     assertNull(response.getSignedUrl());
     assertEquals(404, response.getErrno());
@@ -199,9 +199,9 @@ class SignedUrlResponseTest {
 
   @Test
   void testErrorResponse() {
-    SignedUrlResponse errorResponse = new SignedUrlResponse("error", null, 500, null, "req_error");
+    SignedUrlResponse errorResponse = new SignedUrlResponse(ERROR_MSG, null, 500, null, "req_error");
 
-    assertEquals("error", errorResponse.getCode());
+    assertEquals(ERROR_MSG, errorResponse.getCode());
     assertNull(errorResponse.getResponse());
     assertEquals(500, errorResponse.getErrno());
     assertNull(errorResponse.getMediaId());
