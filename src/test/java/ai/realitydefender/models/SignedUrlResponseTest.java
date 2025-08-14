@@ -37,7 +37,8 @@ class SignedUrlResponseTest {
 
   @Test
   void testSignedUrlResponseWithNullData() {
-    SignedUrlResponse response = new SignedUrlResponse(ERROR_MSG, null, 1, MEDIA_ID_1, REQUEST_ID_1);
+    SignedUrlResponse response =
+        new SignedUrlResponse(ERROR_MSG, null, 1, MEDIA_ID_1, REQUEST_ID_1);
 
     assertEquals(ERROR_MSG, response.getCode());
     assertNull(response.getResponse());
@@ -199,7 +200,8 @@ class SignedUrlResponseTest {
 
   @Test
   void testErrorResponse() {
-    SignedUrlResponse errorResponse = new SignedUrlResponse(ERROR_MSG, null, 500, null, "req_error");
+    SignedUrlResponse errorResponse =
+        new SignedUrlResponse(ERROR_MSG, null, 500, null, "req_error");
 
     assertEquals(ERROR_MSG, errorResponse.getCode());
     assertNull(errorResponse.getResponse());
