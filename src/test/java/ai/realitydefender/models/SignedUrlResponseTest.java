@@ -224,8 +224,11 @@ class SignedUrlResponseTest {
         new SignedUrlResponse.SignedUrlData("https://example.com/test");
     SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, "media", "request");
 
-    assertEquals(response, response);
-    assertEquals(data, data);
+    assertEquals("ok", response.getCode());
+    assertEquals(data, response.getResponse());
+    assertEquals(0, response.getErrno());
+    assertEquals("media", response.getMediaId());
+    assertEquals("request", response.getRequestId());
   }
 
   @Test
@@ -234,8 +237,8 @@ class SignedUrlResponseTest {
         new SignedUrlResponse.SignedUrlData("https://example.com/test");
     SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, "media", "request");
 
-    assertNotEquals(response, null);
-    assertNotEquals(data, null);
+    assertNotEquals(null, response);
+    assertNotEquals(null, data);
   }
 
   @Test
@@ -244,7 +247,7 @@ class SignedUrlResponseTest {
         new SignedUrlResponse.SignedUrlData("https://example.com/test");
     SignedUrlResponse response = new SignedUrlResponse("ok", data, 0, "media", "request");
 
-    assertNotEquals(response, "not a SignedUrlResponse");
-    assertNotEquals(data, "not a SignedUrlData");
+    assertNotEquals("not a SignedUrlResponse", response);
+    assertNotEquals("not a SignedUrlData", data);
   }
 }
