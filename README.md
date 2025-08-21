@@ -25,14 +25,14 @@ A Java SDK for the Reality Defender API to detect deepfakes and manipulated medi
 <dependency>
     <groupId>ai.realitydefender</groupId>
     <artifactId>realitydefender-sdk</artifactId>
-    <version>0.1.0</version>
+    <version>[0.1.0,0.2)</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```gradle
-implementation 'ai.realitydefender:realitydefender-sdk:0.1.0'
+implementation 'ai.realitydefender:realitydefender-sdk:[0.1.0,0.2.0)'
 ```
 
 ## Configuration Options
@@ -77,6 +77,15 @@ There is a size limit for each of the supported file types.
 | Audio     | .flac, .wav, .mp3, .m4a, .aac, .alac, .ogg | 20,971,520         | 20 MB           |
 | Text      | .txt                                       | 5,242,880          | 5 MB            |
 
+
+## Supported social media platforms
+
+The Reality Defender API supports analysis of media from the following social media platforms:
+* Facebook
+* Instagram
+* Twitter
+* YouTube
+* TikTok
 
 ## Development
 
@@ -125,11 +134,9 @@ mvn exec:java@simple-example
 
 # Get results example (pagination, filtering, async)
 mvn exec:java@get-results-example
-```
 
-Or run the default example:
-```bash
-mvn exec:java
+# Social media detection example
+mvn exec:java@social-media-example
 ```
 
 ## Contributing

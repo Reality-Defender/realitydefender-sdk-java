@@ -2,10 +2,7 @@ package ai.realitydefender.detection;
 
 import ai.realitydefender.client.HttpClient;
 import ai.realitydefender.exceptions.RealityDefenderException;
-import ai.realitydefender.models.DetectionResult;
-import ai.realitydefender.models.DetectionResultList;
-import ai.realitydefender.models.GetResultsOptions;
-import ai.realitydefender.models.UploadResponse;
+import ai.realitydefender.models.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -88,6 +85,28 @@ public class DetectionService implements Closeable {
             throw new RuntimeException(e);
           }
         });
+  }
+
+  /**
+   * Uploads a social media link for analysis.
+   *
+   * @param url the URL to upload
+   * @return the upload response
+   * @throws RealityDefenderException if upload fails
+   */
+  public UploadResponse uploadSocialMedia(String url) throws RealityDefenderException {
+    JsonNode response = httpClient.postSocialMedia(url);
+
+    try {
+      SocialMediaResponse uploadResponse =
+          objectMapper.treeToValue(response, SocialMediaResponse.class);
+      logger.info(
+          "Social media link uploaded successfully. Request ID: {}", uploadResponse.getRequestId());
+
+      return new UploadResponse(uploadResponse.getRequestId(), null);
+    } catch (Exception e) {
+      throw new RealityDefenderException("Failed to parse upload response", "server_error", e);
+    }
   }
 
   /**
@@ -333,6 +352,7 @@ public class DetectionService implements Closeable {
    */
   private boolean isProcessed(String status) {
     return !(status == null
+        || "UNKNOWN".equalsIgnoreCase(status)
         || STATUS_PROCESSING.equalsIgnoreCase(status)
         || STATUS_ANALYZING.equalsIgnoreCase(status)
         || STATUS_QUEUED.equalsIgnoreCase(status));

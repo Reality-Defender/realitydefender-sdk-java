@@ -284,6 +284,56 @@ class DetectionServiceTest {
         () -> detectionService.getResult("req-123", Duration.ofMillis(10), 30));
   }
 
+  @Test
+  void testUploadSocialMediaSuccess() throws Exception {
+    String testUrl = "https://twitter.com/example/status/123";
+    String socialMediaResponseJson = "{\"requestId\": \"social-req-123\"}";
+    JsonNode socialMediaResponse = objectMapper.readTree(socialMediaResponseJson);
+    when(httpClient.postSocialMedia(testUrl)).thenReturn(socialMediaResponse);
+
+    UploadResponse result = detectionService.uploadSocialMedia(testUrl);
+
+    assertEquals("social-req-123", result.getRequestId());
+    assertNull(result.getMediaId());
+    verify(httpClient).postSocialMedia(testUrl);
+  }
+
+  @Test
+  void testUploadSocialMediaHttpClientException() throws Exception {
+    String testUrl = "https://instagram.com/p/ABC123/";
+    when(httpClient.postSocialMedia(testUrl))
+        .thenThrow(new RealityDefenderException("Invalid URL", "invalid_request"));
+
+    assertThrows(RealityDefenderException.class, () -> detectionService.uploadSocialMedia(testUrl));
+    verify(httpClient).postSocialMedia(testUrl);
+  }
+
+  @Test
+  void testUploadSocialMediaParseException() throws Exception {
+    String testUrl = "https://youtube.com/watch?v=test123";
+    JsonNode invalidResponse = objectMapper.readTree("{}");
+    when(httpClient.postSocialMedia(testUrl)).thenReturn(invalidResponse);
+
+    RealityDefenderException exception =
+        assertThrows(
+            RealityDefenderException.class, () -> detectionService.uploadSocialMedia(testUrl));
+
+    assertEquals("Failed to parse upload response", exception.getMessage());
+  }
+
+  @Test
+  void testUploadSocialMediaWithComplexUrls() throws Exception {
+    String complexUrl = "https://facebook.com/user/posts/123?ref=share#comments";
+    String socialMediaResponseJson = "{\"requestId\": \"complex-req-456\"}";
+    JsonNode socialMediaResponse = objectMapper.readTree(socialMediaResponseJson);
+    when(httpClient.postSocialMedia(complexUrl)).thenReturn(socialMediaResponse);
+
+    UploadResponse result = detectionService.uploadSocialMedia(complexUrl);
+
+    assertEquals("complex-req-456", result.getRequestId());
+    assertNull(result.getMediaId());
+  }
+
   // Helper methods to create JSON responses
   private String createDetectionResultJson(String status, String requestId, String modelsJson) {
     if (modelsJson == null) {

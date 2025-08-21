@@ -3,6 +3,7 @@ package ai.realitydefender.client;
 import ai.realitydefender.core.RealityDefenderConfig;
 import ai.realitydefender.exceptions.RealityDefenderException;
 import ai.realitydefender.models.*;
+import ai.realitydefender.utils.Url;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -136,6 +137,27 @@ public class HttpClient implements Closeable {
       return objectMapper.readTree(uploadResponseJson);
     } catch (IOException e) {
       throw new RealityDefenderException("Failed to upload file", "UPLOAD_FAILED", e);
+    }
+  }
+
+  /**
+   * Uploads a social media link for analysis.
+   *
+   * @param url the URL to upload
+   * @return the upload response
+   * @throws RealityDefenderException if upload fails
+   */
+  public JsonNode postSocialMedia(String url) throws RealityDefenderException {
+    if (!Url.isValidHttpUrl(url)) {
+      throw new RealityDefenderException("Invalid social media link: " + url, "INVALID_REQUEST");
+    }
+
+    SocialMediaRequest request = new SocialMediaRequest(url);
+
+    try {
+      return post("/api/files/social", objectMapper.writeValueAsString(request));
+    } catch (Exception e) {
+      throw new RealityDefenderException("Upload failed: " + e.getMessage(), "UPLOAD_FAILED", e);
     }
   }
 
