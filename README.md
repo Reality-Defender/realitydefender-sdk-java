@@ -25,7 +25,7 @@ A Java SDK for the Reality Defender API to detect deepfakes and manipulated medi
 <dependency>
     <groupId>ai.realitydefender</groupId>
     <artifactId>realitydefender-sdk</artifactId>
-    <version>0.1.0</version>
+    <version>[0.1.0,0.2)</version>
 </dependency>
 ```
 
