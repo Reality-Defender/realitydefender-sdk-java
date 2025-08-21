@@ -12,7 +12,8 @@ public class UploadResponse {
 
   @JsonCreator
   public UploadResponse(
-      @JsonProperty("request_id") String requestId, @JsonProperty("media_id") String mediaId) {
+      @JsonProperty("request_id") String requestId,
+      @JsonProperty(value = "media_id", required = false, defaultValue = "") String mediaId) {
     this.requestId = requestId;
     this.mediaId = mediaId;
   }

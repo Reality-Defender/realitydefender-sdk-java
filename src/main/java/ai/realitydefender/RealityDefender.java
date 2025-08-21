@@ -93,6 +93,17 @@ public class RealityDefender implements Closeable {
   }
 
   /**
+   * Uploads a social media link for analysis.
+   *
+   * @param url the link to upload
+   * @return the upload response containing request ID.
+   * @throws RealityDefenderException if an error occurs during upload
+   */
+  public UploadResponse uploadSocialMedia(String url) throws RealityDefenderException {
+    return detectionService.uploadSocialMedia(url);
+  }
+
+  /**
    * Gets the detection result for a request ID.
    *
    * @param requestId the request ID from the upload response

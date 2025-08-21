@@ -520,6 +520,200 @@ class HttpClientTest {
     testFile.delete(); // Clean up
   }
 
+  @Test
+  void testPostSocialMediaSuccess() throws Exception {
+    String testUrl = "https://twitter.com/example/status/123456789";
+    String expectedResponse = "{\"request_id\": \"social-req-123\"}";
+
+    wireMockServer.stubFor(
+        post(urlEqualTo("/api/files/social"))
+            .withHeader("X-API-KEY", equalTo("test-api-key"))
+            .withHeader("Content-Type", equalTo("application/json; charset=UTF-8"))
+            .withHeader("User-Agent", equalTo("RealityDefender-Java-SDK/1.0.0"))
+            .withRequestBody(containing("\"socialLink\":\"" + testUrl + "\""))
+            .willReturn(
+                aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(expectedResponse)));
+
+    JsonNode result = httpClient.postSocialMedia(testUrl);
+
+    assertNotNull(result);
+    assertEquals("social-req-123", result.get("request_id").asText());
+
+    wireMockServer.verify(
+        postRequestedFor(urlEqualTo("/api/files/social"))
+            .withRequestBody(containing("\"socialLink\":\"" + testUrl + "\"")));
+  }
+
+  @Test
+  void testPostSocialMediaWithHttpsUrl() throws Exception {
+    String httpsUrl = "https://instagram.com/p/ABC123DEF456/";
+    String expectedResponse = "{\"request_id\": \"instagram-req-456\"}";
+
+    wireMockServer.stubFor(
+        post(urlEqualTo("/api/files/social"))
+            .withRequestBody(containing("\"socialLink\":\"" + httpsUrl + "\""))
+            .willReturn(
+                aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(expectedResponse)));
+
+    JsonNode result = httpClient.postSocialMedia(httpsUrl);
+
+    assertEquals("instagram-req-456", result.get("request_id").asText());
+  }
+
+  @Test
+  void testPostSocialMediaWithHttpUrl() throws Exception {
+    String httpUrl = "http://example.com/social/post/123";
+    String expectedResponse = "{\"request_id\": \"http-req-789\"}";
+
+    wireMockServer.stubFor(
+        post(urlEqualTo("/api/files/social"))
+            .withRequestBody(containing("\"socialLink\":\"" + httpUrl + "\""))
+            .willReturn(
+                aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(expectedResponse)));
+
+    JsonNode result = httpClient.postSocialMedia(httpUrl);
+
+    assertEquals("http-req-789", result.get("request_id").asText());
+  }
+
+  @Test
+  void testPostSocialMediaInvalidUrl() {
+    String invalidUrl = "not-a-valid-url";
+
+    RealityDefenderException exception =
+        assertThrows(RealityDefenderException.class, () -> httpClient.postSocialMedia(invalidUrl));
+
+    assertEquals("INVALID_REQUEST", exception.getCode());
+    assertEquals("Invalid social media link: " + invalidUrl, exception.getMessage());
+
+    // Verify no HTTP request was made
+    wireMockServer.verify(0, postRequestedFor(urlEqualTo("/api/files/social")));
+  }
+
+  @Test
+  void testPostSocialMediaNullUrl() {
+    RealityDefenderException exception =
+        assertThrows(RealityDefenderException.class, () -> httpClient.postSocialMedia(null));
+
+    assertEquals("INVALID_REQUEST", exception.getCode());
+    assertEquals("Invalid social media link: null", exception.getMessage());
+  }
+
+  @Test
+  void testPostSocialMediaEmptyUrl() {
+    String emptyUrl = "";
+
+    RealityDefenderException exception =
+        assertThrows(RealityDefenderException.class, () -> httpClient.postSocialMedia(emptyUrl));
+
+    assertEquals("INVALID_REQUEST", exception.getCode());
+    assertEquals("Invalid social media link: ", exception.getMessage());
+  }
+
+  @Test
+  void testPostSocialMediaNonHttpScheme() {
+    String ftpUrl = "ftp://example.com/file.txt";
+
+    RealityDefenderException exception =
+        assertThrows(RealityDefenderException.class, () -> httpClient.postSocialMedia(ftpUrl));
+
+    assertEquals("INVALID_REQUEST", exception.getCode());
+    assertEquals("Invalid social media link: " + ftpUrl, exception.getMessage());
+  }
+
+  @Test
+  void testPostSocialMediaServerError() {
+    String testUrl = "https://youtube.com/watch?v=example123";
+
+    wireMockServer.stubFor(
+        post(urlEqualTo("/api/files/social"))
+            .willReturn(
+                aResponse()
+                    .withStatus(500)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody("{\"response\": \"Internal server error\"}")));
+
+    RealityDefenderException exception =
+        assertThrows(RealityDefenderException.class, () -> httpClient.postSocialMedia(testUrl));
+
+    assertEquals("UPLOAD_FAILED", exception.getCode());
+  }
+
+  @Test
+  void testPostSocialMediaBadRequest() {
+    String testUrl = "https://facebook.com/user/posts/123456789";
+
+    wireMockServer.stubFor(
+        post(urlEqualTo("/api/files/social"))
+            .willReturn(
+                aResponse()
+                    .withStatus(400)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody(
+                        "{\"code\": \"invalid_url\", \"response\": \"URL format not supported\"}")));
+
+    RealityDefenderException exception =
+        assertThrows(RealityDefenderException.class, () -> httpClient.postSocialMedia(testUrl));
+
+    assertTrue(exception.getMessage().contains("Upload failed"));
+  }
+
+  @Test
+  void testPostSocialMediaComplexUrls() throws Exception {
+    String[] complexUrls = {
+      "https://youtube.com/watch?v=dQw4w9WgXcQ&t=30s&list=PLrAXtmRdnEQy6nuLMArC6M6",
+      "https://twitter.com/user/status/123456789?ref_src=twsrc%5Etfw#reply",
+      "https://instagram.com/p/ABC123DEF456/?utm_source=ig_web_copy_link",
+      "https://reddit.com/r/test/comments/123456/title/?sort=top"
+    };
+
+    for (int i = 0; i < complexUrls.length; i++) {
+      String url = complexUrls[i];
+      String requestId = "complex-req-" + i;
+
+      wireMockServer.stubFor(
+          post(urlEqualTo("/api/files/social"))
+              .withRequestBody(containing("\"socialLink\":\"" + url + "\""))
+              .willReturn(
+                  aResponse()
+                      .withStatus(200)
+                      .withHeader("Content-Type", "application/json")
+                      .withBody("{\"request_id\": \"" + requestId + "\"}")));
+
+      JsonNode result = httpClient.postSocialMedia(url);
+      assertEquals(requestId, result.get("request_id").asText());
+    }
+  }
+
+  @Test
+  void testPostSocialMediaRequestBodyFormat() throws Exception {
+    String testUrl = "https://linkedin.com/posts/user_activity-123456789";
+
+    wireMockServer.stubFor(
+        post(urlEqualTo("/api/files/social"))
+            .willReturn(
+                aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody("{\"request_id\": \"linkedin-req\"}")));
+
+    httpClient.postSocialMedia(testUrl);
+
+    // Verify the request body contains properly formatted SocialMediaRequest JSON
+    wireMockServer.verify(
+        postRequestedFor(urlEqualTo("/api/files/social"))
+            .withRequestBody(matchingJsonPath("$.socialLink", equalTo(testUrl))));
+  }
+
   private void mockSuccessfulUpload() {
     // Mock signed URL endpoint
     wireMockServer.stubFor(

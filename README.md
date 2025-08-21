@@ -78,6 +78,15 @@ There is a size limit for each of the supported file types.
 | Text      | .txt                                       | 5,242,880          | 5 MB            |
 
 
+## Supported social media platforms
+
+The Reality Defender API supports analysis of media from the following social media platforms:
+* Facebook
+* Instagram
+* Twitter
+* YouTube
+* TikTok
+
 ## Development
 
 ### Building
@@ -125,11 +134,9 @@ mvn exec:java@simple-example
 
 # Get results example (pagination, filtering, async)
 mvn exec:java@get-results-example
-```
 
-Or run the default example:
-```bash
-mvn exec:java
+# Social media detection example
+mvn exec:java@social-media-example
 ```
 
 ## Contributing

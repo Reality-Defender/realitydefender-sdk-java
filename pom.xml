@@ -69,7 +69,7 @@
             <artifactId>okhttp</artifactId>
             <version>${okhttp.version}</version>
         </dependency>
-        
+
         <!-- Kotlin Runtime for OkHttp -->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
@@ -375,15 +375,9 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>debug-get-results</id>
+                        <id>social-media-detection-example</id>
                         <configuration>
-                            <mainClass>ai.realitydefender.examples.DebugGetResultsExample</mainClass>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>working-get-results</id>
-                        <configuration>
-                            <mainClass>ai.realitydefender.examples.WorkingGetResultsExample</mainClass>
+                            <mainClass>ai.realitydefender.examples.SocialMediaDetectionExample</mainClass>
                         </configuration>
                     </execution>
                 </executions>
