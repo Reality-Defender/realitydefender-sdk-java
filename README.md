@@ -32,7 +32,7 @@ A Java SDK for the Reality Defender API to detect deepfakes and manipulated medi
 ### Gradle
 
 ```gradle
-implementation 'ai.realitydefender:realitydefender-sdk:0.1.0'
+implementation 'ai.realitydefender:realitydefender-sdk:[0.1.0,0.2.0)'
 ```
 
 ## Configuration Options
