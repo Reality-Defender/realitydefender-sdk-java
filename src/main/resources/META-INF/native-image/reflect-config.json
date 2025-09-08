@@ -1,0 +1,138 @@
+[
+  {
+    "name": "org.mockito.plugins.MockMaker",
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "org.mockito.plugins.MemberAccessor",
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "com.fasterxml.jackson.databind.ObjectMapper",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "okhttp3.internal.platform.Platform",
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "ai.realitydefender.models.DetectionResult",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "ai.realitydefender.models.DetectionResult$UserInfo",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "ai.realitydefender.models.DetectionResult$ResultsSummary",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "ai.realitydefender.models.DetectionResult$ModelResult",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "ai.realitydefender.models.DetectionResult$MediaMetadataInfo",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "ai.realitydefender.models.DetectionResult$StatusDeserializer",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "ai.realitydefender.models.DetectionResult$PredictionNumberDeserializer",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "ai.realitydefender.models.SignedUrlRequest",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "ai.realitydefender.models.SignedUrlResponse",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "ai.realitydefender.models.SignedUrlResponse$SignedUrlData",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "ai.realitydefender.models.UploadResponse",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "ai.realitydefender.models.BasicResponse",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "ai.realitydefender.models.DetectionResultList",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "ai.realitydefender.models.GetResultsOptions",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "ai.realitydefender.models.SocialMediaRequest",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "ai.realitydefender.models.SocialMediaResponse",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "java.util.concurrent.ScheduledExecutorService",
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "java.util.concurrent.CompletableFuture",
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "okhttp3.OkHttpClient",
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "okhttp3.Request",
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "okhttp3.Response",
+    "allDeclaredMethods": true
+  }
+]

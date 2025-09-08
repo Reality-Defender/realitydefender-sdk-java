@@ -6,6 +6,7 @@ import ai.realitydefender.models.*;
 import ai.realitydefender.utils.Url;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.Closeable;
 import java.io.File;
@@ -37,6 +38,7 @@ public class HttpClient implements Closeable {
     this.objectMapper.registerModule(new JavaTimeModule());
     this.objectMapper.configure(
         com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    this.objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 
     this.client =
         new OkHttpClient.Builder()
