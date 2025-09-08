@@ -22,6 +22,7 @@ class DetectionResultTest {
   @BeforeEach
   void setUp() {
     objectMapper = new ObjectMapper();
+
     objectMapper.registerModule(new JavaTimeModule());
   }
 

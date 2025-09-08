@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java-version: [ 11, 17, 21 ]
+        java-version: [ 11, 17, 21, 24 ]
 
     steps:
       - uses: actions/checkout@v4
@@ -36,10 +36,7 @@ jobs:
       - name: Check code formatting
         run: mvn spotless:check
 
-      - name: Run static analysis
-        run: mvn compile
-
-      - name: Run tests
+      - name: Compile and run tests
         run: mvn clean verify -Dgpg.skip
 
       - name: Generate test report
@@ -61,3 +58,30 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  check-test-graalvm:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: [ 21, 24 ]
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up GraalVM
+        uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'graalvm'
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Compile and run tests
+        run: mvn clean verify -Dgpg.skip -Pnative

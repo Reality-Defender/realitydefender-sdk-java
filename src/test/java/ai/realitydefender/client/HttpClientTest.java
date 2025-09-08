@@ -14,8 +14,10 @@ import java.time.Duration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledInNativeImage;
 import org.junit.jupiter.api.io.TempDir;
 
+@DisabledInNativeImage
 class HttpClientTest {
 
   private WireMockServer wireMockServer;
