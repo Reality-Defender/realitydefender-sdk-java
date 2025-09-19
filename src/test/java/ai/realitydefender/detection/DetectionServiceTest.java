@@ -33,7 +33,7 @@ class DetectionServiceTest {
 
   @BeforeEach
   void setUp() throws Exception {
-    detectionService = new DetectionService(httpClient);
+    detectionService = new DetectionService(httpClient, Duration.ofSeconds(2));
     objectMapper = new ObjectMapper();
 
     // Create a temporary test file
@@ -403,5 +403,76 @@ class DetectionServiceTest {
         + "        \"finalScore\": 0.95\n"
         + "    }\n"
         + "]";
+  }
+
+  @Test
+  void testMaxAttemptsCalculationFromTimeoutConfiguration() throws Exception {
+    // Arrange - Create DetectionService with different timeout values to test maxAttempts
+    // calculation
+    DetectionService shortTimeoutService =
+        new DetectionService(httpClient, Duration.ofSeconds(4)); // Should result in maxAttempts = 2
+    DetectionService longTimeoutService =
+        new DetectionService(
+            httpClient, Duration.ofSeconds(10)); // Should result in maxAttempts = 5
+
+    String processingResponseJson = createDetectionResultJson("PROCESSING", "req-123", "[]");
+    JsonNode processingResponse = objectMapper.readTree(processingResponseJson);
+    when(httpClient.getResults("req-123")).thenReturn(processingResponse);
+
+    // Act & Assert - Short timeout service should timeout after fewer attempts (2 attempts)
+    assertThrows(RealityDefenderException.class, () -> shortTimeoutService.getResult("req-123"));
+
+    // Verify the number of calls matches expected maxAttempts for short timeout (2 calls)
+    verify(httpClient, times(2)).getResults("req-123");
+
+    // Reset mock for next test
+    reset(httpClient);
+    when(httpClient.getResults("req-456")).thenReturn(processingResponse);
+
+    // Act & Assert - Long timeout service should make more attempts (5 attempts)
+    assertThrows(RealityDefenderException.class, () -> longTimeoutService.getResult("req-456"));
+
+    // Verify the number of calls matches expected maxAttempts for long timeout (5 calls)
+    verify(httpClient, times(5)).getResults("req-456");
+  }
+
+  @Test
+  void testCustomMaxAttemptsOverridesDefaultBehavior() throws Exception {
+    // Arrange - Use custom maxAttempts parameter that overrides the instance default
+    int customMaxAttempts = 3;
+    Duration customPollingInterval = Duration.ofMillis(50);
+
+    String processingResponseJson = createDetectionResultJson("PROCESSING", "req-789", "[]");
+    JsonNode processingResponse = objectMapper.readTree(processingResponseJson);
+    when(httpClient.getResults("req-789")).thenReturn(processingResponse);
+
+    // Act - Call getResult with custom maxAttempts that should override the default instance
+    // setting
+    assertThrows(
+        RealityDefenderException.class,
+        () -> detectionService.getResult("req-789", customPollingInterval, customMaxAttempts));
+
+    // Assert - Verify exactly the custom number of attempts were made
+    verify(httpClient, times(customMaxAttempts)).getResults("req-789");
+
+    // Test that the custom maxAttempts works with eventual success
+    reset(httpClient);
+    String completedResponseJson = createDetectionResultJson("AUTHENTIC", "req-success", "[]");
+    JsonNode completedResponse = objectMapper.readTree(completedResponseJson);
+
+    // Mock to return processing twice, then success on third attempt
+    when(httpClient.getResults("req-success"))
+        .thenReturn(processingResponse)
+        .thenReturn(processingResponse)
+        .thenReturn(completedResponse);
+
+    // Act - Should succeed on the third attempt within our custom maxAttempts limit
+    DetectionResult result =
+        detectionService.getResult("req-success", customPollingInterval, customMaxAttempts);
+
+    // Assert - Should complete successfully and make exactly 3 calls
+    assertEquals("AUTHENTIC", result.getStatus());
+    assertEquals("req-success", result.getRequestId());
+    verify(httpClient, times(3)).getResults("req-success");
   }
 }

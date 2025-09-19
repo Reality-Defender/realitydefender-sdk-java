@@ -28,13 +28,14 @@ public class DetectionService implements Closeable {
   private static final String STATUS_QUEUED = "QUEUED";
 
   private static final Duration DEFAULT_POLLING_INTERVAL = Duration.ofSeconds(2);
-  private static final Integer DEFAULT_MAX_ATTEMPTS = 30;
 
   private final HttpClient httpClient;
   private final ObjectMapper objectMapper;
   private final ScheduledExecutorService scheduler;
 
-  public DetectionService(HttpClient httpClient) {
+  private final int maxAttempts;
+
+  public DetectionService(HttpClient httpClient, Duration timeout) {
     this.httpClient = httpClient;
     this.objectMapper =
         JsonMapper.builder()
@@ -44,6 +45,10 @@ public class DetectionService implements Closeable {
                 false)
             .build();
     this.scheduler = Executors.newScheduledThreadPool(2);
+    this.maxAttempts =
+        timeout.toSeconds() > 0
+            ? (int) (timeout.toSeconds() / DEFAULT_POLLING_INTERVAL.toSeconds())
+            : 1;
   }
 
   /**
@@ -118,7 +123,7 @@ public class DetectionService implements Closeable {
    */
   public DetectionResult getResult(String requestId)
       throws RealityDefenderException, JsonProcessingException {
-    return getResult(requestId, DEFAULT_POLLING_INTERVAL, DEFAULT_MAX_ATTEMPTS).summarize();
+    return getResult(requestId, DEFAULT_POLLING_INTERVAL, this.maxAttempts).summarize();
   }
 
   /**
@@ -148,9 +153,7 @@ public class DetectionService implements Closeable {
         }
 
         logger.debug(
-            "Detection still processing for request ID: {}, result: {}",
-            requestId,
-            result.toString());
+            "Detection still processing for request ID: {}, result: {}", requestId, result);
 
         Thread.sleep(pollingInterval.toMillis());
 
@@ -175,7 +178,7 @@ public class DetectionService implements Closeable {
    * @return a CompletableFuture containing the detection result
    */
   public CompletableFuture<DetectionResult> getResultAsync(String requestId) {
-    return getResultAsync(requestId, DEFAULT_POLLING_INTERVAL, DEFAULT_MAX_ATTEMPTS);
+    return getResultAsync(requestId, DEFAULT_POLLING_INTERVAL, this.maxAttempts);
   }
 
   /**
@@ -219,7 +222,10 @@ public class DetectionService implements Closeable {
    */
   public CompletableFuture<DetectionResult> detectFileAsync(File file) {
     return uploadAsync(file)
-        .thenCompose(uploadResponse -> getResultAsync(uploadResponse.getRequestId()));
+        .thenCompose(
+            uploadResponse ->
+                getResultAsync(
+                    uploadResponse.getRequestId(), DEFAULT_POLLING_INTERVAL, this.maxAttempts));
   }
 
   /**
