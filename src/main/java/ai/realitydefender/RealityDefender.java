@@ -46,6 +46,7 @@ public class RealityDefender implements Closeable {
   private final HttpClient httpClient;
   private final DetectionService detectionService;
 
+
   /**
    * Creates a new RealityDefender client with the specified configuration.
    *
@@ -53,7 +54,7 @@ public class RealityDefender implements Closeable {
    */
   public RealityDefender(RealityDefenderConfig config) {
     this.httpClient = new HttpClient(config);
-    this.detectionService = new DetectionService(httpClient);
+    this.detectionService = new DetectionService(httpClient, config.getTimeout());
   }
 
   /** Package-private constructor for testing. */
@@ -289,7 +290,7 @@ public class RealityDefender implements Closeable {
   public static class Builder {
     private String apiKey;
     private String baseUrl = "https://api.prd.realitydefender.xyz";
-    private Duration timeout = Duration.ofSeconds(30);
+    private Duration timeout = Duration.ofSeconds(60);
 
     /**
      * Sets the API key.
