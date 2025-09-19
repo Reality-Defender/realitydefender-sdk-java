@@ -46,7 +46,6 @@ public class RealityDefender implements Closeable {
   private final HttpClient httpClient;
   private final DetectionService detectionService;
 
-
   /**
    * Creates a new RealityDefender client with the specified configuration.
    *
