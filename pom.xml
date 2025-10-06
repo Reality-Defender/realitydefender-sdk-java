@@ -55,6 +55,7 @@
     <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
     <maven-surefire-plugin.version>3.2.3</maven-surefire-plugin.version>
     <maven-failsafe-plugin.version>3.2.3</maven-failsafe-plugin.version>
+    <maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
     <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
     <maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
     <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
@@ -323,7 +324,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>3.6.0</version>
+        <version>${maven-shade-plugin.version}</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -497,8 +498,12 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <id>minimal</id>
+      <build>
+        <finalName>${project.artifactId}-${project.version}-minimal</finalName>
+      </build>
       <dependencies>
         <dependency>
           <groupId>com.squareup.okhttp3</groupId>

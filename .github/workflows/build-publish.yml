@@ -18,6 +18,10 @@ on:
 jobs:
   build-publish-java-sdk:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        profile: [ '', 'minimal' ]
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -54,10 +58,18 @@ jobs:
           mvn versions:set -DnewVersion=${{ env.SDK_VERSION }}
 
       - name: Build and package project
-        run: mvn clean compile package
+        run: |
+          if [ "${{ matrix.profile }}" != "" ]; then
+            mvn clean compile package -P${{ matrix.profile }}
+          else
+            mvn clean compile package
+          fi
+        shell: bash
+
 
       - name: Share artifacts.
         uses: actions/upload-artifact@v4
+        if: matrix.profile == ''
         with:
           name: "realitydefender-sdk-java-${{ env.SDK_VERSION }}"
           path: |
@@ -65,9 +77,25 @@ jobs:
           retention-days: 14
           if-no-files-found: error
 
+      - name: Share artifacts (with profile).
+        uses: actions/upload-artifact@v4
+        if: matrix.value != ''
+        with:
+          name: "realitydefender-sdk-java-${{ env.SDK_VERSION }}-${{ matrix.profile }}"
+          path: |
+            target/*.jar
+          retention-days: 14
+          if-no-files-found: error
+
       - name: Publish
         if: ${{ inputs.is-release == true }}
-        run: mvn --batch-mode --no-transfer-progress deploy -DskipTests --settings settings.xml
+        run: |
+          if [ "${{ matrix.profile }}" != "" ]; then
+            mvn --batch-mode --no-transfer-progress deploy -DskipTests -P${{ matrix.profile }} --settings settings.xml
+          else
+            mvn --batch-mode --no-transfer-progress deploy -DskipTests --settings settings.xml
+          fi
+        shell: bash
         env:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD}}
