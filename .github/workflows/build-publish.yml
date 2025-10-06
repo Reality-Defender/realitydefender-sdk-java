@@ -79,7 +79,7 @@ jobs:
 
       - name: Share artifacts (with profile).
         uses: actions/upload-artifact@v4
-        if: matrix.value != ''
+        if: matrix.profile != ''
         with:
           name: "realitydefender-sdk-java-${{ env.SDK_VERSION }}-${{ matrix.profile }}"
           path: |
