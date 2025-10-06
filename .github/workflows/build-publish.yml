@@ -18,6 +18,9 @@ on:
 jobs:
   build-publish-java-sdk:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        file: [ 'pom.xml', 'pom-minimal.xml' ]
 
     steps:
       - uses: actions/checkout@v4
@@ -52,15 +55,14 @@ jobs:
 
       - name: Set the library version.
         run: |
-          mvn versions:set -DnewVersion=${{ env.SDK_VERSION }}
+          mvn -f ${{ matrix.file }} versions:set -DnewVersion=${{ env.SDK_VERSION }}
 
       - name: Build and package project
         run: |
-          mvn clean compile package && mvn compile package -Pminimal
+          mvn -f ${{ matrix.file }} clean compile package
 
       - name: Share artifacts.
         uses: actions/upload-artifact@v4
-        if: matrix.profile == ''
         with:
           name: "realitydefender-sdk-java-${{ env.SDK_VERSION }}"
           path: |
@@ -71,7 +73,7 @@ jobs:
       - name: Publish
         if: ${{ inputs.is-release == true }}
         run: |
-          mvn --batch-mode --no-transfer-progress deploy -DskipTests --settings settings.xml
+          mvn -f ${{ matrix.file }} --batch-mode --no-transfer-progress deploy -DskipTests --settings settings.xml
         env:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD}}

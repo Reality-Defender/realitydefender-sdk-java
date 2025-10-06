@@ -6,12 +6,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ai.realitydefender</groupId>
-  <artifactId>realitydefender-sdk</artifactId>
+  <artifactId>realitydefender-sdk-minimal</artifactId>
   <version>0.1.0</version>
   <packaging>jar</packaging>
 
   <name>${project.groupId}:${project.artifactId}</name>
-  <description>Java SDK for the Reality Defender API to detect deepfakes and manipulated media</description>
+  <description>Java SDK for the Reality Defender API to detect deepfakes and manipulated media (minimal)</description>
   <url>https://github.com/Reality-Defender/realitydefender-sdk-java</url>
 
   <licenses>
@@ -60,10 +60,6 @@
     <maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
     <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
     <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
-
-    <!-- GraalVM versions -->
-    <native-maven-plugin.version>0.10.3</native-maven-plugin.version>
-    <junit-platform-native.version>0.10.3</junit-platform-native.version>
   </properties>
 
   <dependencyManagement>
@@ -100,36 +96,40 @@
   </dependencyManagement>
 
   <dependencies>
-    <!-- HTTP Client -->
     <dependency>
       <groupId>com.squareup.okhttp3</groupId>
       <artifactId>okhttp</artifactId>
+      <scope>provided</scope>
     </dependency>
-
-    <!-- JSON Processing -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-jsr310</artifactId>
+      <scope>provided</scope>
     </dependency>
-
-    <!-- Logging -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
-    </dependency>
-
-    <!-- Annotations -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-annotations</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <!-- Test Dependencies -->
@@ -160,14 +160,6 @@
       <groupId>org.wiremock</groupId>
       <artifactId>wiremock</artifactId>
       <version>${wiremock.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- GraalVM Native Testing Support -->
-    <dependency>
-      <groupId>org.graalvm.buildtools</groupId>
-      <artifactId>junit-platform-native</artifactId>
-      <version>${junit-platform-native.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -434,69 +426,4 @@
       </plugin>
     </plugins>
   </build>
-
-  <profiles>
-    <profile>
-      <id>native</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.graalvm.buildtools</groupId>
-            <artifactId>native-maven-plugin</artifactId>
-            <version>${native-maven-plugin.version}</version>
-            <extensions>true</extensions>
-            <configuration>
-              <fallback>false</fallback>
-              <verbose>true</verbose>
-              <buildArgs>
-                <buildArg>--no-fallback</buildArg>
-                <buildArg>--enable-http</buildArg>
-                <buildArg>--enable-https</buildArg>
-                <buildArg>--enable-url-protocols=http,https</buildArg>
-                <buildArg>--initialize-at-build-time=org.mockito</buildArg>
-                <buildArg>--initialize-at-run-time=ai.realitydefender</buildArg>
-                <buildArg>--allow-incomplete-classpath</buildArg>
-                <buildArg>--report-unsupported-elements-at-runtime</buildArg>
-              </buildArgs>
-            </configuration>
-            <executions>
-              <execution>
-                <id>build-simple-example-native</id>
-                <goals>
-                  <goal>compile-no-fork</goal>
-                </goals>
-                <phase>compile</phase>
-                <configuration>
-                  <mainClass>ai.realitydefender.examples.SimpleFileDetectionExample</mainClass>
-                  <imageName>simple-example</imageName>
-                </configuration>
-              </execution>
-              <execution>
-                <id>build-get-results-example-native</id>
-                <goals>
-                  <goal>compile-no-fork</goal>
-                </goals>
-                <phase>compile</phase>
-                <configuration>
-                  <mainClass>ai.realitydefender.examples.GetResultsExample</mainClass>
-                  <imageName>get-results-example</imageName>
-                </configuration>
-              </execution>
-              <execution>
-                <id>build-social-media-example-native</id>
-                <goals>
-                  <goal>compile-no-fork</goal>
-                </goals>
-                <phase>compile</phase>
-                <configuration>
-                  <mainClass>ai.realitydefender.examples.SocialMediaDetectionExample</mainClass>
-                  <imageName>social-media-example</imageName>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 </project>
