@@ -28,6 +28,14 @@ A Java SDK for the Reality Defender API to detect deepfakes and manipulated medi
     <version>[0.1.0,0.2)</version>
 </dependency>
 ```
+or for Android projects or any other project where there may be dependency issues with the bundled libraries in the `realitydefender-sdk` artifact:
+```xml
+<dependency>
+    <groupId>ai.realitydefender</groupId>
+    <artifactId>realitydefender-sdk-minimal</artifactId>
+    <version>[0.1.0,0.2)</version>
+</dependency>
+```
 
 ### Gradle
 
