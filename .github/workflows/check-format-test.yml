@@ -55,7 +55,7 @@ jobs:
           fail_ci_if_error: ${{ inputs.is-release }}
 
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
