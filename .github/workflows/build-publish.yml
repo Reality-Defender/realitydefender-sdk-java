@@ -63,6 +63,7 @@ jobs:
 
       - name: Share artifacts.
         uses: actions/upload-artifact@v4
+        if: ${{ matrix.file == 'pom.xml' }}
         with:
           name: "realitydefender-sdk-java-${{ env.SDK_VERSION }}"
           path: |
