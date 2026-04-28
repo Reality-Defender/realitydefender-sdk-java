@@ -123,7 +123,8 @@ public class RealityDefender implements Closeable {
    * @param request feedback payload
    * @return future with the created feedback record
    */
-  public CompletableFuture<UserFeedbackResponse> createUserFeedbackAsync(UserFeedbackRequest request) {
+  public CompletableFuture<UserFeedbackResponse> createUserFeedbackAsync(
+      UserFeedbackRequest request) {
     return detectionService.createUserFeedbackAsync(request);
   }
 

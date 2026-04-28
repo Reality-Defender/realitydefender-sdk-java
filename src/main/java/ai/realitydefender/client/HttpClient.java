@@ -171,8 +171,7 @@ public class HttpClient implements Closeable {
    * @return parsed JSON body
    * @throws RealityDefenderException if validation or the request fails
    */
-  public JsonNode postUserFeedback(UserFeedbackRequest request)
-      throws RealityDefenderException {
+  public JsonNode postUserFeedback(UserFeedbackRequest request) throws RealityDefenderException {
     if (request == null
         || isBlank(request.getRequestId())
         || isBlank(request.getLabel())

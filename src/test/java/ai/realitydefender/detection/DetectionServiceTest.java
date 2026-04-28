@@ -358,8 +358,7 @@ class DetectionServiceTest {
     String json = "{\"id\": \"fb-async\", \"requestId\": \"req-async\"}";
     when(httpClient.postUserFeedback(req)).thenReturn(objectMapper.readTree(json));
 
-    CompletableFuture<UserFeedbackResponse> future =
-        detectionService.createUserFeedbackAsync(req);
+    CompletableFuture<UserFeedbackResponse> future = detectionService.createUserFeedbackAsync(req);
 
     UserFeedbackResponse result = future.get();
     assertEquals("fb-async", result.getId());
