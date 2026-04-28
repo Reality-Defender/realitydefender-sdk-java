@@ -338,11 +338,8 @@ class DetectionServiceTest {
 
   @Test
   void testCreateUserFeedbackV2Success() throws Exception {
-    UserFeedbackV2Request req =
-        new UserFeedbackV2Request(
-            "req-fb-1", "REAL", "CONFIRMATION", "looks fine");
-    String json =
-        "{\"id\": \"fb-1\", \"requestId\": \"req-fb-1\", \"category\": \"CONFIRMATION\"}";
+    UserFeedbackV2Request req = new UserFeedbackV2Request("req-fb-1", "REAL", "CONFIRMATION", "looks fine");
+    String json = "{\"id\": \"fb-1\", \"requestId\": \"req-fb-1\", \"category\": \"CONFIRMATION\"}";
     when(httpClient.postUserFeedbackV2(req)).thenReturn(objectMapper.readTree(json));
 
     UserFeedbackV2Response result = detectionService.createUserFeedbackV2(req);
@@ -355,8 +352,7 @@ class DetectionServiceTest {
 
   @Test
   void testCreateUserFeedbackV2Async() throws Exception {
-    UserFeedbackV2Request req =
-        new UserFeedbackV2Request("req-async", "SYNTHETIC", "FALSE_NEGATIVE", null);
+    UserFeedbackV2Request req = new UserFeedbackV2Request("req-async", "SYNTHETIC", "FALSE_NEGATIVE", null);
     String json = "{\"id\": \"fb-async\", \"requestId\": \"req-async\"}";
     when(httpClient.postUserFeedbackV2(req)).thenReturn(objectMapper.readTree(json));
 
@@ -370,8 +366,7 @@ class DetectionServiceTest {
 
   @Test
   void testCreateUserFeedbackV2PropagatesHttpClientError() throws Exception {
-    UserFeedbackV2Request req =
-        new UserFeedbackV2Request("req-x", "REAL", "OTHER", null);
+    UserFeedbackV2Request req = new UserFeedbackV2Request("req-x", "REAL", "OTHER", null);
     when(httpClient.postUserFeedbackV2(req))
         .thenThrow(new RealityDefenderException("bad", "INVALID_REQUEST"));
 
