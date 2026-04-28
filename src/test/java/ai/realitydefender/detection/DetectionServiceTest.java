@@ -368,8 +368,7 @@ class DetectionServiceTest {
 
   @Test
   void testCreateUserFeedbackV2PropagatesHttpClientError() throws Exception {
-    UserFeedbackV2Request req =
-        new UserFeedbackV2Request("req-x", "REAL", "OTHER", null);
+    UserFeedbackV2Request req = new UserFeedbackV2Request("req-x", "REAL", "OTHER", null);
     when(httpClient.postUserFeedbackV2(req))
         .thenThrow(new RealityDefenderException("bad", "INVALID_REQUEST"));
 
