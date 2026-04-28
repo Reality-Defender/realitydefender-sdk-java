@@ -51,19 +51,19 @@ implementation 'ai.realitydefender:realitydefender-sdk:[0.1.0,0.2.0)'
 | `baseUrl` | String | `https://api.realitydefender.com` | API base URL |
 | `timeout` | Duration | 30 seconds | Request timeout |
 
-## User feedback (V2)
+## User feedback
 
 ```java
-import ai.realitydefender.models.UserFeedbackV2Request;
-import ai.realitydefender.models.UserFeedbackV2Response;
+import ai.realitydefender.models.UserFeedbackRequest;
+import ai.realitydefender.models.UserFeedbackResponse;
 
-UserFeedbackV2Response feedback =
-    client.createUserFeedbackV2(
-        new UserFeedbackV2Request(
+UserFeedbackResponse feedback =
+    client.createUserFeedback(
+        new UserFeedbackRequest(
             "your-request-id", "REAL", "CONFIRMATION", "Optional note"));
 ```
 
-Returns a `UserFeedbackV2Response`. Each getter returns `String` (or `null` if that field was omitted in the JSON body):
+Returns a `UserFeedbackResponse`. Each getter returns `String` (or `null` if that field was omitted in the JSON body):
 
 | Accessor | Description |
 |----------|-------------|

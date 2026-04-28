@@ -3,9 +3,9 @@ package ai.realitydefender.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Response body for a successful user feedback V2 creation (201). */
+/** Response body for successful user feedback creation (201). */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserFeedbackV2Response {
+public class UserFeedbackResponse {
 
   private String id;
 

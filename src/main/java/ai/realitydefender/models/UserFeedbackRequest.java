@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Request body for POST /api/v2/user-feedback. */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserFeedbackV2Request {
+public class UserFeedbackRequest {
 
   private final String requestId;
   private final String label;
@@ -18,7 +18,7 @@ public class UserFeedbackV2Request {
    * @param feedbackCategory FALSE_POSITIVE, FALSE_NEGATIVE, CONFIRMATION, OTHER
    * @param comment optional note (may be null)
    */
-  public UserFeedbackV2Request(
+  public UserFeedbackRequest(
       String requestId, String label, String feedbackCategory, String comment) {
     this.requestId = requestId;
     this.label = label;

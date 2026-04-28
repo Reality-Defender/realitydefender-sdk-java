@@ -115,17 +115,17 @@ public class DetectionService implements Closeable {
   }
 
   /**
-   * Submits user scan feedback using the V2 API.
+   * Submits user scan feedback for a completed detection.
    *
    * @param request feedback payload
    * @return parsed response
    * @throws RealityDefenderException if the request fails or the body cannot be parsed
    */
-  public UserFeedbackV2Response createUserFeedbackV2(UserFeedbackV2Request request)
+  public UserFeedbackResponse createUserFeedback(UserFeedbackRequest request)
       throws RealityDefenderException {
     try {
-      JsonNode response = httpClient.postUserFeedbackV2(request);
-      return objectMapper.treeToValue(response, UserFeedbackV2Response.class);
+      JsonNode response = httpClient.postUserFeedback(request);
+      return objectMapper.treeToValue(response, UserFeedbackResponse.class);
     } catch (RealityDefenderException e) {
       throw e;
     } catch (Exception e) {
@@ -140,12 +140,12 @@ public class DetectionService implements Closeable {
    * @param request feedback payload
    * @return future with the created feedback record
    */
-  public CompletableFuture<UserFeedbackV2Response> createUserFeedbackV2Async(
-      UserFeedbackV2Request request) {
+  public CompletableFuture<UserFeedbackResponse> createUserFeedbackAsync(
+      UserFeedbackRequest request) {
     return CompletableFuture.supplyAsync(
         () -> {
           try {
-            return createUserFeedbackV2(request);
+            return createUserFeedback(request);
           } catch (RealityDefenderException e) {
             throw new RuntimeException(e);
           }
