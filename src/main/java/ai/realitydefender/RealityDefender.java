@@ -8,6 +8,8 @@ import ai.realitydefender.models.DetectionResult;
 import ai.realitydefender.models.DetectionResultList;
 import ai.realitydefender.models.GetResultsOptions;
 import ai.realitydefender.models.UploadResponse;
+import ai.realitydefender.models.UserFeedbackV2Request;
+import ai.realitydefender.models.UserFeedbackV2Response;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.Closeable;
 import java.io.File;
@@ -101,6 +103,29 @@ public class RealityDefender implements Closeable {
    */
   public UploadResponse uploadSocialMedia(String url) throws RealityDefenderException {
     return detectionService.uploadSocialMedia(url);
+  }
+
+  /**
+   * Submits user scan feedback for a completed detection (V2 API).
+   *
+   * @param request feedback payload
+   * @return created feedback record returned by the API
+   * @throws RealityDefenderException if the call fails
+   */
+  public UserFeedbackV2Response createUserFeedbackV2(UserFeedbackV2Request request)
+      throws RealityDefenderException {
+    return detectionService.createUserFeedbackV2(request);
+  }
+
+  /**
+   * Submits user scan feedback asynchronously (V2 API).
+   *
+   * @param request feedback payload
+   * @return future with the created feedback record
+   */
+  public CompletableFuture<UserFeedbackV2Response> createUserFeedbackV2Async(
+      UserFeedbackV2Request request) {
+    return detectionService.createUserFeedbackV2Async(request);
   }
 
   /**

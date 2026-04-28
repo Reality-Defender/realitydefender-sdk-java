@@ -115,6 +115,44 @@ public class DetectionService implements Closeable {
   }
 
   /**
+   * Submits user scan feedback using the V2 API.
+   *
+   * @param request feedback payload
+   * @return parsed response
+   * @throws RealityDefenderException if the request fails or the body cannot be parsed
+   */
+  public UserFeedbackV2Response createUserFeedbackV2(UserFeedbackV2Request request)
+      throws RealityDefenderException {
+    try {
+      JsonNode response = httpClient.postUserFeedbackV2(request);
+      return objectMapper.treeToValue(response, UserFeedbackV2Response.class);
+    } catch (RealityDefenderException e) {
+      throw e;
+    } catch (Exception e) {
+      throw new RealityDefenderException(
+          "Failed to parse user feedback response", "PARSE_ERROR", e);
+    }
+  }
+
+  /**
+   * Submits user scan feedback asynchronously.
+   *
+   * @param request feedback payload
+   * @return future with the created feedback record
+   */
+  public CompletableFuture<UserFeedbackV2Response> createUserFeedbackV2Async(
+      UserFeedbackV2Request request) {
+    return CompletableFuture.supplyAsync(
+        () -> {
+          try {
+            return createUserFeedbackV2(request);
+          } catch (RealityDefenderException e) {
+            throw new RuntimeException(e);
+          }
+        });
+  }
+
+  /**
    * Returns the summarized detection result for a request ID, polling until complete.
    *
    * @param requestId the request ID from upload

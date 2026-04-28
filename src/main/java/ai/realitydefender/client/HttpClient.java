@@ -4,6 +4,7 @@ import ai.realitydefender.core.RealityDefenderConfig;
 import ai.realitydefender.exceptions.RealityDefenderException;
 import ai.realitydefender.models.*;
 import ai.realitydefender.utils.Url;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -161,6 +162,35 @@ public class HttpClient implements Closeable {
     } catch (Exception e) {
       throw new RealityDefenderException("Upload failed: " + e.getMessage(), "UPLOAD_FAILED", e);
     }
+  }
+
+  /**
+   * Posts user scan feedback JSON to {@code /api/v2/user-feedback} (same pattern as {@link
+   * #postSocialMedia(String)}).
+   *
+   * @param request feedback payload
+   * @return parsed JSON body
+   * @throws RealityDefenderException if validation or the request fails
+   */
+  public JsonNode postUserFeedbackV2(UserFeedbackV2Request request)
+      throws RealityDefenderException {
+    if (request == null
+        || isBlank(request.getRequestId())
+        || isBlank(request.getLabel())
+        || isBlank(request.getFeedbackCategory())) {
+      throw new RealityDefenderException(
+          "requestId, label, and feedbackCategory are required", "INVALID_REQUEST");
+    }
+
+    try {
+      return post("/api/v2/user-feedback", objectMapper.writeValueAsString(request));
+    } catch (IOException e) {
+      throw new RealityDefenderException("Failed to post user feedback", "SERVER_ERROR", e);
+    }
+  }
+
+  private static boolean isBlank(String value) {
+    return value == null || value.trim().isEmpty();
   }
 
   /**
