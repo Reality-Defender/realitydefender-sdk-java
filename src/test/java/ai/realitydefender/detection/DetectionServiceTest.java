@@ -7,6 +7,8 @@ import ai.realitydefender.client.HttpClient;
 import ai.realitydefender.exceptions.RealityDefenderException;
 import ai.realitydefender.models.DetectionResult;
 import ai.realitydefender.models.UploadResponse;
+import ai.realitydefender.models.UserFeedbackRequest;
+import ai.realitydefender.models.UserFeedbackResponse;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
@@ -332,6 +334,44 @@ class DetectionServiceTest {
 
     assertEquals("complex-req-456", result.getRequestId());
     assertNull(result.getMediaId());
+  }
+
+  @Test
+  void testCreateUserFeedbackSuccess() throws Exception {
+    UserFeedbackRequest req =
+        new UserFeedbackRequest("req-fb-1", "REAL", "CONFIRMATION", "looks fine");
+    String json = "{\"id\": \"fb-1\", \"requestId\": \"req-fb-1\", \"category\": \"CONFIRMATION\"}";
+    when(httpClient.postUserFeedback(req)).thenReturn(objectMapper.readTree(json));
+
+    UserFeedbackResponse result = detectionService.createUserFeedback(req);
+
+    assertEquals("fb-1", result.getId());
+    assertEquals("req-fb-1", result.getRequestId());
+    assertEquals("CONFIRMATION", result.getCategory());
+    verify(httpClient).postUserFeedback(req);
+  }
+
+  @Test
+  void testCreateUserFeedbackAsync() throws Exception {
+    UserFeedbackRequest req =
+        new UserFeedbackRequest("req-async", "SYNTHETIC", "FALSE_NEGATIVE", null);
+    String json = "{\"id\": \"fb-async\", \"requestId\": \"req-async\"}";
+    when(httpClient.postUserFeedback(req)).thenReturn(objectMapper.readTree(json));
+
+    CompletableFuture<UserFeedbackResponse> future = detectionService.createUserFeedbackAsync(req);
+
+    UserFeedbackResponse result = future.get();
+    assertEquals("fb-async", result.getId());
+    assertEquals("req-async", result.getRequestId());
+  }
+
+  @Test
+  void testCreateUserFeedbackPropagatesHttpClientError() throws Exception {
+    UserFeedbackRequest req = new UserFeedbackRequest("req-x", "REAL", "OTHER", null);
+    when(httpClient.postUserFeedback(req))
+        .thenThrow(new RealityDefenderException("bad", "INVALID_REQUEST"));
+
+    assertThrows(RealityDefenderException.class, () -> detectionService.createUserFeedback(req));
   }
 
   // Helper methods to create JSON responses

@@ -164,6 +164,34 @@ public class HttpClient implements Closeable {
   }
 
   /**
+   * Posts user scan feedback JSON to {@code /api/v2/user-feedback} (same pattern as {@link
+   * #postSocialMedia(String)}).
+   *
+   * @param request feedback payload
+   * @return parsed JSON body
+   * @throws RealityDefenderException if validation or the request fails
+   */
+  public JsonNode postUserFeedback(UserFeedbackRequest request) throws RealityDefenderException {
+    if (request == null
+        || isBlank(request.getRequestId())
+        || isBlank(request.getLabel())
+        || isBlank(request.getFeedbackCategory())) {
+      throw new RealityDefenderException(
+          "requestId, label, and feedbackCategory are required", "INVALID_REQUEST");
+    }
+
+    try {
+      return post("/api/v2/user-feedback", objectMapper.writeValueAsString(request));
+    } catch (IOException e) {
+      throw new RealityDefenderException("Failed to post user feedback", "SERVER_ERROR", e);
+    }
+  }
+
+  private static boolean isBlank(String value) {
+    return value == null || value.trim().isEmpty();
+  }
+
+  /**
    * Gets detection results for a request ID.
    *
    * @param requestId the request ID to check

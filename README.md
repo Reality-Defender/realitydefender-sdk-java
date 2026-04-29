@@ -51,6 +51,36 @@ implementation 'ai.realitydefender:realitydefender-sdk:[0.1.0,0.2.0)'
 | `baseUrl` | String | `https://api.realitydefender.com` | API base URL |
 | `timeout` | Duration | 30 seconds | Request timeout |
 
+## User feedback
+
+```java
+import ai.realitydefender.models.UserFeedbackRequest;
+import ai.realitydefender.models.UserFeedbackResponse;
+
+UserFeedbackResponse feedback =
+    client.createUserFeedback(
+        new UserFeedbackRequest(
+            "your-request-id", "REAL", "CONFIRMATION", "Optional note"));
+```
+
+Returns a `UserFeedbackResponse`. Each getter returns `String` (or `null` if that field was omitted in the JSON body):
+
+| Accessor | Description |
+|----------|-------------|
+| `getId()` | Created feedback record id |
+| `getUserId()` | Authenticated user id |
+| `getRequestId()` | Media / detection request id |
+| `getInstitutionId()` | Organization id |
+| `getCategory()` | Stored `feedbackCategory` |
+| `getLabel()` | `REAL`, `SYNTHETIC`, `MANIPULATED`, or `UNKNOWN` |
+| `getCreatedAt()` | Serialized timestamp when present |
+| `getMediaViewUrl()` | Link to result in the web app |
+| `getMediaSource()` | e.g. file upload or API source label |
+| `getText()` | Comment text if the request included a comment |
+| `getUserName()` | Display name when present |
+| `getUserEmail()` | Email when present |
+| `getOrgName()` | Organization name when present |
+| `getMediaType()` | e.g. `VIDEO`, `IMAGE` when present |
 
 ## Error Handling
 
