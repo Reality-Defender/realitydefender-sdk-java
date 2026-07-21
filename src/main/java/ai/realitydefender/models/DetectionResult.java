@@ -334,8 +334,7 @@ public class DetectionResult {
 
   /**
    * Returns heatmap URLs for IMAGE media only, matching UI availability: non-ensemble models with
-   * an artificial result (API status {@code FAKE}, deserialized as {@code MANIPULATED}) and a
-   * non-empty pre-signed URL.
+   * API status {@code FAKE} (deserialized as {@code MANIPULATED}) and a non-empty pre-signed URL.
    */
   static Map<String, String> extractImageHeatmaps(
       String mediaType, Map<String, String> heatmaps, List<ModelResult> models) {
