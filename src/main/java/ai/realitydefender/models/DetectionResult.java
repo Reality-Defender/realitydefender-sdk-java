@@ -342,6 +342,7 @@ public class DetectionResult {
       return null;
     }
 
+    // StatusDeserializer maps API FAKE → MANIPULATED before summarize().
     java.util.Set<String> artificialNames =
         models == null
             ? java.util.Collections.emptySet()
@@ -349,7 +350,8 @@ public class DetectionResult {
                 .filter(
                     model ->
                         model != null
-                            && isArtificialModelStatus(model.getStatus())
+                            && ("FAKE".equals(model.getStatus())
+                                || "MANIPULATED".equals(model.getStatus()))
                             && model.getName() != null
                             && !model.getName().toLowerCase().contains("ensemble"))
                 .map(ModelResult::getName)
@@ -365,11 +367,6 @@ public class DetectionResult {
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
     return usable.isEmpty() ? null : usable;
-  }
-
-  private static boolean isArtificialModelStatus(String status) {
-    // StatusDeserializer maps API FAKE → MANIPULATED before summarize().
-    return "FAKE".equals(status) || "MANIPULATED".equals(status);
   }
 
   public String getAggregationResultUrl() {
