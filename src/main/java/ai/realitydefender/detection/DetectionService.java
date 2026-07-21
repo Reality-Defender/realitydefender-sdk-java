@@ -161,7 +161,8 @@ public class DetectionService implements Closeable {
    */
   public DetectionResult getResult(String requestId)
       throws RealityDefenderException, JsonProcessingException {
-    return getResult(requestId, DEFAULT_POLLING_INTERVAL, this.maxAttempts).summarize();
+    // The polling overload already calls summarize() when a terminal status is reached.
+    return getResult(requestId, DEFAULT_POLLING_INTERVAL, this.maxAttempts);
   }
 
   /**
@@ -263,7 +264,9 @@ public class DetectionService implements Closeable {
         .thenCompose(
             uploadResponse ->
                 getResultAsync(
-                    uploadResponse.getRequestId(), DEFAULT_POLLING_INTERVAL, this.maxAttempts));
+                    uploadResponse.getRequestId(),
+                    DEFAULT_POLLING_INTERVAL,
+                    this.maxAttempts));
   }
 
   /**

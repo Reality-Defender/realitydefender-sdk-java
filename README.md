@@ -82,6 +82,20 @@ Returns a `UserFeedbackResponse`. Each getter returns `String` (or `null` if tha
 | `getOrgName()` | Organization name when present |
 | `getMediaType()` | e.g. `VIDEO`, `IMAGE` when present |
 
+## Visualization assets (heatmaps)
+
+`getResult` / `detectFile` return a summarized result (status, score, models). For IMAGE
+media, heatmap URLs are included via `getHeatmaps()` only for non-ensemble models with an
+artificial result (API status `FAKE` / UI ARTIFICIAL). Heatmap URLs are pre-signed and
+expire after 15 minutes.
+
+```java
+DetectionResult result = client.getResult(requestId);
+
+// IMAGE heatmaps: model slug → pre-signed PNG URL
+System.out.println(result.getHeatmaps());
+```
+
 ## Error Handling
 
 The SDK throws `RealityDefenderException` for all API-related errors:

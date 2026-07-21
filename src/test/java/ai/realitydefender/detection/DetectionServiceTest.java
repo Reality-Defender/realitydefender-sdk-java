@@ -99,8 +99,92 @@ class DetectionServiceTest {
     assertEquals(1, result.getModels().size());
     assertEquals("model1", result.getModels().get(0).getName());
     assertEquals("MANIPULATED", result.getModels().get(0).getStatus());
+    // Empty heatmap map from API is normalized to null on summarize().
+    assertNull(result.getHeatmaps());
 
     verify(httpClient, times(2)).getResults("req-123");
+  }
+
+  @Test
+  void testGetResultKeepsHeatmapsForArtificialNonEnsembleImageModels() throws Exception {
+    String modelsJson =
+        "[\n"
+            + "    {\n"
+            + "        \"name\": \"model1\",\n"
+            + "        \"data\": null,\n"
+            + "        \"error\": null,\n"
+            + "        \"code\": null,\n"
+            + "        \"status\": \"FAKE\",\n"
+            + "        \"predictionNumber\": 0.95,\n"
+            + "        \"normalizedPredictionNumber\": 0.95,\n"
+            + "        \"rollingAvgNumber\": 0.95,\n"
+            + "        \"finalScore\": 0.95\n"
+            + "    },\n"
+            + "    {\n"
+            + "        \"name\": \"model2\",\n"
+            + "        \"data\": null,\n"
+            + "        \"error\": null,\n"
+            + "        \"code\": null,\n"
+            + "        \"status\": \"AUTHENTIC\",\n"
+            + "        \"predictionNumber\": 0.1,\n"
+            + "        \"normalizedPredictionNumber\": 0.1,\n"
+            + "        \"rollingAvgNumber\": 0.1,\n"
+            + "        \"finalScore\": 0.1\n"
+            + "    },\n"
+            + "    {\n"
+            + "        \"name\": \"rd-img-ensemble\",\n"
+            + "        \"data\": null,\n"
+            + "        \"error\": null,\n"
+            + "        \"code\": null,\n"
+            + "        \"status\": \"FAKE\",\n"
+            + "        \"predictionNumber\": 0.95,\n"
+            + "        \"normalizedPredictionNumber\": 0.95,\n"
+            + "        \"rollingAvgNumber\": 0.95,\n"
+            + "        \"finalScore\": 0.95\n"
+            + "    }\n"
+            + "]";
+    String completedResponseJson =
+        createDetectionResultJson("FAKE", "req-assets", modelsJson)
+            .replace(
+                "\"heatmaps\": {}",
+                "\"heatmaps\": {"
+                    + "\"model1\": \"https://example.com/heatmap.png\", "
+                    + "\"model2\": \"https://example.com/authentic.png\", "
+                    + "\"rd-img-ensemble\": \"https://example.com/ensemble.png\"}")
+            .replace(
+                "\"modelMetadataUrl\": \"\"",
+                "\"modelMetadataUrl\": \"https://example.com/aggregation.json\"");
+    JsonNode completedResponse = objectMapper.readTree(completedResponseJson);
+    when(httpClient.getResults("req-assets")).thenReturn(completedResponse);
+
+    DetectionResult result = detectionService.getResult("req-assets");
+
+    assertEquals("MANIPULATED", result.getStatus());
+    assertNotNull(result.getHeatmaps());
+    assertEquals("https://example.com/heatmap.png", result.getHeatmaps().get("model1"));
+    assertNull(result.getHeatmaps().get("model2"));
+    assertNull(result.getHeatmaps().get("rd-img-ensemble"));
+    // Other asset fields are on the full Media Detail payload / DetectionResult model,
+    // but are not preserved through summarize() used by getResult.
+    assertNull(result.getMediaType());
+    assertNull(result.getModelMetadataUrl());
+    assertNull(result.getStorageLocation());
+  }
+
+  @Test
+  void testGetResultIgnoresHeatmapsForNonImage() throws Exception {
+    String completedResponseJson =
+        createDetectionResultJson("FAKE", "req-video", createModelsJson())
+            .replace("\"mediaType\": \"IMAGE\"", "\"mediaType\": \"VIDEO\"")
+            .replace(
+                "\"heatmaps\": {}",
+                "\"heatmaps\": {\"model1\": \"https://example.com/heatmap.png\"}");
+    JsonNode completedResponse = objectMapper.readTree(completedResponseJson);
+    when(httpClient.getResults("req-video")).thenReturn(completedResponse);
+
+    DetectionResult result = detectionService.getResult("req-video");
+
+    assertNull(result.getHeatmaps());
   }
 
   @Test

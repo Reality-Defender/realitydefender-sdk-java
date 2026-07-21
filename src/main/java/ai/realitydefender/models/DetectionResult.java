@@ -325,8 +325,53 @@ public class DetectionResult {
   }
 
   public DetectionResult summarize() {
-    return new DetectionResult(
-        this.requestId, this.resultsSummary, this.getScore(), this.getModels());
+    DetectionResult summarized =
+        new DetectionResult(
+            this.requestId, this.resultsSummary, this.getScore(), this.getModels());
+    // IMAGE heatmaps only for artificial, non-ensemble models (matches UI).
+    summarized.heatmaps = extractImageHeatmaps(this.mediaType, this.heatmaps, this.models);
+    return summarized;
+  }
+
+  /**
+   * Returns heatmap URLs for IMAGE media only, matching UI availability: non-ensemble models with
+   * an artificial result (API status {@code FAKE}, deserialized as {@code MANIPULATED}) and a
+   * non-empty pre-signed URL.
+   */
+  static Map<String, String> extractImageHeatmaps(
+      String mediaType, Map<String, String> heatmaps, List<ModelResult> models) {
+    if (mediaType == null || !mediaType.equalsIgnoreCase("IMAGE") || heatmaps == null) {
+      return null;
+    }
+
+    java.util.Set<String> artificialNames =
+        models == null
+            ? java.util.Collections.emptySet()
+            : models.stream()
+                .filter(
+                    model ->
+                        model != null
+                            && isArtificialModelStatus(model.getStatus())
+                            && model.getName() != null
+                            && !model.getName().toLowerCase().contains("ensemble"))
+                .map(ModelResult::getName)
+                .collect(Collectors.toSet());
+
+    Map<String, String> usable =
+        heatmaps.entrySet().stream()
+            .filter(
+                entry ->
+                    artificialNames.contains(entry.getKey())
+                        && entry.getValue() != null
+                        && !entry.getValue().isEmpty())
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+    return usable.isEmpty() ? null : usable;
+  }
+
+  private static boolean isArtificialModelStatus(String status) {
+    // StatusDeserializer maps API FAKE → MANIPULATED before summarize().
+    return "FAKE".equals(status) || "MANIPULATED".equals(status);
   }
 
   public String getAggregationResultUrl() {
