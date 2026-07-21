@@ -8,9 +8,11 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /** Represents the result of a deepfake detection analysis. */
@@ -325,8 +327,48 @@ public class DetectionResult {
   }
 
   public DetectionResult summarize() {
-    return new DetectionResult(
-        this.requestId, this.resultsSummary, this.getScore(), this.getModels());
+    List<ModelResult> models = this.getModels();
+    DetectionResult summarized =
+        new DetectionResult(this.requestId, this.resultsSummary, this.getScore(), models);
+    // IMAGE heatmaps only for artificial, non-ensemble models (matches UI).
+    summarized.heatmaps = extractImageHeatmaps(this.mediaType, this.heatmaps, models);
+    return summarized;
+  }
+
+  /**
+   * Returns heatmap URLs for IMAGE media only, matching UI availability: non-ensemble models with
+   * status {@code MANIPULATED} and a non-empty pre-signed URL.
+   */
+  static Map<String, String> extractImageHeatmaps(
+      String mediaType, Map<String, String> heatmaps, List<ModelResult> models) {
+    if (mediaType == null || !mediaType.equalsIgnoreCase("IMAGE") || heatmaps == null) {
+      return null;
+    }
+
+    // StatusDeserializer maps API FAKE → MANIPULATED before summarize().
+    Set<String> artificialNames =
+        models == null
+            ? Collections.emptySet()
+            : models.stream()
+                .filter(
+                    model ->
+                        model != null
+                            && "MANIPULATED".equals(model.getStatus())
+                            && model.getName() != null
+                            && !model.getName().toLowerCase().contains("ensemble"))
+                .map(ModelResult::getName)
+                .collect(Collectors.toSet());
+
+    Map<String, String> usable =
+        heatmaps.entrySet().stream()
+            .filter(
+                entry ->
+                    artificialNames.contains(entry.getKey())
+                        && entry.getValue() != null
+                        && !entry.getValue().isEmpty())
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+    return usable.isEmpty() ? null : usable;
   }
 
   public String getAggregationResultUrl() {
