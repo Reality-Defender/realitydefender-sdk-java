@@ -264,9 +264,7 @@ public class DetectionService implements Closeable {
         .thenCompose(
             uploadResponse ->
                 getResultAsync(
-                    uploadResponse.getRequestId(),
-                    DEFAULT_POLLING_INTERVAL,
-                    this.maxAttempts));
+                    uploadResponse.getRequestId(), DEFAULT_POLLING_INTERVAL, this.maxAttempts));
   }
 
   /**

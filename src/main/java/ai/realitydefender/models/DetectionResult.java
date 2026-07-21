@@ -326,8 +326,7 @@ public class DetectionResult {
 
   public DetectionResult summarize() {
     DetectionResult summarized =
-        new DetectionResult(
-            this.requestId, this.resultsSummary, this.getScore(), this.getModels());
+        new DetectionResult(this.requestId, this.resultsSummary, this.getScore(), this.getModels());
     // IMAGE heatmaps only for artificial, non-ensemble models (matches UI).
     summarized.heatmaps = extractImageHeatmaps(this.mediaType, this.heatmaps, this.models);
     return summarized;
