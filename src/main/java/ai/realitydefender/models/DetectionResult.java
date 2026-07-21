@@ -8,9 +8,11 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /** Represents the result of a deepfake detection analysis. */
@@ -344,9 +346,9 @@ public class DetectionResult {
     }
 
     // StatusDeserializer maps API FAKE → MANIPULATED before summarize().
-    java.util.Set<String> artificialNames =
+    Set<String> artificialNames =
         models == null
-            ? java.util.Collections.emptySet()
+            ? Collections.emptySet()
             : models.stream()
                 .filter(
                     model ->
