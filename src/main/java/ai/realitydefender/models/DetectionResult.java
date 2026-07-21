@@ -325,16 +325,17 @@ public class DetectionResult {
   }
 
   public DetectionResult summarize() {
+    List<ModelResult> models = this.getModels();
     DetectionResult summarized =
-        new DetectionResult(this.requestId, this.resultsSummary, this.getScore(), this.getModels());
+        new DetectionResult(this.requestId, this.resultsSummary, this.getScore(), models);
     // IMAGE heatmaps only for artificial, non-ensemble models (matches UI).
-    summarized.heatmaps = extractImageHeatmaps(this.mediaType, this.heatmaps, this.models);
+    summarized.heatmaps = extractImageHeatmaps(this.mediaType, this.heatmaps, models);
     return summarized;
   }
 
   /**
    * Returns heatmap URLs for IMAGE media only, matching UI availability: non-ensemble models with
-   * API status {@code FAKE} (deserialized as {@code MANIPULATED}) and a non-empty pre-signed URL.
+   * status {@code MANIPULATED} and a non-empty pre-signed URL.
    */
   static Map<String, String> extractImageHeatmaps(
       String mediaType, Map<String, String> heatmaps, List<ModelResult> models) {
@@ -350,8 +351,7 @@ public class DetectionResult {
                 .filter(
                     model ->
                         model != null
-                            && ("FAKE".equals(model.getStatus())
-                                || "MANIPULATED".equals(model.getStatus()))
+                            && "MANIPULATED".equals(model.getStatus())
                             && model.getName() != null
                             && !model.getName().toLowerCase().contains("ensemble"))
                 .map(ModelResult::getName)
