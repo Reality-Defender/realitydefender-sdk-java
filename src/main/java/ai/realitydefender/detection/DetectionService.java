@@ -497,8 +497,7 @@ public class DetectionService implements Closeable {
    * @return true if still analyzing, false if complete
    */
   private boolean isAnalyzing(String status) {
-    return STATUS_ANALYZING.equalsIgnoreCase(status)
-        || STATUS_DOWNLOADING.equalsIgnoreCase(status);
+    return STATUS_ANALYZING.equalsIgnoreCase(status) || STATUS_DOWNLOADING.equalsIgnoreCase(status);
   }
 
   /** Shuts down the internal scheduler. */
