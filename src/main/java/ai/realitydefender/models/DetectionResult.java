@@ -45,6 +45,10 @@ public class DetectionResult {
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
   private boolean audioExtractionProcessed;
+
+  @JsonProperty("overallStatus")
+  private String overallStatus;
+
   private ResultsSummary resultsSummary;
   private List<ModelResult> models;
   private List<Object> rdModels;
@@ -234,11 +238,15 @@ public class DetectionResult {
     return audioExtractionProcessed;
   }
 
+  public String getOverallStatus() {
+    return overallStatus;
+  }
+
   public String getStatus() {
-    if (this.resultsSummary == null) {
-      return "UNKNOWN";
+    if (this.resultsSummary != null && this.resultsSummary.status != null) {
+      return this.resultsSummary.status;
     }
-    return this.resultsSummary.status;
+    return this.overallStatus;
   }
 
   /**

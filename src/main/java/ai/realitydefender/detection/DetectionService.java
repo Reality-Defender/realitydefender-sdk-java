@@ -25,6 +25,7 @@ public class DetectionService implements Closeable {
   private static final Logger logger = LoggerFactory.getLogger(DetectionService.class);
   private static final String STATUS_PROCESSING = "PROCESSING";
   private static final String STATUS_ANALYZING = "ANALYZING";
+  private static final String STATUS_DOWNLOADING = "DOWNLOADING";
   private static final String STATUS_QUEUED = "QUEUED";
 
   private static final Duration DEFAULT_POLLING_INTERVAL = Duration.ofSeconds(2);
@@ -400,6 +401,7 @@ public class DetectionService implements Closeable {
         || "UNKNOWN".equalsIgnoreCase(status)
         || STATUS_PROCESSING.equalsIgnoreCase(status)
         || STATUS_ANALYZING.equalsIgnoreCase(status)
+        || STATUS_DOWNLOADING.equalsIgnoreCase(status)
         || STATUS_QUEUED.equalsIgnoreCase(status));
   }
 
@@ -495,7 +497,7 @@ public class DetectionService implements Closeable {
    * @return true if still analyzing, false if complete
    */
   private boolean isAnalyzing(String status) {
-    return STATUS_ANALYZING.equalsIgnoreCase(status);
+    return STATUS_ANALYZING.equalsIgnoreCase(status) || STATUS_DOWNLOADING.equalsIgnoreCase(status);
   }
 
   /** Shuts down the internal scheduler. */
