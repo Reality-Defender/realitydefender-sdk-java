@@ -599,4 +599,17 @@ class DetectionServiceTest {
     assertEquals("req-success", result.getRequestId());
     verify(httpClient, times(3)).getResults("req-success");
   }
+
+  @Test
+  void testDeleteRequestDelegatesToHttpClient() throws Exception {
+    detectionService.deleteRequest("req-1");
+    verify(httpClient).deleteRequest("req-1");
+  }
+
+  @Test
+  void testDeleteRequestAsync() throws Exception {
+    CompletableFuture<Void> future = detectionService.deleteRequestAsync("req-1");
+    future.get();
+    verify(httpClient).deleteRequest("req-1");
+  }
 }
