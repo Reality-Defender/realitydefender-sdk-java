@@ -51,6 +51,14 @@ implementation 'ai.realitydefender:realitydefender-sdk:[0.1.0,0.2.0)'
 | `baseUrl` | String | `https://api.realitydefender.com` | API base URL |
 | `timeout` | Duration | 30 seconds | Request timeout |
 
+## Delete a request
+
+Deletes a scan (`DELETE /api/media/{requestId}`). The API responds with 204 No Content.
+
+```java
+client.deleteRequest(requestId);
+```
+
 ## User feedback
 
 ```java

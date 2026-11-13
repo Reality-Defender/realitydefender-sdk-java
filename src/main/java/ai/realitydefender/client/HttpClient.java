@@ -192,6 +192,41 @@ public class HttpClient implements Closeable {
   }
 
   /**
+   * Deletes a scan request ({@code DELETE /api/media/{requestId}}).
+   *
+   * <p>The API responds with 204 No Content.
+   *
+   * @param requestId request ID returned by upload or social media upload
+   * @throws RealityDefenderException if the request id is missing or the call fails
+   */
+  public void deleteRequest(String requestId) throws RealityDefenderException {
+    if (isBlank(requestId)) {
+      throw new RealityDefenderException("requestId is required", "INVALID_REQUEST");
+    }
+
+    Request request =
+        new Request.Builder()
+            .url(config.getBaseUrl() + "/api/media/" + requestId.trim())
+            .addHeader("X-API-KEY", config.getApiKey())
+            .addHeader("User-Agent", "RealityDefender-Java-SDK/1.0.0")
+            .delete()
+            .build();
+
+    logger.debug("Deleting media for request ID: {}", requestId);
+
+    try (Response response = client.newCall(request).execute()) {
+      if (response.isSuccessful()) {
+        return;
+      }
+      handleResponse(response);
+    } catch (RealityDefenderException e) {
+      throw e;
+    } catch (IOException e) {
+      throw new RealityDefenderException("Failed to delete request", "SERVER_ERROR", e);
+    }
+  }
+
+  /**
    * Gets detection results for a request ID.
    *
    * @param requestId the request ID to check
