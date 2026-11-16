@@ -716,6 +716,45 @@ class HttpClientTest {
             .withRequestBody(matchingJsonPath("$.socialLink", equalTo(testUrl))));
   }
 
+  @Test
+  void testDeleteAnalysisSuccess() throws Exception {
+    wireMockServer.stubFor(
+        delete(urlEqualTo("/api/media/req-1"))
+            .withHeader("X-API-KEY", equalTo("test-api-key"))
+            .willReturn(aResponse().withStatus(204)));
+
+    httpClient.deleteAnalysis("req-1");
+
+    wireMockServer.verify(
+        deleteRequestedFor(urlEqualTo("/api/media/req-1"))
+            .withHeader("X-API-KEY", equalTo("test-api-key")));
+  }
+
+  @Test
+  void testDeleteAnalysisNotFound() {
+    wireMockServer.stubFor(
+        delete(urlEqualTo("/api/media/missing"))
+            .willReturn(
+                aResponse()
+                    .withStatus(404)
+                    .withHeader("Content-Type", "application/json")
+                    .withBody("{\"code\":\"not-found\",\"response\":\"Media not found\"}")));
+
+    RealityDefenderException exception =
+        assertThrows(RealityDefenderException.class, () -> httpClient.deleteAnalysis("missing"));
+
+    assertEquals("NOT_FOUND", exception.getCode());
+  }
+
+  @Test
+  void testDeleteAnalysisRequiresRequestId() {
+    RealityDefenderException exception =
+        assertThrows(RealityDefenderException.class, () -> httpClient.deleteAnalysis("  "));
+
+    assertEquals("INVALID_REQUEST", exception.getCode());
+    wireMockServer.verify(0, deleteRequestedFor(anyUrl()));
+  }
+
   private void mockSuccessfulUpload() {
     // Mock signed URL endpoint
     wireMockServer.stubFor(

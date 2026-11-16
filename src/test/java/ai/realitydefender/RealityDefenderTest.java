@@ -246,6 +246,22 @@ class RealityDefenderTest {
     assertThatCode(clientWithNullService::close).doesNotThrowAnyException();
   }
 
+  @Test
+  void testDeleteAnalysis() throws RealityDefenderException {
+    realityDefender.deleteAnalysis("request-123");
+    verify(detectionService).deleteAnalysis("request-123");
+  }
+
+  @Test
+  void testDeleteAnalysisAsync() throws Exception {
+    when(detectionService.deleteAnalysisAsync("request-123"))
+        .thenReturn(CompletableFuture.completedFuture(null));
+
+    realityDefender.deleteAnalysisAsync("request-123").get();
+
+    verify(detectionService).deleteAnalysisAsync("request-123");
+  }
+
   private DetectionResult createDetectionResult() {
     return new DetectionResult(
         "test-name", // name
