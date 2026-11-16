@@ -601,15 +601,15 @@ class DetectionServiceTest {
   }
 
   @Test
-  void testDeleteRequestDelegatesToHttpClient() throws Exception {
-    detectionService.deleteRequest("req-1");
-    verify(httpClient).deleteRequest("req-1");
+  void testDeleteAnalysisDelegatesToHttpClient() throws Exception {
+    detectionService.deleteAnalysis("req-1");
+    verify(httpClient).deleteAnalysis("req-1");
   }
 
   @Test
-  void testDeleteRequestAsync() throws Exception {
-    CompletableFuture<Void> future = detectionService.deleteRequestAsync("req-1");
+  void testDeleteAnalysisAsync() throws Exception {
+    CompletableFuture<Void> future = detectionService.deleteAnalysisAsync("req-1");
     future.get();
-    verify(httpClient).deleteRequest("req-1");
+    verify(httpClient).deleteAnalysis("req-1");
   }
 }

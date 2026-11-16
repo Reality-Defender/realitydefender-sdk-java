@@ -247,19 +247,19 @@ class RealityDefenderTest {
   }
 
   @Test
-  void testDeleteRequest() throws RealityDefenderException {
-    realityDefender.deleteRequest("request-123");
-    verify(detectionService).deleteRequest("request-123");
+  void testDeleteAnalysis() throws RealityDefenderException {
+    realityDefender.deleteAnalysis("request-123");
+    verify(detectionService).deleteAnalysis("request-123");
   }
 
   @Test
-  void testDeleteRequestAsync() throws Exception {
-    when(detectionService.deleteRequestAsync("request-123"))
+  void testDeleteAnalysisAsync() throws Exception {
+    when(detectionService.deleteAnalysisAsync("request-123"))
         .thenReturn(CompletableFuture.completedFuture(null));
 
-    realityDefender.deleteRequestAsync("request-123").get();
+    realityDefender.deleteAnalysisAsync("request-123").get();
 
-    verify(detectionService).deleteRequestAsync("request-123");
+    verify(detectionService).deleteAnalysisAsync("request-123");
   }
 
   private DetectionResult createDetectionResult() {

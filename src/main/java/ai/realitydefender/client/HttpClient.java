@@ -192,14 +192,14 @@ public class HttpClient implements Closeable {
   }
 
   /**
-   * Deletes a scan request ({@code DELETE /api/media/{requestId}}).
+   * Deletes a scan analysis ({@code DELETE /api/media/{requestId}}).
    *
    * <p>The API responds with 204 No Content.
    *
    * @param requestId request ID returned by upload or social media upload
    * @throws RealityDefenderException if the request id is missing or the call fails
    */
-  public void deleteRequest(String requestId) throws RealityDefenderException {
+  public void deleteAnalysis(String requestId) throws RealityDefenderException {
     if (isBlank(requestId)) {
       throw new RealityDefenderException("requestId is required", "INVALID_REQUEST");
     }

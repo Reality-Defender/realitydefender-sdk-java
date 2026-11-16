@@ -154,26 +154,26 @@ public class DetectionService implements Closeable {
   }
 
   /**
-   * Deletes a scan request.
+   * Deletes a scan analysis.
    *
    * @param requestId request ID returned by upload or social media upload
    * @throws RealityDefenderException if the call fails
    */
-  public void deleteRequest(String requestId) throws RealityDefenderException {
-    httpClient.deleteRequest(requestId);
+  public void deleteAnalysis(String requestId) throws RealityDefenderException {
+    httpClient.deleteAnalysis(requestId);
   }
 
   /**
-   * Deletes a scan request asynchronously.
+   * Deletes a scan analysis asynchronously.
    *
    * @param requestId request ID returned by upload or social media upload
    * @return future that completes when the delete is accepted
    */
-  public CompletableFuture<Void> deleteRequestAsync(String requestId) {
+  public CompletableFuture<Void> deleteAnalysisAsync(String requestId) {
     return CompletableFuture.runAsync(
         () -> {
           try {
-            deleteRequest(requestId);
+            deleteAnalysis(requestId);
           } catch (RealityDefenderException e) {
             throw new RuntimeException(e);
           }

@@ -129,25 +129,25 @@ public class RealityDefender implements Closeable {
   }
 
   /**
-   * Deletes a scan request ({@code DELETE /api/media/{requestId}}).
+   * Deletes a scan analysis ({@code DELETE /api/media/{requestId}}).
    *
    * <p>The API responds with 204 No Content.
    *
    * @param requestId request ID returned by upload or social media upload
    * @throws RealityDefenderException if the call fails
    */
-  public void deleteRequest(String requestId) throws RealityDefenderException {
-    detectionService.deleteRequest(requestId);
+  public void deleteAnalysis(String requestId) throws RealityDefenderException {
+    detectionService.deleteAnalysis(requestId);
   }
 
   /**
-   * Deletes a scan request asynchronously.
+   * Deletes a scan analysis asynchronously.
    *
    * @param requestId request ID returned by upload or social media upload
    * @return future that completes when the delete is accepted
    */
-  public CompletableFuture<Void> deleteRequestAsync(String requestId) {
-    return detectionService.deleteRequestAsync(requestId);
+  public CompletableFuture<Void> deleteAnalysisAsync(String requestId) {
+    return detectionService.deleteAnalysisAsync(requestId);
   }
 
   /**
