@@ -54,11 +54,6 @@ jobs:
           files: ./target/site/jacoco/jacoco.xml
           fail_ci_if_error: ${{ inputs.is-release }}
 
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
   check-test-graalvm:
     runs-on: ubuntu-latest
     strategy:
